@@ -1,3 +1,8 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .wrapper {
   padding: 0;
   margin: 0 auto;
@@ -38,7 +43,7 @@
         text-align: center;
       }
       a {
-        @include adaptMult(margin, 10 30, 0 0);
+        @include adaptMult(margin, 10 30, auto);
         @include adaptMult(padding, 8 10, 16 20);
         @include adapt(border-radius, 30, 50);
         border: 2px solid gray;
