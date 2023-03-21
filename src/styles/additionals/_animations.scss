@@ -1,0 +1,128 @@
+/* ANIMATIONS: */
+@-webkit-keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-webkit-keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@-webkit-keyframes slide-in {
+	0% {
+		-webkit-transform: translateY(100%);
+		transform: translateY(100%);
+	}
+	100% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+}
+@keyframes slide-in {
+	0% {
+		-webkit-transform: translateY(100%);
+		transform: translateY(100%);
+	}
+	100% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+}
+@-webkit-keyframes slide-out {
+	0% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+	100% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	}
+}
+@keyframes slide-out {
+	0% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+	100% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	}
+}
+@-webkit-keyframes scale-in-out {
+	0% {
+		scale: 1;
+	}
+	50% {
+		scale: 1.05;
+	}
+	100% {
+		scale: 1;
+	}
+}
+@keyframes scale-in-out {
+	0% {
+		scale: 1;
+	}
+	50% {
+		scale: 1.05;
+	}
+	100% {
+		scale: 1;
+	}
+}
+
+/* animate one element or all elements at the same time */
+._animated1 {
+	-webkit-animation: fade-in 0.8s ease-in forwards;
+	animation: fade-in 0.8s ease-in forwards;
+}
+/* animate all elements step by step with delay */
+._animated2 {
+	-webkit-animation: fade-in 1.2s ease-in forwards;
+	animation: fade-in 1.2s ease-in forwards;
+	-webkit-animation-delay: calc(0.2s * var(--i));
+	animation-delay: calc(0.2s * var(--i));
+}
+/* animate all elements step by step with delay, the last element additionally scale in/out */
+._animated3 {
+	-webkit-animation: fade-in 1s ease-in forwards;
+	animation: fade-in 1s ease-in forwards;
+	-webkit-animation-delay: calc(0.1s * var(--i));
+	animation-delay: calc(0.1s * var(--i));
+	&:last-child {
+		-webkit-animation: fade-in 1s ease-in forwards 0.9s,
+			scale-in-out 1s ease-in forwards 1.2s;
+		animation: fade-in 1s ease-in forwards 0.9s,
+			scale-in-out 1s ease-in forwards 1.2s;
+	}
+}

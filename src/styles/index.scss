@@ -1,0 +1,13 @@
+@import url('../assets/tools/normalize.min.css');
+@import url('../assets/tools/magnific-popup.css');
+
+/* Import local fonts here: */
+@import url('../assets/fonts/ProximaNova/stylesheet.css');
+@import url('https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900&display=swap');
+
+@import './additionals/mixins';
+@import './additionals/variables';
+@import './additionals/defaults';
+@import './additionals/animations';
+@import './modules/modals';
+@import './main';

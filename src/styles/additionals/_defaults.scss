@@ -1,0 +1,281 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+/* html {
+	scroll-behavior: smooth;
+	@media (max-width: 500px) {
+		scroll-behavior: auto;
+	}
+} */
+
+html.noScroll {
+	body {
+		padding-right: $scrollbar;
+		overflow: hidden;
+		@media screen and (max-width: 768px) {
+			padding-right: 0;
+		}
+	}
+}
+
+html.mfp-helper {
+	body {
+		overflow: hidden;
+		.wrapper {
+			visibility: hidden !important;
+			display: none;
+		}
+	}
+}
+
+body {
+	background-color: $clr-default;
+	font-family: $font-default;
+	font-style: normal;
+	font-weight: 400;
+	@include adapt(font-size, 16, 22);
+	color: $clr-black;
+}
+a {
+	text-decoration: none !important;
+	color: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+q,
+li {
+	margin: 0;
+	padding: 0;
+	font-feature-settings: 'ordn' on;
+	font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+sup {
+	font-size: 0.65em;
+	top: -0.5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	line-height: 100%;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+h1,
+h2,
+h3 {
+	@include adapt(font-size, 30, 48);
+}
+h4 {
+	@include adapt(font-size, 18, 28);
+	line-height: 120%;
+	text-transform: none;
+}
+h5 {
+	@include adapt(font-size, 24, 32);
+	line-height: 110%;
+}
+
+p {
+	@include adapt(font-size, 16, 22);
+	line-height: 120%;
+	strong {
+		font-weight: 600;
+	}
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+ol {
+	padding: 0;
+	margin: 0;
+	@include adapt(padding-left, 14, 18);
+}
+img {
+	display: block;
+	max-width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.mob-scroll {
+	overflow-x: auto;
+	&::-webkit-scrollbar {
+		height: 12px;
+		border-radius: 20px;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 20px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: rgba(0, 0, 0, 0.2);
+		border-radius: 20px;
+		border: solid 2px transparent;
+		border-top-width: 2px;
+		border-bottom-width: 2px;
+		border-left-width: 2px;
+		border-right-width: 2px;
+		box-sizing: border-box;
+		background-clip: content-box;
+	}
+}
+.dissappear {
+	opacity: 0;
+}
+.hidden {
+	display: none;
+}
+
+.list1 {
+	@include adapt(gap, 8, 10);
+	li {
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		img {
+			@include adapt(width, 14, 20);
+			@include adapt(height, 14, 20);
+			@include adapt(margin-right, 8, 16);
+		}
+		p {
+			@include adapt(font-size, 15, 16);
+			font-weight: 400;
+			line-height: 130%;
+		}
+	}
+}
+
+.button {
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	@include adapt(padding, 12, 24);
+	@include adapt(max-width, 144, 240);
+	@include adapt(max-height, 39, 65);
+	@include adapt(border-radius, 8, 16);
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	p {
+		font-weight: 700;
+		@include adapt(font-size, 13, 16);
+		line-height: 100%;
+		text-align: center;
+	}
+}
+
+.flexSSB {
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+}
+.flexSFS {
+	display: flex;
+	align-items: stretch;
+	justify-content: flex-start;
+}
+.flexCSB {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.flexFSSB {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+.flexFESB {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+}
+.flexFEFS {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+.flexC {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.flexCFS {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+.flexSC {
+	display: flex;
+	align-items: stretch;
+	justify-content: center;
+}
+.flexFS {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+.flexFSC {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+@media (max-width: 500px) {
+	.flexSSB,
+	.flexCSB,
+	.flexFSSB,
+	.flexFESB,
+	.flexC,
+	.flexCFS,
+	.flexSC,
+	.flexFS,
+	.flexFSC {
+		flex-direction: column;
+		.flex-item {
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+.flexRow {
+	flex-direction: row;
+}
+.flexCol {
+	flex-direction: column;
+}
+.flexColRev {
+	flex-direction: column-reverse;
+}
+.center {
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+._started {
+	display: none;
+}
+
+._rotate {
+	transform: rotateY(-180deg);
+}

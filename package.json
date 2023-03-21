@@ -1,0 +1,57 @@
+{
+  "name": "main_vite-template_dnr",
+  "version": "0.0.1",
+  "description": "Custom project VITE configuration for DnR template",
+  "license": "ISC",
+  "keywords": [
+    "vite",
+    "eslint",
+    "prettier",
+    "@vitejs/plugin-legacy",
+    "babel",
+    "postcss",
+    "autoprefixer",
+    "vite-plugin-eslint",
+    "vite-plugin-image-optimizer"
+  ],
+  "author": "exslym",
+  "homepage": "https://github.com/exslym/main_vite-template_dnr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exslym/main_vite-template_dnr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/exslym/main_vite-template_dnr/issues"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite --open",
+    "serve": "vite preview --open",
+    "dev": "vite",
+    "build": "cross-env BUILD_TYPE=dev vite build",
+    "deploy": "gh-pages -d build"
+  },
+  "browserslist": [
+    "cover 99.5%"
+  ],
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^4.0.1",
+    "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "gh-pages": "^5.0.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.4",
+    "sass": "^1.58.3",
+    "sharp": "^0.31.3",
+    "svgo": "^3.0.2",
+    "terser": "^5.16.6",
+    "vite": "^4.1.0",
+    "vite-aliases": "^0.10.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-image-optimizer": "^1.1.2"
+  }
+}
