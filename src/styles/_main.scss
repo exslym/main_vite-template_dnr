@@ -32,12 +32,7 @@ body {
 ._1 {
   .section__content {
     .block {
-      h1,
-      button,
-      video,
-      img,
-      a,
-      p {
+      * {
         margin: 0 auto;
         display: block;
         text-align: center;
@@ -48,6 +43,11 @@ body {
         @include adapt(border-radius, 30, 50);
         border: 2px solid gray;
         width: max-content;
+      }
+      video {
+        @include adaptMult(margin, 10 30, auto);
+        background-image: url('../assets/images/coding.jpg');
+        border-radius: 30px;
       }
     }
   }
