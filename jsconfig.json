@@ -6,7 +6,7 @@
     "skipLibCheck": true,
     "checkJs": false,
     "jsx": "preserve",
-    "target": "es6",
+    "target": "ES2022",
     "module": "commonjs"
   },
   "exclude": [

@@ -26,8 +26,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "vite --open",
-    "serve": "vite preview --open",
+    "start": "vite --port 3000 --open",
+    "serve": "vite preview --port 3001 --open",
     "dev": "vite",
     "build": "cross-env BUILD_TYPE=dev vite build",
     "deploy": "gh-pages -d build"

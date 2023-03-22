@@ -69,8 +69,9 @@ pages.forEach((page) => {
 
 export default defineConfig({
   root: Path.resolve(__dirname, './src'),
-  base: './',
   publicDir: '../public',
+  base: './',
+
   build: {
     emptyOutDir: true,
     outDir: Path.resolve(__dirname, './build'),
@@ -115,8 +116,8 @@ export default defineConfig({
     devSourcemap: true,
   },
   server: {
+    hmr: true,
     port: 3000,
     host: '0.0.0.0',
-    hmr: true,
   },
 });
