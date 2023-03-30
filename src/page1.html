@@ -23,9 +23,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <!--  -->
-    <!-- PROJECT_NAME for Google Analytics - the same for all pages: -->
+    <!-- Для Google Analytics:
+			PROJECT_NAME - название проекта для GA, одинаковае на всех страницах многостраничного сайта; 
+			PAGE_TITLE - название текущей страницы (title), если это многостраничный сайт, то на следующих страницах после главной можно указать, например, page1, page2 и т.д., -->
     <meta name="projectName" content="PROJECT_NAME" />
-    <!-- PAGE_TITLE for Google Analytics - variable for each page: -->
     <title data-title="pageTitle">PAGE_1_TITLE</title>
 
     <script src="./scripts/index.js" type="module"></script>
@@ -40,16 +41,34 @@
             <img src="assets/images/coding.jpg" alt="image" />
             <a
               href="index.html"
-              data-label="button_2"
-              onclick="ga(`${projectName}.send`, `event`, `button`, `click`, `${dataset.label}`)"
+              data-label="button_4_openMainPage"
+              onclick="ga(`${projectName}.send`, `event`, `button`, `click`, `${dataset.label}`); gtag('event', 'button-click', {'button': dataset.label});"
             >
               Main Page
             </a>
             <br />
+            <button
+              class="scrollButton"
+              data-label="button_5_scrollToElement"
+              data-analytics="gaScripts"
+              data-target="video"
+            >
+              Scroll To Element
+            </button>
+            <br />
+            <button
+              type="submit"
+              data-label="button_6_downloadFile"
+              data-analytics="gaScripts"
+              onclick="window.open('docs/template.pdf');"
+            >
+              Download
+            </button>
+            <br />
             <div>
               <p class="jquery_page1"></p>
             </div>
-            <video controls preload="auto" data-label="background_music">
+            <video controls preload="auto" data-label="background_music" id="video">
               <source src="video/background_music.mp4" type="video/mp4" />
             </video>
           </div>
@@ -57,7 +76,7 @@
       </section>
     </div>
 
-    <!-- Google Analytics (GA) -->
+    <!-- Google Analytics (UA) -->
     <script type="text/javascript">
       const pageTitle = `${document.querySelector('[data-title="pageTitle"]').textContent}`;
       const projectName = `${document.querySelector('meta[name="projectName"]').content}`;
@@ -87,51 +106,85 @@
       });
     </script>
 
+    <!-- Google Analytics (GA4) -->
+    <!-- 	здесь вместо X-XXXXXXXXXX - идентификатор потока данных счетчика GA4, вместо __полный_адрес_страницы__ - актуальный полный адрес (включая домен) страницы на платформе doktornarabote.ru, например: https://www.doktornarabote.ru/page/1002020
+		 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=X-XXXXXXXXXX"></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'X-XXXXXXXXXX');
+      gtag('set', {
+        send_page_view: false,
+      });
+    </script>
+
+    <!-- Google Tag Manager (GTM) -->
+    <script type="text/javascript">
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js',
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+        // здесь вместо GTM-XXXXXXXXX идентификатор потока данных счетчика GTM
+      })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXXXX');
+    </script>
+
     <!-- NoBounce (GA) -->
     <script type="text/javascript">
-      window.addEventListener('load', function () {
+      window.addEventListener('load', () => {
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 5 seconds`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 5 seconds`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 5 seconds` });',
           5000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 10 seconds`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 10 seconds`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 10 seconds` });',
           10000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 15 seconds`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 15 seconds`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 15 seconds` });',
           15000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 20 seconds`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 20 seconds`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 20 seconds` });',
           20000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 30 seconds`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 30 seconds`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 30 seconds` });',
           30000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 40 seconds`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 40 seconds`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 40 seconds` });',
           40000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 1 minute`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 1 minute`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 1 minute` });',
           60000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 2 minutes`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 2 minutes`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 2 minutes` });',
           120000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 3 minutes`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 3 minutes`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 3 minutes` });',
           180000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 5 minutes`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 5 minutes`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 5 minutes` });',
           300000,
         );
         setTimeout(
-          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 10 minutes`, `${pageTitle}_NoBounce`)',
+          'ga(`${projectName}.send`, `event`, `NoBounce`, `Over 10 minutes`, `${pageTitle}_NoBounce`); gtag(`event`, `NoBounce`, { time: `${pageTitle}: Over 10 minutes` });',
           600000,
         );
       });
@@ -139,12 +192,13 @@
 
     <!-- Scroll Tracker (GA) -->
     <script type="text/javascript">
-      window.addEventListener('load', function (event) {
+      window.addEventListener('load', () => {
         let tracker = window.ScrollTracker({
           context: document.querySelector('.wrapper'),
         });
         tracker.on({ percentages: { every: [10] } }, (e) => {
           ga(`${projectName}.send`, `event`, `scroll`, `${e.data.label}`, `${pageTitle} scrolled`);
+          gtag('event', 'scroll', { scroll: `${pageTitle}: ${e.data.label}` });
         });
       });
     </script>
@@ -164,6 +218,7 @@
                 `${target.id}`,
                 `${pageTitle}_slides_visited`,
               );
+              gtag('event', 'slide', { slide: `${pageTitle}: ${target.id}` });
             });
           },
           { threshold: 0.1 },
@@ -211,27 +266,33 @@
         let timer = null;
         let sec = 0;
         const startTimer = function startTimer() {
-          return setInterval(function () {
+          return setInterval(() => {
             const seconds = sec + 1;
             const minutes = Math.floor(seconds / 60);
             const durationReal = Math.floor(video.duration);
+            // Конец видео (продолжительность видео минус 5 секунд, можно задать точнее, например, за 1 секунду до конца)
             const duration = durationReal - 5;
             const data = video.dataset.label;
 
+            // Старт видео (с 1 секунды):
             switch (true) {
               case seconds === 1:
                 ga(`${projectName}.send`, `event`, `video`, `start`, data);
+                gtag(`event`, `video`, { video: `${data} - start` });
                 break;
               case seconds > 0 && seconds < 30:
                 if (seconds % 5 === 0) {
                   ga(`${projectName}.send`, `event`, `video`, `${seconds}s`, data);
+                  gtag(`event`, `video`, { video: `${data} - ${seconds}s` });
                 }
                 break;
               case seconds >= 30 && seconds < 60:
                 if (seconds % 15 === 0) {
                   ga(`${projectName}.send`, `event`, `video`, `${seconds}s`, data);
+                  gtag(`event`, `video`, { video: `${data} - ${seconds}s` });
                 }
                 break;
+              // после первых 60 секунд конвертим секунды в минуты и каждые 15 секунд опрокидываем событие вида, например, 1m 45s, далее 2m, далее 2m 15s и т.д.:
               case seconds >= 60 && seconds < duration:
                 if (seconds % 15 === 0) {
                   switch (true) {
@@ -243,14 +304,22 @@
                         `${minutes}m ${seconds - minutes * 60}s`,
                         data,
                       );
+                      gtag(`event`, `video`, {
+                        video: `${data} - ${minutes}m ${seconds - minutes * 60}s`,
+                      });
                       break;
                     default:
                       ga(`${projectName}.send`, `event`, `video`, `${minutes}m`, data);
+                      gtag(`event`, `video`, {
+                        video: `${data} - ${minutes}m`,
+                      });
                   }
                 }
                 break;
+              // Конец видео:
               case seconds === duration:
                 ga(`${projectName}.send`, `event`, `video`, `end`, data);
+                gtag(`event`, `video`, { video: `${data} - end` });
                 break;
             }
             sec++;
@@ -268,8 +337,19 @@
       });
     </script>
 
-    <script src="../tools/jquery-3.6.3.min.js"></script>
-    <script src="../tools/magnific-popup.min.js"></script>
-    <script src="../tools/scroll-tracker.min.js"></script>
+    <script src="tools/jquery-3.6.3.min.js"></script>
+    <script src="tools/magnific-popup.min.js"></script>
+    <script src="tools/scroll-tracker.min.js"></script>
+
+    <!-- Google Tag Manager (GTM) -->
+    <!-- здесь вместо GTM-XXXXXXXXX идентификатор потока данных счетчика GTM  -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXXXX"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
   </body>
 </html>
