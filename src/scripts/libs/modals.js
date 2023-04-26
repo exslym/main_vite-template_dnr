@@ -70,26 +70,27 @@ export function modals(modalBlock, openButton, closeButton) {
   }
 }
 
-//! html structure - copy template to your document:
+//! html structure - copy templates to your document:
 //* BUTTONS:
 /* 
-	<button class="openButton" data-target="modal1">
-		<p>Open Modal 1</p>
+	<button class="button openButton" data-target="modal1">
+		<p>OPEN_MODAL_1</p>
 	</button>
-	<button class="openButton" data-target="modal2">
-		<p>Open Modal 2</p>
+	<button class="button openButton" data-target="modal2">
+		<p>OPEN_MODAL_2</p>
 	</button>
 */
+
 //* MODALS:
 /* 
 	<dialog class="modal modalBlock" id="modal1">
 		<div class="modal-container">
 			<div class="modal-box">
 				<div class="modal-content">
-					<h2>MODAL 1</h2>
+					<div>MODAL_1_CONTENT</div>
 				</div>
 			</div>
-			<img class="closeButton" data-target="modal1" src="../public/images/close.svg" alt="close" />
+			<img class="closeButton" data-target="modal1" src="./assets/images/close.svg" alt="close" />
 		</div>
 	</dialog>
 
@@ -97,11 +98,23 @@ export function modals(modalBlock, openButton, closeButton) {
 		<div class="modal-container">
 			<div class="modal-box">
 				<div class="modal-content">
-					<h2>MODAL 2</h2>
+					<div>MODAL_2_CONTENT</div>
 				</div>
 			</div>
-			<img class="closeButton" data-target="modal2" src="../public/images/close.svg" alt="close" />
+			<img class="closeButton" data-target="modal2" src="./assets/images/close.svg" alt="close" />
 		</div>
 	</dialog>
 */
-//! styles - copy _modals.scss module to your project and import it in the index.scss
+//! styles structure - copy _modals.scss module to your project and import it in the index.scss
+
+//! scripts - add module to your project and import it in the index.js
+//* SCRIPTS:
+/*
+import { modals } from './libs/modals';
+
+window.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+
+  modals('modalBlock', 'openButton', 'closeButton');
+});
+*/
