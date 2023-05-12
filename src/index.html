@@ -198,7 +198,13 @@
           context: document.querySelector('.wrapper'),
         });
         tracker.on({ percentages: { every: [10] } }, (e) => {
-          ga(`${projectName}.send`, `event`, `scroll`, `${e.data.label}`, `${pageTitle} scrolled`);
+          ga(
+            `${projectName}.send`,
+            `event`,
+            `scroll`,
+            `${pageTitle}: ${e.data.label}`,
+            `${pageTitle}_scrolled`,
+          );
           gtag('event', 'scroll', { scroll: `${pageTitle}: ${e.data.label}` });
         });
       });
@@ -216,7 +222,7 @@
                 `${projectName}.send`,
                 `event`,
                 `slide`,
-                `${target.id}`,
+                `${pageTitle}: ${target.id}`,
                 `${pageTitle}_slides_visited`,
               );
               gtag('event', 'slide', { slide: `${pageTitle}: ${target.id}` });
