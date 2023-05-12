@@ -14,3 +14,21 @@ export function gaScripts(btnAttribute) {
     });
   }
 }
+
+//! html structure - copy templates to your document:
+//* click on elements:
+/* 
+  <button
+    data-label="Button_1"
+    data-analytics="gaScripts"
+  >
+    Button_1
+  </button>
+
+  <a href="#"
+    data-label="Button_2"
+    data-analytics="gaScripts"
+  >
+    Button_2
+  </a>
+*/
