@@ -15,14 +15,6 @@
     "vite-plugin-image-optimizer"
   ],
   "author": "exslym",
-  "homepage": "https://github.com/exslym/main_vite-template_dnr",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/exslym/main_vite-template_dnr.git"
-  },
-  "bugs": {
-    "url": "https://github.com/exslym/main_vite-template_dnr/issues"
-  },
   "type": "module",
   "main": "index.js",
   "scripts": {
