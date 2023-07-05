@@ -2,9 +2,10 @@
 export function expandElement(
   expandButton,
   expandBlock,
-  activeButton,
-  activeBlock,
+  activeButtonClass,
+  activeBlockClass,
   scrollOption = false,
+  scrollerContainer = false,
 ) {
   const w = window;
   const e = document.documentElement;
@@ -23,49 +24,58 @@ export function expandElement(
     buttons.forEach((button) => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
-        const expandable = document.getElementById(`${e.target.dataset.target}`);
+        const expandable = document.getElementById(`${button.dataset.target}`);
 
         if (expandable.style.maxHeight === '0px') {
           buttons.forEach((button) => {
-            button.classList.remove(`${activeButton}`);
+            button.classList.remove(`${activeButtonClass}`);
           });
-          button.classList.add(`${activeButton}`);
+          button.classList.add(`${activeButtonClass}`);
 
           blocks.forEach((block) => {
             block.style.display = 'none';
             block.style.maxHeight = '0px';
-            block.classList.remove(`${activeBlock}`);
+            block.classList.remove(`${activeBlockClass}`);
           });
 
           expandable.style.display = 'block';
           expandable.style.maxHeight = expandable.scrollHeight + 'px';
           setTimeout(() => {
-            expandable.classList.add(`${activeBlock}`);
+            expandable.classList.add(`${activeBlockClass}`);
           }, 10);
 
           /* SMOOTH SCROLL TO BLOCK START */
           if (scrollOption !== false) {
-            if (document.getElementById(`${e.target.dataset.target}`)) {
+            if (document.getElementById(`${button.dataset.target}`)) {
               let topOffset = 0;
               setTimeout(() => {
-                const targetElement = e.target.dataset.target;
-                const scrollTarget = document.getElementById(targetElement);
-                const elementPosition = scrollTarget.getBoundingClientRect().top;
+                const elementToScroll = document.getElementById(`${button.dataset.target}`);
+                const elementPosition = elementToScroll.getBoundingClientRect().top;
                 const offsetPosition = elementPosition - topOffset;
-                window.scrollBy({
-                  top: offsetPosition,
-                  behavior: 'smooth',
-                });
+
+                if (scrollerContainer !== false) {
+                  const scrollerBox = document.querySelector(`.${scrollerContainer}`);
+                  scrollerBox.scrollBy({
+                    top: offsetPosition,
+                    behavior: 'smooth',
+                  });
+                } else {
+                  const scrollerBox = window;
+                  scrollerBox.scrollBy({
+                    top: offsetPosition,
+                    behavior: 'smooth',
+                  });
+                }
               }, 100);
             }
           }
         } else {
           buttons.forEach((button) => {
-            button.classList.remove(`${activeButton}`);
+            button.classList.remove(`${activeButtonClass}`);
           });
           blocks.forEach((block) => {
             block.style.maxHeight = '0px';
-            block.classList.remove(`${activeBlock}`);
+            block.classList.remove(`${activeBlockClass}`);
             setTimeout(() => {
               block.style.display = 'none';
             }, 300);
@@ -79,3 +89,22 @@ export function expandElement(
     });
   }
 }
+
+//! scripts - add module to your project and import it in the index.js
+//* SCRIPTS:
+/*
+import { expandElement } from './libs/expandElement';
+
+window.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+
+  expandElement(
+    'expandButton',
+    'expandBlock',
+    'activeButton',
+    'activeBlock',
+    true,
+    'scrollerContainer',
+  );
+});
+*/
