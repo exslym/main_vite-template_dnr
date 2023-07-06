@@ -1,12 +1,3 @@
-const w = window;
-const e = document.documentElement;
-const b = document.getElementsByTagName('body')[0];
-const x = w.innerWidth || e.clientWidth || b.clientWidth;
-
-const isTablet =
-  /^iP/.test(navigator.userAgent) ||
-  (/^Mac/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
-
 //* flipping cards:
 
 //* onClick:
@@ -23,6 +14,14 @@ export function flipCards(flipperClass, activeClass) {
 
 //* onHover:
 /* 
+const w = window;
+const e = document.documentElement;
+const b = document.getElementsByTagName('body')[0];
+const x = w.innerWidth || e.clientWidth || b.clientWidth;
+const isTablet =
+  /^iP/.test(navigator.userAgent) ||
+  (/^Mac/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+
 export function flipCards(flipperClass, activeClass) {
   if (document.querySelector(`.${flipperClass}`)) {
     const flippers = document.querySelectorAll(`.${flipperClass}`);

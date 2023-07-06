@@ -83,8 +83,7 @@
     </script>
 
     <!-- Google Analytics (GA4) -->
-    <!-- 	здесь вместо X-XXXXXXXXXX - идентификатор потока данных счетчика GA4, вместо __полный_адрес_страницы__ - актуальный полный адрес (включая домен) страницы на платформе doktornarabote.ru, например: https://www.doktornarabote.ru/page/1002020
-		 -->
+    <!-- 	здесь вместо X-XXXXXXXXXX - идентификатор потока данных счетчика GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=X-XXXXXXXXXX"></script>
     <script type="text/javascript">
       window.dataLayer = window.dataLayer || [];
@@ -95,6 +94,12 @@
       gtag('config', 'X-XXXXXXXXXX');
       gtag('set', {
         send_page_view: false,
+      });
+
+      /* для многостраничного сайта на каждой странице вместо __полный_адрес_страницы__ - актуальный полный адрес (включая домен) страницы на платформе doktornarabote.ru, например: https://www.doktornarabote.ru/page/1002020 */
+      gtag('set', {
+        page_title: `${pageTitle}`,
+        page_location: `__полный_адрес_страницы__`,
       });
     </script>
 
@@ -201,7 +206,7 @@
         let timer = null;
         let sec = 0;
         const startTimer = function startTimer() {
-          return setInterval(() => {
+          return setInterval(function () {
             const seconds = sec + 1;
             const minutes = Math.floor(seconds / 60);
             const durationReal = Math.floor(video.duration);
@@ -209,6 +214,8 @@
             const duration = durationReal - 5;
             const data = video.dataset.label;
 
+            // GOOGLE ANALYTICS:
+            //
             // Старт видео (с 1 секунды):
             switch (true) {
               case seconds === 1:
@@ -248,6 +255,7 @@
             sec++;
           }, 1000);
         };
+
         const stopTimer = () => {
           clearInterval(timer);
         };
@@ -257,6 +265,27 @@
         video.addEventListener('pause', () => {
           stopTimer();
         });
+
+        /* 
+				// вешаем play/pause по клику на видео
+				video.addEventListener('click', function (e) {
+					e.preventDefault();
+					const data = video.dataset.label;
+					let counter = true;
+
+					if (video.paused === false) {
+						video.pause();
+					} else {
+						video.play();
+						video.controls = true;
+						// а также единоразово отправляем событие по первому клику на видео, если нужно
+						if (counter === true) {
+							gtag('event', 'button-click', { button: data });
+							counter = false;
+						}
+					}
+				}); 
+				*/
       });
     </script>
 

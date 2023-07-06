@@ -47,7 +47,11 @@ export function expandElement(
           /* SMOOTH SCROLL TO BLOCK START */
           if (scrollOption !== false) {
             if (document.getElementById(`${button.dataset.target}`)) {
-              let topOffset = 0;
+              let compStylesProperty = window
+                .getComputedStyle(expandable)
+                .getPropertyValue('margin-top');
+              let topOffset = Math.round(Number(compStylesProperty.replace('px', '')));
+
               setTimeout(() => {
                 const elementToScroll = document.getElementById(`${button.dataset.target}`);
                 const elementPosition = elementToScroll.getBoundingClientRect().top;
@@ -66,6 +70,8 @@ export function expandElement(
                     behavior: 'smooth',
                   });
                 }
+
+                clearTimeout();
               }, 100);
             }
           }
@@ -78,13 +84,16 @@ export function expandElement(
             block.classList.remove(`${activeBlockClass}`);
             setTimeout(() => {
               block.style.display = 'none';
+
+              clearTimeout();
             }, 300);
           });
           setTimeout(() => {
             expandable.style.display = 'none';
+
+            clearTimeout();
           }, 300);
         }
-        clearTimeout();
       });
     });
   }

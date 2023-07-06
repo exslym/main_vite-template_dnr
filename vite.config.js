@@ -72,6 +72,23 @@ export default defineConfig({
   publicDir: '../public',
   base: './',
 
+  css: {
+    devSourcemap: true,
+    postcss: {
+      plugins: [autoprefixer],
+    },
+  },
+  plugins: [
+    eslint(),
+    ViteImageOptimizer({
+      DEFAULT_OPTIONS,
+    }),
+    ViteAliases(),
+    legacy({
+      targets: ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead'],
+    }),
+  ],
+
   build: {
     emptyOutDir: true,
     outDir: Path.resolve(__dirname, './build'),
@@ -99,22 +116,7 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    eslint(),
-    ViteImageOptimizer({
-      DEFAULT_OPTIONS,
-    }),
-    ViteAliases(),
-    legacy({
-      targets: ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead'],
-    }),
-  ],
-  css: {
-    postcss: {
-      plugins: [autoprefixer],
-    },
-    devSourcemap: true,
-  },
+
   server: {
     hmr: true,
     port: 3000,

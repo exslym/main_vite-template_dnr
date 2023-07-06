@@ -7,7 +7,24 @@
     "checkJs": false,
     "jsx": "preserve",
     "target": "ES2022",
-    "module": "commonjs"
+    "module": "commonjs",
+    "paths": {
+      "~assets/*": [
+        "src/assets/*"
+      ],
+      "~pages/*": [
+        "src/pages/*"
+      ],
+      "~scripts/*": [
+        "src/scripts/*"
+      ],
+      "~styles/*": [
+        "src/styles/*"
+      ],
+      "~/*": [
+        "src/*"
+      ]
+    }
   },
   "exclude": [
     "node_modules",
