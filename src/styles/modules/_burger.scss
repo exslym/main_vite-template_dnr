@@ -8,7 +8,7 @@
     width: 100%;
     z-index: 20;
     background-color: rgba(250, 255, 255, 0.8);
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-out;
     @media screen and (max-width: 800px) {
       top: 4px;
       @include adapt(height, 52, 72, 800);
@@ -29,21 +29,23 @@
       span,
       &:before,
       &:after {
-        @include adapt(height, 2, 3, 800);
-        width: 100%;
-        position: absolute;
-        background-color: $clr-black;
         margin: 0 auto;
-        transition: all 0.4s ease-in-out;
+        position: absolute;
+        width: 100%;
+        @include adapt(height, 2, 3, 800);
+        background-color: $clr-black;
       }
       span {
         @include adapt(top, 11, 18.5, 800);
+        transition: transform 0.4s ease-in-out;
       }
       &:before {
         @include adapt(top, 4, 8, 800);
+        transition: top 0.4s ease-in-out, transform 0.4s ease-in-out;
       }
       &:after {
         @include adapt(bottom, 4, 8, 800);
+        transition: bottom 0.4s ease-in-out, transform 0.4s ease-in-out;
       }
       &:before,
       &:after {
@@ -159,12 +161,12 @@
       box-shadow: -2px 2px 15px 0px rgba(0, 24, 102, 0.15);
 
       opacity: 0;
-      animation: fade-in 0.2s ease-in-out forwards;
+      animation: fade-in 0.2s ease-out forwards;
 
       .crumbs {
         flex-direction: column;
         color: $clr-black;
-        @include adapt(gap, 12, 14, 800);
+        @include adapt(gap, 12, 18, 800);
         li a {
           img {
             display: none;
