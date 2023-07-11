@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
   $('.jquery_page1').text('page1 - jQuery is working');
 
   /* for Google Analytics */
-  gaScripts('gaScripts');
+  // gaScripts('gaScripts');
 
   /* for smooth scroll to element by clicking the button */
   smoothScroll('scrollButton');
