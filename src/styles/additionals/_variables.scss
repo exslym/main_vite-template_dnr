@@ -6,7 +6,7 @@ $font-proxima: 'Proxima Nova', Arial, Helvetica, sans-serif;
 $clr-default: #f5f5f5;
 /* ================ */
 $clr-white: #ffffff;
-$clr-black: #3b5676;
+$clr-black: #000000;
 
 /* ================ */
 .black {
@@ -40,6 +40,12 @@ $fs-16: clamp(13px, 0.833333vw, 16px);
 $fs-14: clamp(12px, 0.729166vw, 14px);
 $fs-12: 12px;
 
+.fs120 {
+  @include adapt(font-size, 60, 120);
+}
+.fs80 {
+  @include adapt(font-size, 36, 80);
+}
 .fs76 {
   @include adapt(font-size, 36, 76);
 }
