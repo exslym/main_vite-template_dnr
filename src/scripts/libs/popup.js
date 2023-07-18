@@ -126,4 +126,16 @@ export function popup(popupClass) {
         display: none;
       }
 	*/
+
+  //! scripts - add module to your project and import it in the index.js
+  //* SCRIPTS:
+  /*
+    import { popup } from './libs/popup';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      'use strict';
+
+      popup('popup');
+    });
+  */
 }
