@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <div class="iframe-container">
+      <link href="https://files.doktornarabote.ru/S.Amasev/iframe.css" rel="stylesheet" />
+      <!-- здесь указываем путь к файлу index.html, залитому на фтп, например: -->
+      <iframe
+        width="100%"
+        height="100%"
+        frameborder="0"
+        src="https://files.doktornarabote.ru/tsplkhn/test/index.html"
+      ></iframe>
+    </div>
+    <p>
+      <script type="text/javascript">
+        // <![CDATA[
+        window.addEventListener('load', function () {
+          const iframe = document.querySelector('iframe');
+          iframe.contentWindow.postMessage(
+            {
+              url: window.top.location.href,
+              docData: window.docData,
+            },
+            '*',
+          );
+        });
+        // ]]>
+      </script>
+
+      <!-- GA4 (gtag) -->
+      <!-- здесь в значении параметра src вместо X-XXXXXXXXXX - идентификатор потока данных счетчика GA4 -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=X-XXXXXXXXXX"></script>
+      <script type="text/javascript">
+        // <![CDATA[
+        window.addEventListener('load', function () {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'X-XXXXXXXXXX');
+        });
+        // ]]>
+      </script>
+
+      <!-- Google Analytics DocId -->
+      <script>
+        window.addEventListener('load', function () {
+          window.addEventListener('message', (e) => {
+            if (e.data.docData) {
+              gtag(`event`, `UserID`, { DocId: e.data.docData.Id });
+            }
+          });
+        });
+      </script>
+
+      <!-- Google Tag Manager (GTM) -->
+      <!-- здесь вместо XXX-XXXXXXXXX - идентификатор потока данных счетчика GTM: -->
+      <script>
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js',
+          });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'XXX-XXXXXXX');
+      </script>
+    </p>
+
+    <!-- Google Tag Manager (GTM) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=XXX-XXXXXXX"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript>
+
+    <!-- это нужно для якорей на другие страницы многостраничного сайта, указываем пути к файлам html, залитым на фтп, например: -->
+    <script type="text/javascript">
+      // <![CDATA[
+      const frame = document.querySelector('.iframe-container iframe');
+      let hash = window.top.location.hash;
+      if (hash == '#page1') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/page1.html';
+      } else if (hash == '#page2') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/page2.html';
+      } else if (hash == '#page3') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/page3.html';
+      }
+      // это нужно для якорей на конкретные элементы или блоки страницы сайта, указываем id элемента, например:
+      else if (hash == '#video') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/index.html#video';
+      } else if (hash == '#block_3') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/index.html#block_3';
+      } else {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/index.html';
+      }
+      // ]]>
+    </script>
+  </body>
+</html>

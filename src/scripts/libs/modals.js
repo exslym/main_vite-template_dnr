@@ -52,16 +52,16 @@ export function modals(modalBlock, openButton, closeButton) {
       });
     });
     modals.forEach((modal) => {
-      modal.addEventListener('click', function (e) {
+      modal.addEventListener('click', (e) => {
         if (e.target.nodeName === 'DIALOG') {
           document.querySelector('html').classList.remove('noScroll');
-          this.setAttribute('closing', '');
-          this.style.overflow = 'hidden';
-          this.addEventListener(
+          modal.setAttribute('closing', '');
+          modal.style.overflow = 'hidden';
+          modal.addEventListener(
             'animationend',
             () => {
-              this.removeAttribute('closing');
-              this.close();
+              modal.removeAttribute('closing');
+              modal.close();
             },
             { once: true },
           );
@@ -74,10 +74,10 @@ export function modals(modalBlock, openButton, closeButton) {
 //! html structure - copy templates to your document:
 //* BUTTONS:
 /* 
-	<button class="button openButton" data-target="modal1">
+	<button class="button openButton" data-label="Button_Modal1" data-target="modal1">
 		<p>OPEN_MODAL_1</p>
 	</button>
-	<button class="button openButton" data-target="modal2">
+	<button class="button openButton" data-label="Button_Modal2" data-target="modal2">
 		<p>OPEN_MODAL_2</p>
 	</button>
 */

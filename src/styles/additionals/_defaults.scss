@@ -124,6 +124,7 @@ img {
     border-radius: 20px;
   }
   &::-webkit-scrollbar-thumb {
+    cursor: pointer;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     border: solid 2px transparent;
@@ -133,8 +134,12 @@ img {
     border-right-width: 2px;
     box-sizing: border-box;
     background-clip: content-box;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
   }
 }
+
 .dissappear {
   opacity: 0;
 }

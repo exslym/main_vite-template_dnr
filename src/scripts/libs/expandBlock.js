@@ -1,4 +1,4 @@
-//* Block "open/close
+//* Block "open/close"
 export function expandBlock(expandButton, activeClass) {
   if (document.querySelector(`.${expandButton}`)) {
     const buttons = document.querySelectorAll(`.${expandButton}`);

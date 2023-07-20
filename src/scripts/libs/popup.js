@@ -70,6 +70,9 @@ export function popup(popupClass) {
           border-right-width: 2px;
           box-sizing: border-box;
           background-clip: content-box;
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+          }
         }
       }
 

@@ -1,10 +1,25 @@
-//* Google Analytics Events
+//* Google Analytics Button Click Events
 export function gaScripts(btnAttribute) {
+  const pageTitleGA = `${document.querySelector('meta[name="pageTitleGAEvents"]').content}`;
+
   if (document.querySelector(`[data-analytics="${btnAttribute}"]`)) {
     document.querySelectorAll(`[data-analytics="${btnAttribute}"]`).forEach((btn) => {
       btn.addEventListener('click', () => {
-        // eslint-disable-next-line no-undef
-        gtag(`event`, `button-click`, { button: `${btn.dataset.label}` });
+        const eventName = `Buttons_${pageTitleGA}`;
+        const property = `Buttons_${pageTitleGA}`;
+        const label = `${btn.dataset.label}`;
+        let eventProperty = new Object();
+        eventProperty = { [property]: label };
+
+        if (typeof gtag === 'function') {
+          // eslint-disable-next-line no-undef
+          gtag(`event`, eventName, eventProperty);
+          // console.log(`event`, eventName, eventProperty);
+        } else {
+          console.log(
+            '⛔️ Please define the gtag function in the head tag of html file, function is NOT defined',
+          );
+        }
       });
     });
   }

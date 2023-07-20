@@ -24,7 +24,7 @@ export function expandElement(
     buttons.forEach((button) => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
-        const expandable = document.getElementById(`${button.dataset.target}`);
+        const expandable = document.querySelector(`.${button.dataset.target}`);
 
         if (expandable.style.maxHeight === '0px') {
           buttons.forEach((button) => {
@@ -46,14 +46,14 @@ export function expandElement(
 
           /* SMOOTH SCROLL TO BLOCK START */
           if (scrollOption !== false) {
-            if (document.getElementById(`${button.dataset.target}`)) {
+            if (document.querySelector(`.${button.dataset.target}`)) {
               let compStylesProperty = window
                 .getComputedStyle(expandable)
                 .getPropertyValue('margin-top');
               let topOffset = Math.round(Number(compStylesProperty.replace('px', '')));
 
               setTimeout(() => {
-                const elementToScroll = document.getElementById(`${button.dataset.target}`);
+                const elementToScroll = document.querySelector(`.${button.dataset.target}`);
                 const elementPosition = elementToScroll.getBoundingClientRect().top;
                 const offsetPosition = elementPosition - topOffset;
 
@@ -99,21 +99,65 @@ export function expandElement(
   }
 }
 
+//! html structure - copy templates to your document:
+//* HTML
+/* 
+  <button
+    class="expandButton"
+    data-target="targetBlock1"
+    data-label="Button_1"
+  >
+    <p>Click</p>
+  </button>
+
+  <div class="expandBlock targetBlock1">
+    <div class="content">
+      <h2>CONTENT</h2>
+    </div>
+  </div>
+*/
+
+//! SCSS styles - copy to main.scss
+//* SCSS
+/* 
+  @-webkit-keyframes fade-in {
+    0% { opacity: 0; }
+    20% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    20% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .expandBlock {
+    opacity: 0;
+  }
+  .activeBlockClass {
+    -webkit-animation: fade-in 0.4s ease-out forwards;
+    animation: fade-in 0.4s ease-out forwards;
+  }
+  .activeButtonClass {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+*/
+
 //! scripts - add module to your project and import it in the index.js
 //* SCRIPTS:
 /*
-import { expandElement } from './libs/expandElement';
+  import { expandElement } from './libs/expandElement';
 
-window.addEventListener('DOMContentLoaded', () => {
-  'use strict';
+  window.addEventListener('DOMContentLoaded', () => {
+    'use strict';
 
-  expandElement(
-    'expandButton',
-    'expandBlock',
-    'activeButton',
-    'activeBlock',
-    true,
-    'scrollerContainer',
-  );
-});
+    expandElement(
+      'expandButton',
+      'expandBlock',
+      'activeButton',
+      'activeBlock',
+      true,
+      'scrollerContainer',
+    );
+  });
 */

@@ -1,12 +1,30 @@
 /* fonts */
 $font-default: 'Inter', Arial, Helvetica, sans-serif;
 $font-proxima: 'Proxima Nova', Arial, Helvetica, sans-serif;
+$font-roboto: 'Roboto', Arial, Helvetica, sans-serif;
+
+.inter {
+  font-family: $font-default;
+}
+.proxima {
+  font-family: $font-proxima;
+}
+.roboto {
+  font-family: $font-roboto;
+}
 
 /* colors */
 $clr-default: #f5f5f5;
+$clr-wrapper: #f2f2f2;
 /* ================ */
 $clr-white: #ffffff;
-$clr-black: #000000;
+$clr-black: #343434;
+$clr-gray: #939393;
+$clr-gray-lt: #e0e0e0;
+$clr-footer: #5e5e5e;
+
+$grad-button: linear-gradient(50deg, #9e418e 0%, #cf2776 100%);
+$grad-button-hover: linear-gradient(50deg, #cf2776 0%, #9e418e 100%);
 
 /* ================ */
 .black {
@@ -20,7 +38,7 @@ $clr-black: #000000;
 $scrollbar: 15px;
 
 /* font-sizes */
-$fs-default: clamp(15px, 0.9375vw, 18px);
+$fs-default: clamp(15px, 1.145833vw, 22px);
 
 $fs-120: clamp(60px, 6.25vw, 120px);
 $fs-80: clamp(36px, 4.166666vw, 80px);
@@ -157,10 +175,16 @@ $fs-12: 12px;
   @include adapt(margin-bottom, 16, 36);
 }
 .mt32 {
-  @include adapt(margin-top, 14, 32);
+  @include adapt(margin-top, 16, 32);
 }
 .mb32 {
-  @include adapt(margin-bottom, 14, 32);
+  @include adapt(margin-bottom, 16, 32);
+}
+.mt30 {
+  @include adapt(margin-top, 14, 30);
+}
+.mb30 {
+  @include adapt(margin-bottom, 14, 30);
 }
 .mt28 {
   @include adapt(margin-top, 14, 28);
@@ -198,11 +222,23 @@ $fs-12: 12px;
 .mb12 {
   @include adapt(margin-bottom, 10, 12);
 }
+.mt10 {
+  @include adapt(margin-top, 8, 10);
+}
+.mb10 {
+  @include adapt(margin-bottom, 8, 10);
+}
 .mt8 {
   @include adapt(margin-top, 6, 8);
 }
 .mb8 {
   @include adapt(margin-bottom, 6, 8);
+}
+.mt6 {
+  margin-top: 6px;
+}
+.mb6 {
+  margin-bottom: 6px;
 }
 .mt4 {
   margin-top: 4px;

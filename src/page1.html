@@ -23,15 +23,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
-    <!-- for Google Analytics 
-			PROJECT_NAME - название проекта для GA, одинаковае на всех страницах многостраничного сайта; 
-			PAGE_TITLE - название текущей страницы (title), если это многостраничный сайт, то на следующих страницах после главной можно указать, например, page1, page2 и т.д., -->
-    <meta name="projectName" content="PROJECT_NAME" />
-    <title data-title="pageTitle">PAGE_1_TITLE</title>
+    <!-- Заголовок текущей страницы -->
+    <title data-title="pageTitle">TITLE</title>
 
+    <!-- for Google Analytics -->
+    <!-- PAGE_1 - название текущей страницы, нужно для GA -->
+    <meta name="pageTitleGAEvents" content="PAGE_1" />
     <script type="text/javascript">
+      const pageTitleGA = `${document.querySelector('meta[name="pageTitleGAEvents"]').content}`;
       const pageTitle = `${document.querySelector('[data-title="pageTitle"]').textContent}`;
-      const projectName = `${document.querySelector('meta[name="projectName"]').content}`;
     </script>
 
     <script src="./scripts/index.js" type="module"></script>
@@ -47,8 +47,8 @@
             <!-- вариант добавления аналитики на событие клика по кнопке через onClick:
               <a
               href="index.html"
-              data-label="button_4_openMainPage"
-              onclick="gtag('event', 'button-click', {'button': dataset.label})"
+              data-label="Button_4_OpenMainPage"
+              onclick="gtag('event', 'Buttons', {'Buttons': dataset.label})"
             >
               Main Page
             </a>
@@ -59,7 +59,7 @@
             <br />
             <button
               class="scrollButton"
-              data-label="button_5_scrollToElement"
+              data-label="Button_5_ScrollToElement"
               data-analytics="gaScripts"
               data-target="video"
             >
@@ -68,7 +68,7 @@
             <br />
             <button
               type="submit"
-              data-label="button_6_downloadFile"
+              data-label="Button_6_DownloadFile"
               data-analytics="gaScripts"
               onclick="window.open('docs/template.pdf');"
             >
