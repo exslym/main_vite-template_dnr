@@ -1,5 +1,11 @@
 //* Block "open/close" with smooth scroll to the top of the target
-export function smoothShowBlock(expandButton, expandBlock, activeButtonClass, activeBlockClass) {
+export function smoothShowBlock(
+  expandButton,
+  expandBlock,
+  activatedButtonClass,
+  activatedBlockClass,
+  deactivatedBlockClass,
+) {
   if (document.querySelector(`.${expandButton}`)) {
     const buttons = document.querySelectorAll(`.${expandButton}`);
     const blocks = document.querySelectorAll(`.${expandBlock}`);
@@ -7,13 +13,12 @@ export function smoothShowBlock(expandButton, expandBlock, activeButtonClass, ac
     blocks.forEach((block) => {
       block.style.maxHeight = '0px';
       block.style.display = 'none';
-      block.classList.remove(`${activeBlockClass}`);
+      block.classList.remove(`${activatedBlockClass}`);
     });
 
     buttons.forEach((button) => {
       button.addEventListener('click', (event) => {
         event.preventDefault();
-        button.classList.add(`${activeButtonClass}`);
 
         if (document.querySelector(`.${button.dataset.target}`)) {
           const targetBlocks = document.querySelectorAll(`.${button.dataset.target}`);
@@ -22,9 +27,9 @@ export function smoothShowBlock(expandButton, expandBlock, activeButtonClass, ac
             if (targetBlock.style.maxHeight == '0px') {
               targetBlock.style.display = 'block';
               targetBlock.style.maxHeight = targetBlock.scrollHeight + 'px';
-              setTimeout(() => {
-                targetBlock.classList.add(`${activeBlockClass}`);
-              }, 10);
+              button.classList.add(`${activatedButtonClass}`);
+              targetBlock.classList.remove(`${deactivatedBlockClass}`);
+              targetBlock.classList.add(`${activatedBlockClass}`);
 
               setTimeout(() => {
                 const topOffset = 0;
@@ -34,14 +39,17 @@ export function smoothShowBlock(expandButton, expandBlock, activeButtonClass, ac
                   top: offsetPosition,
                   behavior: 'smooth',
                 });
+                clearTimeout();
               }, 100);
             } else {
               targetBlock.style.maxHeight = '0px';
-              targetBlock.classList.remove(`${activeBlockClass}`);
-              button.classList.remove(`${activeButtonClass}`);
+              button.classList.remove(`${activatedButtonClass}`);
+              targetBlock.classList.remove(`${activatedBlockClass}`);
+              targetBlock.classList.add(`${deactivatedBlockClass}`);
               setTimeout(() => {
                 targetBlock.style.display = 'none';
-              }, 200);
+                clearTimeout();
+              }, 400);
             }
           });
         }
@@ -81,13 +89,29 @@ export function smoothShowBlock(expandButton, expandBlock, activeButtonClass, ac
     20% { opacity: 0; }
     100% { opacity: 1; }
   }
+  @-webkit-keyframes fade-out {
+    0% { opacity: 1; }
+    20% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  @keyframes fade-out {
+    0% { opacity: 1; }
+    20% { opacity: 1; }
+    100% { opacity: 0; }
+  }
 
   .expandBlock {
     opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s linear;
   }
-  .activeBlockClass {
+  .activatedBlockClass {
     -webkit-animation: fade-in 0.4s ease-out forwards;
     animation: fade-in 0.4s ease-out forwards;
+  }
+  .deactivatedBlockClass {
+    -webkit-animation: fade-out 0.8s ease-out forwards;
+    animation: fade-out 0.8s ease-out forwards;
   }
   .activeButtonClass {
     background-color: rgba(255, 255, 255, 0.9);
@@ -102,6 +126,12 @@ export function smoothShowBlock(expandButton, expandBlock, activeButtonClass, ac
   window.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    smoothShowBlock('expandButton', 'expandBlock', 'activeButtonClass', 'activeBlockClass');
+    smoothShowBlock(
+      'expandButton',
+      'expandBlock',
+      'activatedButtonClass',
+      'activatedBlockClass',
+      'deactivatedBlockClass',
+    );
   });
 */
