@@ -45,7 +45,7 @@
 
     <!-- GOOGLE ANALYTICS DocId -->
     <script>
-      window.addEventListener('load', function () {
+      window.addEventListener('load', () => {
         window.addEventListener('message', (e) => {
           if (e.data.docData) gtag(`event`, `UserID`, { DocId: e.data.docData.Id });
         });

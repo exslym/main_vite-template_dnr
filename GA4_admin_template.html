@@ -44,17 +44,6 @@
         // ]]>
       </script>
 
-      <!-- Google Analytics DocId -->
-      <script>
-        window.addEventListener('load', function () {
-          window.addEventListener('message', (e) => {
-            if (e.data.docData) {
-              gtag(`event`, `UserID`, { DocId: e.data.docData.Id });
-            }
-          });
-        });
-      </script>
-
       <!-- Google Tag Manager (GTM) -->
       <!-- здесь вместо XXX-XXXXXXXXX - идентификатор потока данных счетчика GTM: -->
       <script>
