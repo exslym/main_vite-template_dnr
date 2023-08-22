@@ -9,10 +9,11 @@ export function modals(modalBlock, openButton, closeButton, longRead = false) {
     const b = document.getElementsByTagName('body')[0];
     const x = w.innerWidth || e.clientWidth || b.clientWidth;
 
-    const isTablet =
+    const isMobileDevice =
       /^iP/.test(navigator.userAgent) ||
-      (/^Mac/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
-    if (isTablet) {
+      (/^Mac/.test(navigator.userAgent) && navigator.maxTouchPoints > 1) ||
+      x <= 1024;
+    if (isMobileDevice) {
       modals.forEach((modal) => {
         modal.classList.add('noPadddingRight');
       });
@@ -40,7 +41,7 @@ export function modals(modalBlock, openButton, closeButton, longRead = false) {
         );
 
         /* for longread modals */
-        if (longRead && openingModal.classList.contains(longRead) && x >= 1024) {
+        if (!isMobileDevice && longRead && openingModal.classList.contains(longRead)) {
           openingModal.addEventListener('animationend', () => {
             openingModal.style.paddingRight = '0';
           });
@@ -64,7 +65,7 @@ export function modals(modalBlock, openButton, closeButton, longRead = false) {
         );
 
         /* for longread modals */
-        if (longRead && openedModal.classList.contains(longRead) && x >= 1024) {
+        if (!isMobileDevice && longRead && openedModal.classList.contains(longRead)) {
           openedModal.addEventListener('animationend', () => {
             openedModal.style.paddingRight = null;
           });
@@ -88,7 +89,7 @@ export function modals(modalBlock, openButton, closeButton, longRead = false) {
           );
 
           /* for longread modals */
-          if (longRead && modal.classList.contains(longRead) && x >= 1024) {
+          if (!isMobileDevice && longRead && modal.classList.contains(longRead)) {
             modal.addEventListener('animationend', () => {
               modal.style.paddingRight = null;
             });

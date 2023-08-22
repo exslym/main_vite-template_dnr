@@ -13,7 +13,7 @@ html.noScroll {
 .modal {
   overflow: hidden;
   margin: auto;
-  background: rgba(37, 23, 22, 0.7);
+  background: rgba(26, 26, 33, 0.9);
   width: 100%;
   height: 100%;
   max-width: 100vw;
@@ -21,11 +21,11 @@ html.noScroll {
   border: none;
 }
 .modal::-webkit-backdrop {
-  background: rgba(37, 23, 22, 0.7);
+  background: rgba(26, 26, 33, 0.9);
   opacity: 0;
 }
 .modal::backdrop {
-  background: rgba(37, 23, 22, 0.7);
+  background: rgba(26, 26, 33, 0.9);
   opacity: 0;
 }
 .modal-container {
@@ -91,10 +91,8 @@ html.noScroll {
 @media (max-width: 1024px) {
   .modal[open],
   .modal[closing] {
-    padding: 1em;
     align-items: flex-start;
   }
-
   .modal-container {
     @include adapt(max-width, 400, 700, 768);
   }
@@ -114,5 +112,5 @@ html.noScroll {
 }
 
 .noPadddingRight {
-  padding: 1em;
+  padding: 1em !important;
 }
