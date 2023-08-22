@@ -84,10 +84,6 @@ html.noScroll {
   }
 }
 
-.longRead[open] {
-  padding-right: 1em;
-}
-
 @media (max-width: 1024px) {
   .modal[open],
   .modal[closing] {

@@ -1,4 +1,4 @@
-export function modals(modalBlock, openButton, closeButton, longRead = false) {
+export function modals(modalBlock, openButton, closeButton) {
   if (document.querySelector(`.${openButton}`) && document.querySelector(`.${modalBlock}`)) {
     const modals = document.querySelectorAll(`.${modalBlock}`);
     const openModalButtons = document.querySelectorAll(`.${openButton}`);
@@ -18,7 +18,7 @@ export function modals(modalBlock, openButton, closeButton, longRead = false) {
         modal.classList.add('noPadddingRight');
       });
     }
-
+    /* MODAL opening */
     openModalButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const openingModal = document.querySelector(`#${button.dataset.target}`);
@@ -40,14 +40,19 @@ export function modals(modalBlock, openButton, closeButton, longRead = false) {
           { once: true },
         );
 
-        /* for longread modals */
-        if (!isMobileDevice && longRead && openingModal.classList.contains(longRead)) {
+        /* for longread modal */
+        const longRead = openingModal.children[0].clientHeight > window.innerHeight;
+        if (!isMobileDevice && longRead) {
+          if (openingModal.open) {
+            openingModal.style.paddingRight = '1em';
+          }
           openingModal.addEventListener('animationend', () => {
             openingModal.style.paddingRight = '0';
           });
         }
       });
     });
+    /* MODAL closing by button */
     closeModalButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const openedModal = document.querySelector(`#${button.dataset.target}`);
@@ -64,14 +69,16 @@ export function modals(modalBlock, openButton, closeButton, longRead = false) {
           { once: true },
         );
 
-        /* for longread modals */
-        if (!isMobileDevice && longRead && openedModal.classList.contains(longRead)) {
+        /* for longread modal */
+        const longRead = openedModal.children[0].clientHeight > window.innerHeight;
+        if (!isMobileDevice && longRead) {
           openedModal.addEventListener('animationend', () => {
             openedModal.style.paddingRight = null;
           });
         }
       });
     });
+    /* MODAL closing by clicking out of modal */
     modals.forEach((modal) => {
       modal.addEventListener('click', (e) => {
         if (e.target.nodeName === 'DIALOG') {
@@ -88,8 +95,9 @@ export function modals(modalBlock, openButton, closeButton, longRead = false) {
             { once: true },
           );
 
-          /* for longread modals */
-          if (!isMobileDevice && longRead && modal.classList.contains(longRead)) {
+          /* for longread modal */
+          const longRead = modal.children[0].clientHeight > window.innerHeight;
+          if (!isMobileDevice && longRead) {
             modal.addEventListener('animationend', () => {
               modal.style.paddingRight = null;
             });
@@ -145,10 +153,6 @@ export function modals(modalBlock, openButton, closeButton, longRead = false) {
   window.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    //* if the modal is very long "long read" and a vertical scrollbar is needed:
-    modals('modalBlock', 'openButton', 'closeButton', 'longRead');
-
-    //* if the modal fits into display view and a vertical scrollbar isn't needed:
     modals('modalBlock', 'openButton', 'closeButton');
   });
 */
