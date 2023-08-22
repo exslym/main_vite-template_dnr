@@ -84,6 +84,10 @@ html.noScroll {
   }
 }
 
+.longRead[open] {
+  padding-right: 1em;
+}
+
 @media (max-width: 1024px) {
   .modal[open],
   .modal[closing] {
@@ -112,52 +116,3 @@ html.noScroll {
 .noPadddingRight {
   padding: 1em;
 }
-
-//! html structure - copy templates to your document:
-//* BUTTONS:
-/* 
-	<button class="button openButton" data-target="modal1">
-		<p>OPEN_MODAL_1</p>
-	</button>
-	<button class="button openButton" data-target="modal2">
-		<p>OPEN_MODAL_2</p>
-	</button>
-*/
-
-//* MODALS:
-/* 
-	<dialog class="modal modalBlock" id="modal1">
-		<div class="modal-container">
-			<div class="modal-box">
-				<div class="modal-content">
-					<div>MODAL_1_CONTENT</div>
-				</div>
-			</div>
-			<img class="closeButton" data-target="modal1" src="./assets/images/close.svg" alt="close" />
-		</div>
-	</dialog>
-
-	<dialog class="modal modalBlock" id="modal2">
-		<div class="modal-container">
-			<div class="modal-box">
-				<div class="modal-content">
-					<div>MODAL_2_CONTENT</div>
-				</div>
-			</div>
-			<img class="closeButton" data-target="modal2" src="./assets/images/close.svg" alt="close" />
-		</div>
-	</dialog>
-*/
-//! styles structure - copy _modals.scss module to your project and import it in the index.scss
-
-//! scripts - add module to your project and import it in the index.js
-//* SCRIPTS:
-/*
-import { modals } from './libs/modals';
-
-window.addEventListener('DOMContentLoaded', () => {
-  'use strict';
-
-  modals('modalBlock', 'openButton', 'closeButton');
-});
-*/

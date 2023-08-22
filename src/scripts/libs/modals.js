@@ -1,8 +1,13 @@
-export function modals(modalBlock, openButton, closeButton) {
+export function modals(modalBlock, openButton, closeButton, longRead = false) {
   if (document.querySelector(`.${openButton}`) && document.querySelector(`.${modalBlock}`)) {
     const modals = document.querySelectorAll(`.${modalBlock}`);
     const openModalButtons = document.querySelectorAll(`.${openButton}`);
     const closeModalButtons = document.querySelectorAll(`.${closeButton}`);
+
+    const w = window;
+    const e = document.documentElement;
+    const b = document.getElementsByTagName('body')[0];
+    const x = w.innerWidth || e.clientWidth || b.clientWidth;
 
     const isTablet =
       /^iP/.test(navigator.userAgent) ||
@@ -33,6 +38,13 @@ export function modals(modalBlock, openButton, closeButton) {
           },
           { once: true },
         );
+
+        /* for longread modals */
+        if (longRead && openingModal.classList.contains(longRead) && x >= 1024) {
+          openingModal.addEventListener('animationend', () => {
+            openingModal.style.paddingRight = '0';
+          });
+        }
       });
     });
     closeModalButtons.forEach((button) => {
@@ -46,9 +58,17 @@ export function modals(modalBlock, openButton, closeButton) {
           () => {
             openedModal.removeAttribute('closing');
             openedModal.close();
+            openedModal.style.overflow = null;
           },
           { once: true },
         );
+
+        /* for longread modals */
+        if (longRead && openedModal.classList.contains(longRead) && x >= 1024) {
+          openedModal.addEventListener('animationend', () => {
+            openedModal.style.paddingRight = null;
+          });
+        }
       });
     });
     modals.forEach((modal) => {
@@ -62,9 +82,17 @@ export function modals(modalBlock, openButton, closeButton) {
             () => {
               modal.removeAttribute('closing');
               modal.close();
+              modal.style.overflow = null;
             },
             { once: true },
           );
+
+          /* for longread modals */
+          if (longRead && modal.classList.contains(longRead) && x >= 1024) {
+            modal.addEventListener('animationend', () => {
+              modal.style.paddingRight = null;
+            });
+          }
         }
       });
     });
@@ -111,11 +139,15 @@ export function modals(modalBlock, openButton, closeButton) {
 //! scripts - add module to your project and import it in the index.js
 //* SCRIPTS:
 /*
-import { modals } from './libs/modals';
+  import { modals } from './libs/modals';
 
-window.addEventListener('DOMContentLoaded', () => {
-  'use strict';
+  window.addEventListener('DOMContentLoaded', () => {
+    'use strict';
 
-  modals('modalBlock', 'openButton', 'closeButton');
-});
+    //* if the modal is very long "long read" and a vertical scrollbar is needed:
+    modals('modalBlock', 'openButton', 'closeButton', 'longRead');
+
+    //* if the modal fits into display view and a vertical scrollbar isn't needed:
+    modals('modalBlock', 'openButton', 'closeButton');
+  });
 */
