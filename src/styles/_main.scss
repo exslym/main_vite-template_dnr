@@ -14,8 +14,12 @@ body {
   flex-direction: column;
   min-height: 100%;
   width: 100%;
+
+  /* for PUBS */
+  /* max-width: 670px; */
 }
 
+/* for MicroSites */
 .section {
   position: relative;
   max-width: 1920px;
@@ -28,6 +32,21 @@ body {
     width: 100%;
   }
 }
+
+/* for PUBS */
+/* 
+  .section {
+    @include adaptMult(padding, 10 20, 15 30);
+    max-width: 670px;
+    width: 100%;
+    position: relative;
+    background: $clr-white;
+    &__content {
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+*/
 
 ._1 {
   .section__content {
