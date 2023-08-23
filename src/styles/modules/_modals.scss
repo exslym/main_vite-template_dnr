@@ -64,6 +64,10 @@ html.noScroll {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* for Doctor At Work platform */
+  @media screen and (max-height: 700px) {
+    align-items: flex-start;
+  }
 }
 
 .modal[open] {
