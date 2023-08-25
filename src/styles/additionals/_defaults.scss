@@ -189,6 +189,24 @@ img {
   }
 }
 
+//* Gradient border with transparent content background:
+.gradient-border-box {
+  position: relative;
+  @include adaptMult(padding, 15 30, 20 40);
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    @include adapt(border-radius, 20, 40);
+    border: clamp(1px, 0.104166vw, 2px) solid transparent;
+    background: linear-gradient(90deg, skyblue, lightgreen) border-box;
+    -webkit-mask: linear-gradient($clr-white 0 0) padding-box, linear-gradient($clr-white 0 0);
+    mask: linear-gradient($clr-white 0 0) padding-box, linear-gradient($clr-white 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+  }
+}
+
 .flexSSB {
   display: flex;
   align-items: stretch;
