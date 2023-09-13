@@ -80,9 +80,7 @@ export default defineConfig({
   },
   plugins: [
     eslint(),
-    ViteImageOptimizer({
-      DEFAULT_OPTIONS,
-    }),
+    ViteImageOptimizer(DEFAULT_OPTIONS),
     ViteAliases(),
     legacy({
       targets: ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead'],

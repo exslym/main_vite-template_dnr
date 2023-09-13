@@ -1,7 +1,7 @@
 {
-  "name": "main_vite-template_dnr",
-  "version": "0.0.1",
-  "description": "Custom project VITE configuration for DnR template",
+  "name": "main_vite-template",
+  "version": "1.0.0",
+  "description": "Custom project VITE configuration",
   "license": "ISC",
   "keywords": [
     "vite",
