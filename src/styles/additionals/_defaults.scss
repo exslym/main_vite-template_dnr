@@ -148,10 +148,13 @@ img {
 }
 
 .list1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   @include adapt(gap, 8, 10);
   li {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     img {
