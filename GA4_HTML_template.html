@@ -39,23 +39,11 @@
       });
     </script>
 
-    <!-- GOOGLE ANALYTICS DocId -->
-    <script>
-      window.addEventListener('load', () => {
-        window.addEventListener('message', (e) => {
-          if (e.data.docData) gtag(`event`, `UserID`, { DocId: e.data.docData.Id });
-        });
-      });
-    </script>
-
     <!-- GOOGLE TAG MANAGER (GTM) -->
     <script type="text/javascript">
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
-        w[l].push({
-          'gtm.start': new Date().getTime(),
-          event: 'gtm.js',
-        });
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
           dl = l != 'dataLayer' ? '&l=' + l : '';
@@ -77,6 +65,15 @@
           console.log(`event`, eventName, eventProperty);
         }
       };
+    </script>
+
+    <!-- GOOGLE ANALYTICS DocId -->
+    <script>
+      window.addEventListener('load', () => {
+        window.addEventListener('message', (e) => {
+          if (e.data.docData) gtag(`event`, `UserID`, { DocId: e.data.docData.Id });
+        });
+      });
     </script>
 
     <!-- GOOGLE ANALYTICS NOBOUNCE -->
@@ -166,6 +163,19 @@
   </head>
 
   <body>
+    <!-- Google Tag Manager (GTM) -->
+    <!-- здесь вместо XXX-XXXXXXX идентификатор потока данных счетчика GTM  -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=XXX-XXXXXXX"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      >
+      </iframe>
+    </noscript>
+
+    <!-- main content -->
     <div class="wrapper">
       <section class="section _1" data-id="slidesObserver" id="screen_1">
         <div class="section__content">
@@ -277,17 +287,5 @@
         });
       });
     </script>
-
-    <!-- Google Tag Manager (GTM) -->
-    <!-- здесь вместо XXX-XXXXXXX идентификатор потока данных счетчика GTM  -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=XXX-XXXXXXX"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      >
-      </iframe>
-    </noscript>
   </body>
 </html>
