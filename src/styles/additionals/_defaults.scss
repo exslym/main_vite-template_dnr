@@ -38,7 +38,7 @@ body {
   font-weight: 400;
   line-height: 1.2;
   font-size: $fs-default;
-  color: $clr-black;
+  color: $clr-text;
 }
 a {
   text-decoration: none !important;
@@ -89,8 +89,7 @@ h5 {
 }
 
 p {
-  @include adapt(font-size, 16, 22);
-  line-height: 120%;
+  color: inherit;
   strong {
     font-weight: 600;
   }
@@ -105,6 +104,7 @@ ol {
   padding: 0;
   margin: 0;
   @include adapt(padding-left, 14, 18);
+  // @include adapt(padding-left, 18, 22);
 }
 img {
   display: block;
@@ -151,6 +151,7 @@ img {
   @include adapt(gap, 8, 10);
   li {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     img {
@@ -242,9 +243,19 @@ img {
   align-items: flex-end;
   justify-content: space-evenly;
 }
+.flexFSSE {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
 .flexFESA {
   display: flex;
   align-items: flex-end;
+  justify-content: space-around;
+}
+.flexFSSA {
+  display: flex;
+  align-items: flex-start;
   justify-content: space-around;
 }
 .flexFEC {

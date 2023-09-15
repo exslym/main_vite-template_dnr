@@ -15,7 +15,8 @@ $font-roboto: 'Roboto', Arial, Helvetica, sans-serif;
 
 /* colors */
 $clr-default: #f5f5f5;
-$clr-wrapper: #f2f2f2;
+$clr-wrapper: #ffffff;
+$clr-text: #343434;
 /* ================ */
 $clr-white: #ffffff;
 $clr-black: #343434;
@@ -249,4 +250,7 @@ $fs-12: 12px;
 
 .uppercase {
   text-transform: uppercase;
+}
+.underline {
+  text-decoration: underline;
 }
