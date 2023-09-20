@@ -32,7 +32,7 @@ html.mfp-helper {
 }
 
 body {
-  background-color: $clr-white;
+  background-color: $clr-default;
   font-family: $font-default;
   font-style: normal;
   font-weight: 400;
@@ -68,8 +68,9 @@ h1,
 h2,
 h3,
 h4,
-h5 {
-  line-height: 100%;
+h5,
+h6 {
+  line-height: 1;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -80,12 +81,12 @@ h3 {
 }
 h4 {
   @include adapt(font-size, 18, 28);
-  line-height: 120%;
+  line-height: 1.2;
   text-transform: none;
 }
 h5 {
   @include adapt(font-size, 24, 32);
-  line-height: 110%;
+  line-height: 1.1;
 }
 
 p {
@@ -164,8 +165,6 @@ img {
     }
     p {
       @include adapt(font-size, 15, 16);
-      font-weight: 400;
-      line-height: 130%;
     }
   }
 }
@@ -188,7 +187,7 @@ img {
   p {
     font-weight: 700;
     @include adapt(font-size, 13, 16);
-    line-height: 100%;
+    line-height: 1;
     text-align: center;
   }
 }

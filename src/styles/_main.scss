@@ -15,6 +15,9 @@ body {
   min-height: 100%;
   width: 100%;
 
+  max-width: 1920px;
+  background-color: $clr-wrapper;
+
   /* for PUBS */
   /* max-width: 670px; */
 }
@@ -24,7 +27,6 @@ body {
   position: relative;
   max-width: 1920px;
   width: 100%;
-  background: $clr-white;
   &__content {
     margin: 0 auto;
     @include adaptMult(padding, 40 80, 20 30, 1024);

@@ -24,110 +24,125 @@ DocId
 
 //
 
-## NoBounce
+## NoBounce (вариант для многостраничного сайта: MainPage, Page1, ...)
 
 Название параметра:
 
 ```
-NoBounce_StartScreen
+NoBounce_MainPage
+NoBounce_Page1
 ```
 
 Описание:
 
 ```
 Время на странице: Главная страница
+Время на странице: Page1
 ```
 
 Свойство или параметр:
 
 ```
-NoBounce_StartScreen
+NoBounce_MainPage
+NoBounce_Page1
 ```
 
 //
 
-## Scroll
+## Scroll (вариант для многостраничного сайта: MainPage, Page1, ...)
 
 Название параметра:
 
 ```
-Scroll_StartScreen
+Scroll_MainPage
+Scroll_Page1
 ```
 
 Описание:
 
 ```
 Проскролл страницы: Главная страница
+Проскролл страницы: Page1
 ```
 
 Свойство или параметр:
 
 ```
-Scroll_StartScreen
+Scroll_MainPage
+Scroll_Page1
 ```
 
 //
 
-## Slides
+## Slides (вариант для многостраничного сайта: MainPage, Page1, ...)
 
 Название параметра:
 
 ```
-Slides_StartScreen
+Slides_MainPage
+Slides_Page1
 ```
 
 Описание:
 
 ```
 Просмотр секций страницы: Главная страница
+Просмотр секций страницы: Page1
 ```
 
 Свойство или параметр:
 
 ```
-Slides_StartScreen
+Slides_MainPage
+Slides_Page1
 ```
 
 //
 
-## Buttons
+## Buttons (вариант для многостраничного сайта: MainPage, Page1, ...)
 
 Название параметра:
 
 ```
-Buttons_StartScreen
+Buttons_MainPage
+Buttons_Page1
 ```
 
 Описание:
 
 ```
 Клики по кнопкам: Главная страница
+Клики по кнопкам: Page1
 ```
 
 Свойство или параметр:
 
 ```
-Buttons_StartScreen
+Buttons_MainPage
+Buttons_Page1
 ```
 
 //
 
-## Video
+## Video (вариант для многостраничного сайта: MainPage, Page1, ...)
 
 Название параметра:
 
 ```
-Video_StartScreen
+Video_MainPage
+Video_Page1
 ```
 
 Описание:
 
 ```
 Просмотр видео на сайте: Главная страница
+Просмотр видео на сайте: Page1
 ```
 
 Свойство или параметр:
 
 ```
-Video_StartScreen
+Video_MainPage
+Video_Page1
 ```
