@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
     <!-- название текущей страницы -->
-    <title data-title="pageTitle">TITLE</title>
+    <title data-title="pageTitle">MAIN_PAGE</title>
 
     <!-- for GOOGLE ANALYTICS -->
     <!-- MAIN_PAGE - название текущей страницы, если это многостраничный сайт, то на следующих страницах после главной можно указать, например, PAGE_1, PAGE_2 и т.д., нужно для GA -->
@@ -148,16 +148,16 @@
             entries.forEach(({ isIntersecting, target }) => {
               if (!isIntersecting) return;
               target.classList.add('_visited');
-              const eventName = `Slides_${pageTitleGA}`;
-              const property = `Slides_${pageTitleGA}`;
+              const eventName = `Screens_${pageTitleGA}`;
+              const property = `Screens_${pageTitleGA}`;
               const label = `${target.id}`;
               sendGTAG(eventName, property, label);
             });
           },
           { threshold: 0.1 },
         );
-        const slides = document.querySelectorAll('[data-id="slidesObserver"]');
-        slides.forEach((slide) => slideObserver.observe(slide));
+        const screens = document.querySelectorAll('[data-id="screensObserver"]');
+        screens.forEach((screen) => slideObserver.observe(screen));
       });
     </script>
   </head>
@@ -177,7 +177,7 @@
 
     <!-- main content -->
     <div class="wrapper">
-      <section class="section _1" data-id="slidesObserver" id="screen_1">
+      <section class="section _1" data-id="screensObserver" id="screen_1">
         <div class="section__content">
           <div class="content"></div>
         </div>

@@ -74,13 +74,13 @@ Scroll_Page1
 
 //
 
-## Slides (вариант для многостраничного сайта: MainPage, Page1, ...)
+## Screens (вариант для многостраничного сайта: MainPage, Page1, ...)
 
 Название параметра:
 
 ```
-Slides_MainPage
-Slides_Page1
+Screens_MainPage
+Screens_Page1
 ```
 
 Описание:
@@ -93,8 +93,8 @@ Slides_Page1
 Свойство или параметр:
 
 ```
-Slides_MainPage
-Slides_Page1
+Screens_MainPage
+Screens_Page1
 ```
 
 //
