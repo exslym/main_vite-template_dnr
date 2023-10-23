@@ -158,10 +158,10 @@ img {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    @include adapt(gap, 8, 10);
     img {
       @include adapt(width, 14, 20);
       @include adapt(height, 14, 20);
-      @include adapt(margin-right, 8, 16);
     }
     p {
       @include adapt(font-size, 15, 16);
