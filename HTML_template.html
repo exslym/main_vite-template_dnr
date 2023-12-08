@@ -122,7 +122,7 @@
       })(window, document, 'script', 'dataLayer', 'GTM-GGGGGGGG');
     </script>
 
-    <!-- GOOGLE ANALYTICS NOBOUNCE -->
+    <!-- GOOGLE ANALYTICS & YANDEX METRIKA - NOBOUNCE -->
     <script type="text/javascript">
       window.addEventListener('load', () => {
         setTimeout(
@@ -160,7 +160,7 @@
       });
     </script>
 
-    <!-- GOOGLE ANALYTICS PAGE SCROLL -->
+    <!-- GOOGLE ANALYTICS & YANDEX METRIKA - PAGE SCROLL -->
     <script src="tools/scroll-tracker.min.js"></script>
     <script type="text/javascript">
       window.addEventListener('load', () => {
@@ -177,7 +177,7 @@
       });
     </script>
 
-    <!-- GOOGLE ANALYTICS SLIDES VIEWS -->
+    <!-- GOOGLE ANALYTICS & YANDEX METRIKA - SCREENS VIEWS -->
     <script type="text/javascript">
       window.addEventListener('load', () => {
         const slideObserver = new IntersectionObserver(
@@ -215,7 +215,7 @@
       </iframe>
     </noscript>
 
-    <!-- YM -->
+    <!-- YANDEX METRIKA -->
     <!-- здесь вместо YYYYYYYY - номер счетчика -->
     <noscript>
       <div>
@@ -236,7 +236,7 @@
       </section>
     </div>
 
-    <!-- GOOGLE ANALYTICS VIDEO VIEWS -->
+    <!-- GOOGLE ANALYTICS (GA4 only) VIDEO VIEWS -->
     <script type="text/javascript">
       (function (e) {
         const matches =
@@ -292,23 +292,17 @@
               case seconds === 1:
                 //GA4:
                 sendGTAG(eventName, property, `${data} - start`);
-                //YM:
-                sendYM(`${data}_start`);
                 break;
               case seconds > 0 && seconds < 30:
                 if (seconds % 5 === 0) {
                   //GA4:
                   sendGTAG(eventName, property, `${data} - ${seconds}s`);
-                  //YM:
-                  sendYM(`${data}_${seconds}s`);
                 }
                 break;
               case seconds >= 30 && seconds < 60:
                 if (seconds % 15 === 0) {
                   //GA4:
                   sendGTAG(eventName, property, `${data} - ${seconds}s`);
-                  //YM:
-                  sendYM(`${data}_${seconds}s`);
                 }
                 break;
               // после первых 60 секунд конвертим секунды в минуты и каждые 15 секунд опрокидываем событие вида, например, 1m 45s, далее 2m, далее 2m 15s и т.д.:
@@ -322,14 +316,10 @@
                         property,
                         `${data} - ${minutes}m ${seconds - minutes * 60}s`,
                       );
-                      //YM:
-                      sendYM(`${data}_${minutes}m_${seconds - minutes * 60}s`);
                       break;
                     default:
                       //GA4:
                       sendGTAG(eventName, property, `${data} - ${minutes}m`);
-                      //YM:
-                      sendYM(`${data}_${minutes}m`);
                       break;
                   }
                 }
@@ -338,8 +328,6 @@
               case seconds === duration:
                 //GA4:
                 sendGTAG(eventName, property, `${data} - end`);
-                //YM:
-                sendYM(`${data}_end`);
                 break;
             }
             sec++;
