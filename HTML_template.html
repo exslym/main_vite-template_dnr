@@ -13,7 +13,6 @@
 
     <!-- for GOOGLE ANALYTICS -->
     <!-- MAIN_PAGE - название текущей страницы, если это многостраничный сайт, то на следующих страницах после главной можно указать, например, PAGE_1, PAGE_2 и т.д., нужно для GA -->
-
     <meta name="pageTitleGAEvents" content="MAIN_PAGE" />
     <script type="text/javascript">
       const pageTitleGA = `${document.querySelector('meta[name="pageTitleGAEvents"]').content}`;
@@ -30,28 +29,12 @@
       // здесь вместо X-XXXXXXXXXX - идентификатор потока данных счетчика GA4
       gtag('js', new Date());
       gtag('config', 'X-XXXXXXXXXX');
-
       // здесь вместо __полный_адрес_страницы__ - актуальный полный адрес (включая домен) страницы на платформе doktornarabote.ru, например: https://www.doktornarabote.ru/page/1002020.
       // для многостраничного сайта: главная (стартовая страница - index.html) - просто прямой путь, например: https://www.doktornarabote.ru/page/1002020, остальные страницы (page1.html, page2.html, ...): с добавлением hash, например: https://www.doktornarabote.ru/page/1002020#page1 и т.д.
       gtag('set', {
         page_title: `${pageTitle}`,
         page_location: '__полный_адрес_страницы__',
       });
-    </script>
-
-    <!-- GOOGLE TAG MANAGER (GTM) -->
-    <script type="text/javascript">
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-        // здесь вместо XXX-XXXXXXX идентификатор потока данных счетчика GTM
-      })(window, document, 'script', 'dataLayer', 'XXX-XXXXXXX');
     </script>
 
     <!-- GOOGLE ANALYTICS SEND EVENTS FUNCTION -->
@@ -67,61 +50,112 @@
       };
     </script>
 
-    <!-- GOOGLE ANALYTICS DocId -->
+    <!-- GOOGLE ANALYTICS DocID -->
     <script>
       window.addEventListener('load', () => {
         window.addEventListener('message', (e) => {
-          if (e.data.docData) gtag(`event`, `UserID`, { DocId: e.data.docData.Id });
+          if (e.data.docData) gtag(`event`, `DocID`, { DocID: e.data.docData.Id });
         });
       });
+    </script>
+
+    <!-- YANDEX METRIKA (YM) -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) return;
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+      // здесь вместо YYYYYYYY - номер счетчика
+      ym(YYYYYYYY, 'init', {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      });
+    </script>
+
+    <!-- YANDEX METRIKA SEND EVENTS FUNCTION -->
+    <script type="text/javascript">
+      const sendYM = (label) => {
+        // здесь вместо YYYYYYYY - номер счетчика
+        if (typeof ym === 'function') {
+          ym(YYYYYYYY, `reachGoal`, label);
+        } else {
+          console.log(YYYYYYYY, `reachGoal`, label);
+        }
+      };
+    </script>
+
+    <!-- YANDEX METRIKA DocID -->
+    <script>
+      window.addEventListener('load', () => {
+        window.addEventListener('message', (e) => {
+          if (e.data.docData) sendYM(e.data.docData.Id);
+        });
+      });
+    </script>
+
+    <!-- GOOGLE TAG MANAGER (GTM) -->
+    <script type="text/javascript">
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+        // здесь вместо GTM-GGGGGGGG идентификатор потока данных счетчика GTM
+      })(window, document, 'script', 'dataLayer', 'GTM-GGGGGGGG');
     </script>
 
     <!-- GOOGLE ANALYTICS NOBOUNCE -->
     <script type="text/javascript">
       window.addEventListener('load', () => {
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 5 seconds`);',
+          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 5 seconds`); sendYM(`5sec`)',
           5000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 10 seconds`);',
+          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 10 seconds`); sendYM(`10sec`)',
           10000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 15 seconds`);',
+          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 15 seconds`); sendYM(`15sec`)',
           15000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 20 seconds`);',
-          20000,
-        );
-        setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 30 seconds`);',
+          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 30 seconds`); sendYM(`30sec`)',
           30000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 40 seconds`);',
-          40000,
+          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 45 seconds`); sendYM(`45sec`)',
+          45000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 1 minute`);',
+          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 1 minute`); sendYM(`1min`)',
           60000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 2 minutes`);',
+          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 2 minutes`); sendYM(`2min`)',
           120000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 3 minutes`);',
-          180000,
-        );
-        setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 5 minutes`);',
+          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 5 minutes`); sendYM(`5min`)',
           300000,
-        );
-        setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `Over 10 minutes`);',
-          600000,
         );
       });
     </script>
@@ -135,7 +169,10 @@
           const eventName = `Scroll_${pageTitleGA}`;
           const property = `Scroll_${pageTitleGA}`;
           const label = `${e.data.label}`;
+          //GA4:
           sendGTAG(eventName, property, label);
+          //YM:
+          sendYM(label);
         });
       });
     </script>
@@ -151,7 +188,10 @@
               const eventName = `Screens_${pageTitleGA}`;
               const property = `Screens_${pageTitleGA}`;
               const label = `${target.id}`;
+              //GA4:
               sendGTAG(eventName, property, label);
+              //YM:
+              sendYM(label);
             });
           },
           { threshold: 0.1 },
@@ -164,15 +204,27 @@
 
   <body>
     <!-- Google Tag Manager (GTM) -->
-    <!-- здесь вместо XXX-XXXXXXX идентификатор потока данных счетчика GTM  -->
+    <!-- здесь вместо GTM-GGGGGGGG идентификатор потока данных счетчика GTM  -->
     <noscript>
       <iframe
-        src="https://www.googletagmanager.com/ns.html?id=XXX-XXXXXXX"
+        src="https://www.googletagmanager.com/ns.html?id=GTM-GGGGGGGG"
         height="0"
         width="0"
         style="display: none; visibility: hidden"
       >
       </iframe>
+    </noscript>
+
+    <!-- YM -->
+    <!-- здесь вместо YYYYYYYY - номер счетчика -->
+    <noscript>
+      <div>
+        <img
+          src="https://mc.yandex.ru/watch/YYYYYYYY"
+          style="position: absolute; left: -9999px"
+          alt=""
+        />
+      </div>
     </noscript>
 
     <!-- main content -->
@@ -238,16 +290,25 @@
             // Старт видео (с 1 секунды):
             switch (true) {
               case seconds === 1:
+                //GA4:
                 sendGTAG(eventName, property, `${data} - start`);
+                //YM:
+                sendYM(`${data}_start`);
                 break;
               case seconds > 0 && seconds < 30:
                 if (seconds % 5 === 0) {
+                  //GA4:
                   sendGTAG(eventName, property, `${data} - ${seconds}s`);
+                  //YM:
+                  sendYM(`${data}_${seconds}s`);
                 }
                 break;
               case seconds >= 30 && seconds < 60:
                 if (seconds % 15 === 0) {
+                  //GA4:
                   sendGTAG(eventName, property, `${data} - ${seconds}s`);
+                  //YM:
+                  sendYM(`${data}_${seconds}s`);
                 }
                 break;
               // после первых 60 секунд конвертим секунды в минуты и каждые 15 секунд опрокидываем событие вида, например, 1m 45s, далее 2m, далее 2m 15s и т.д.:
@@ -255,21 +316,30 @@
                 if (seconds % 15 === 0) {
                   switch (true) {
                     case seconds - minutes * 60 !== 0:
+                      //GA4:
                       sendGTAG(
                         eventName,
                         property,
                         `${data} - ${minutes}m ${seconds - minutes * 60}s`,
                       );
+                      //YM:
+                      sendYM(`${data}_${minutes}m_${seconds - minutes * 60}s`);
                       break;
                     default:
+                      //GA4:
                       sendGTAG(eventName, property, `${data} - ${minutes}m`);
+                      //YM:
+                      sendYM(`${data}_${minutes}m`);
                       break;
                   }
                 }
                 break;
               // Конец видео:
               case seconds === duration:
+                //GA4:
                 sendGTAG(eventName, property, `${data} - end`);
+                //YM:
+                sendYM(`${data}_end`);
                 break;
             }
             sec++;

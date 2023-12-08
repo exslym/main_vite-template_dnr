@@ -4,22 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- favicon (if needed) -->
-    <!-- <link rel="shortcut icon" href="#" /> -->
-    <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="/assets/favicon.png" />
-    <!-- Mobile (Android, iOS & others) -->
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicon.png" />
-    <link
-      rel="apple-touch-icon"
-      sizes="57x57 72x72 114x114 120x120 144x144 152x152"
-      href="/assets/favicon.png"
-    />
-    <!-- Windows 8 Tiles -->
-    <meta name="msapplication-TileImage" content="/assets/favicon.png" />
-    <meta name="msapplication-TileColor" content="#FFFFFF" />
-    <!-- iOS Settings -->
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="shortcut icon" href="#" />
     <!-- fonts preconnect -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,19 +34,19 @@
               <a
               href="page1.html"
               data-label="Button_1_OpenPage1"
-              onclick="gtag('event', 'Buttons', {'Buttons': dataset.label})"
+              onclick="gtag('event', 'Buttons', {'Buttons': dataset.label}); ym(YYYYYYYY, `reachGoal`, dataset.label);"
             >
               Page 1
             </a>
              -->
-            <a href="page1.html" data-label="button_1_openPage1" data-analytics="gaScripts">
+            <a href="page1.html" data-label="button_1_openPage1" data-analytics="analytics">
               Page 1
             </a>
             <br />
             <button
               class="scrollButton"
               data-label="Button_2_ScrollToElement"
-              data-analytics="gaScripts"
+              data-analytics="analytics"
               data-target="video"
             >
               Scroll To Element
@@ -70,7 +55,7 @@
             <button
               type="submit"
               data-label="Button_3_DownloadFile"
-              data-analytics="gaScripts"
+              data-analytics="analytics"
               onclick="window.open('docs/template.pdf');"
             >
               Download
@@ -89,6 +74,7 @@
 
     <script src="tools/jquery-3.6.3.min.js"></script>
     <script src="tools/magnific-popup.min.js"></script>
+    <script src="tools/owl.carousel.min.js"></script>
   </body>
 </html>
 

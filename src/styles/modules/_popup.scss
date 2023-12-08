@@ -25,13 +25,13 @@ html.mfp-helper {
   align-items: center;
   justify-content: center;
   min-height: 30px;
-  max-width: 140px;
+  @include adapt(max-width, 240, 360);
+  background-color: slategray;
+  border-radius: 10px;
   p {
     font-size: 14px;
-    color: white;
+    color: black;
   }
-  @include adapt(max-width, 240, 360);
-  background: slategray;
 }
 
 .mfp-container {
