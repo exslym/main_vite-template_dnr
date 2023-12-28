@@ -22,14 +22,6 @@ npm run build
 npm run serve
 ```
 
-### Deployment on GitHub Pages (Optional)
-
-```
-npm run deploy
-```
-
-This adds gh-pages branch to your project github repository, deploys built project there, hosts the site via GitHub Pages.
-
 ### Features:
 
 - `Legacy Browsers` support via **@vite/plugin-legacy** with built-in **babel**

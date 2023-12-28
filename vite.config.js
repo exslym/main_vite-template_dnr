@@ -103,6 +103,8 @@ export default defineConfig({
             extType = 'images';
           } else if (/eot|otf|ttf|fnt|woff|woff2/.test(extType)) {
             extType = 'fonts';
+          } else if (/mp3/.test(extType)) {
+            extType = 'media';
           } else if (/css/.test(extType)) {
             extType = 'css';
           }
@@ -114,8 +116,9 @@ export default defineConfig({
       },
     },
   },
-
+  // assetsInclude: ['/public/**/*'],
   server: {
+    preTransformRequests: false,
     hmr: true,
     port: 3000,
     host: '0.0.0.0',
