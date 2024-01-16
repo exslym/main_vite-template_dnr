@@ -9,6 +9,23 @@ if (x < 768) {
 }
 
 /* Проверка мобильного браузера */
+export const isMobileDevice = {
+  mobile: function () {
+    return (
+      /Android|webOS|Macintosh|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent,
+      ) && navigator.maxTouchPoints > 1
+    );
+  },
+  any: function () {
+    return isMobileDevice.mobile();
+  },
+};
+/* 
+  if (isMobile.any()) {
+    //
+  }
+*/
 export let isMobile = {
   Android: function () {
     return navigator.userAgent.match(/Android/i);
