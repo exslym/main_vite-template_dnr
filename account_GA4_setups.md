@@ -124,3 +124,25 @@ Video_Page1
 Video_MainPage
 Video_Page1
 ```
+
+//
+
+## Specialty
+
+Название параметра:
+
+```
+Specialty_Elidel
+```
+
+Описание:
+
+```
+Специальность
+```
+
+Свойство или параметр:
+
+```
+Specialty
+```

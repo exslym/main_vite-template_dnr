@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -34,6 +34,18 @@
       gtag('set', {
         page_title: `${pageTitle}`,
         page_location: '__полный_адрес_страницы__',
+      });
+    </script>
+
+    <!-- DOC SPECIALTY FOR GA4 -->
+    <script>
+      window.addEventListener('load', () => {
+        window.addEventListener('message', (e) => {
+          if (e.data.docData) {
+            gtag(`event`, `UserID`, { DocId: e.data.docData.Id });
+            gtag(`event`, `Specialty_${pageTitleGA}`, { Specialty: e.data.docData.Specialty.Name });
+          }
+        });
       });
     </script>
 
