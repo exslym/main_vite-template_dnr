@@ -113,7 +113,7 @@ export function smoothShowBlock(
     -webkit-animation: fade-out 0.8s ease-out forwards;
     animation: fade-out 0.8s ease-out forwards;
   }
-  .activeButtonClass {
+  .activatedButtonClass {
     background-color: rgba(255, 255, 255, 0.9);
   }
 */
