@@ -42,8 +42,8 @@
       window.addEventListener('load', () => {
         window.addEventListener('message', (e) => {
           if (e.data.docData) {
-            gtag(`event`, `UserID`, { DocId: e.data.docData.Id });
-            gtag(`event`, `Specialty_${pageTitleGA}`, { Specialty: e.data.docData.Specialty.Name });
+            gtag('event', 'UserID', { DocId: e.data.docData.Id });
+            gtag('event', `Specialty_${pageTitleGA}`, { Specialty: e.data.docData.Specialty.Name });
           }
         });
       });
@@ -55,9 +55,9 @@
         let eventProperty = new Object();
         eventProperty = { [property]: label };
         if (typeof gtag === 'function') {
-          gtag(`event`, eventName, eventProperty);
+          gtag('event', eventName, eventProperty);
         } else {
-          console.log(`event`, eventName, eventProperty);
+          console.log('event', eventName, eventProperty);
         }
       };
     </script>
@@ -92,11 +92,11 @@
     <!-- YANDEX METRIKA SEND EVENTS FUNCTION -->
     <script type="text/javascript">
       const sendYM = (label) => {
-        // здесь вместо YYYYYYYY - номер счетчика
-        if (typeof ym === 'function') {
-          ym(YYYYYYYY, `reachGoal`, label);
+        if (window.location.origin.includes('doktornarabote')) {
+          // здесь вместо YYYYYYYY - номер счетчика
+          ym(YYYYYYYY, 'reachGoal', label);
         } else {
-          console.log(YYYYYYYY, `reachGoal`, label);
+          console.log('localhost');
         }
       };
     </script>
@@ -120,35 +120,35 @@
     <script type="text/javascript">
       window.addEventListener('load', () => {
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `NoBounce_5sec`); sendYM(`NoBounce_5sec`)',
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5sec'); sendYM('NoBounce_5sec')",
           5000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `NoBounce_10sec`); sendYM(`NoBounce_10sec`)',
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_10sec'); sendYM('NoBounce_10sec')",
           10000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `NoBounce_15sec`); sendYM(`NoBounce_15sec`)',
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_15sec'); sendYM('NoBounce_15sec')",
           15000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `NoBounce_30sec`); sendYM(`NoBounce_30sec`)',
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_30sec'); sendYM('NoBounce_30sec')",
           30000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `NoBounce_45sec`); sendYM(`NoBounce_45sec`)',
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_45sec'); sendYM('NoBounce_45sec')",
           45000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `NoBounce_1min`); sendYM(`NoBounce_1min`)',
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_1min'); sendYM('NoBounce_1min')",
           60000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `NoBounce_2min`); sendYM(`NoBounce_2min`)',
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_2min'); sendYM('NoBounce_2min')",
           120000,
         );
         setTimeout(
-          'sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, `NoBounce_5min`); sendYM(`NoBounce_5min`)',
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5min'); sendYM('NoBounce_5min')",
           300000,
         );
       });
