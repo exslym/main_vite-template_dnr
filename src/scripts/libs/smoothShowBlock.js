@@ -24,7 +24,7 @@ export function smoothShowBlock(
           const targetBlocks = document.querySelectorAll(`.${button.dataset.target}`);
 
           targetBlocks.forEach((targetBlock) => {
-            if (targetBlock.style.maxHeight == '0px') {
+            if (targetBlock.style.maxHeight === '0px') {
               targetBlock.style.display = 'block';
               targetBlock.style.maxHeight = targetBlock.scrollHeight + 'px';
               button.classList.add(`${activatedButtonClass}`);
