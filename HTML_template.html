@@ -43,8 +43,8 @@
         window.addEventListener('message', (e) => {
           if (window.location.origin.includes('doktornarabote')) {
             if (e.data.docData && typeof gtag === 'function') {
-              gtag('event', 'UserID', { DocId: e.data.docData.Id });
-              gtag('event', `Specialty_${pageTitleGA}`, {
+              gtag('event', 'UserID', { UserID: e.data.docData.Id });
+              gtag('event', `Specialty`, {
                 Specialty: e.data.docData.Specialty.Name,
               });
             } else {

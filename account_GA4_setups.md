@@ -132,7 +132,7 @@ Video_Page1
 Название параметра:
 
 ```
-Specialty_MainPage
+Specialty
 ```
 
 Описание:
@@ -144,5 +144,27 @@ Specialty_MainPage
 Свойство или параметр:
 
 ```
-Specialty_MainPage
+Specialty
+```
+
+//
+
+## UserID
+
+Название параметра:
+
+```
+UserID
+```
+
+Описание:
+
+```
+ID врача
+```
+
+Свойство или параметр:
+
+```
+UserID
 ```
