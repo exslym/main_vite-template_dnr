@@ -12,25 +12,33 @@ export function analytics(btnAttribute) {
         eventProperty = { [property]: label };
 
         /* GA4 */
-        if (typeof gtag === 'function') {
-          // eslint-disable-next-line no-undef
-          gtag('event', eventName, eventProperty);
-          // console.log(`${eventName}`, eventProperty);
+        if (window.location.origin.includes('doktornarabote')) {
+          if (typeof gtag === 'function') {
+            // eslint-disable-next-line no-undef
+            gtag('event', eventName, eventProperty);
+          } else {
+            console.log(
+              '⛔️ Please define the Google Analytics function in the head tag of html file, function is NOT defined',
+            );
+          }
         } else {
-          console.log(
-            '⛔️ Please define the Google Analytics function in the head tag of html file, function is NOT defined',
-          );
+          console.log('GA: localhost');
+          console.log('event', eventName, eventProperty);
         }
 
         /* YM */
-        if (typeof ym === 'function') {
-          // eslint-disable-next-line no-undef
-          sendYM(label);
-          // console.log(label);
+        if (window.location.origin.includes('doktornarabote')) {
+          if (typeof ym === 'function') {
+            // eslint-disable-next-line no-undef
+            sendYM(label);
+          } else {
+            console.log(
+              '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined',
+            );
+          }
         } else {
-          console.log(
-            '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined',
-          );
+          console.log('YM: localhost');
+          console.log(label);
         }
       });
     });

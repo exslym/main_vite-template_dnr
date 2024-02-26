@@ -132,7 +132,7 @@ Video_Page1
 Название параметра:
 
 ```
-Specialty_Elidel
+Specialty_MainPage
 ```
 
 Описание:
@@ -144,5 +144,5 @@ Specialty_Elidel
 Свойство или параметр:
 
 ```
-Specialty
+Specialty_MainPage
 ```
