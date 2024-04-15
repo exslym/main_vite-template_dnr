@@ -123,4 +123,20 @@ export function flipCards(flipperClass, activeClass) {
     }
   }
 }
+
+._rotate {
+  transform: rotateY(-180deg);
+}
+*/
+
+//! scripts - add module to your project and import it in the index.js
+//* SCRIPTS:
+/*
+import { flipCards } from './libs/flipper';
+
+window.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+
+  flipCards('flipperCard', '_rotate');
+});
 */
