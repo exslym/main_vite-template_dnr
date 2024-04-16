@@ -1,5 +1,6 @@
 import '../styles/index.scss';
 import { analytics } from './libs/analytics';
+import { burger } from './libs/burger';
 import { smoothScroll } from './libs/smoothScroll';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -14,4 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   /* for smooth scroll to element by clicking the button */
   smoothScroll('scrollButton');
+
+  burger('openButton', 'openedMenu', 'closedMenu', 'mobileNav');
 });

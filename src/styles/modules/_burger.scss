@@ -1,5 +1,6 @@
 .menu {
   &-container {
+    display: none;
     position: fixed;
     top: 0;
     left: 50%;
@@ -7,10 +8,9 @@
     @include adapt(height, 60, 88);
     width: 100%;
     z-index: 20;
-    background-color: rgba(250, 255, 255, 0.8);
     transition: background-color 0.2s ease-out;
     @media screen and (max-width: 800px) {
-      top: 4px;
+      display: block;
       @include adapt(height, 52, 72, 800);
       background-color: rgba(250, 255, 255, 0.8);
     }
@@ -41,11 +41,15 @@
       }
       &:before {
         @include adapt(top, 4, 8, 800);
-        transition: top 0.4s ease-in-out, transform 0.4s ease-in-out;
+        transition:
+          top 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
       }
       &:after {
         @include adapt(bottom, 4, 8, 800);
-        transition: bottom 0.4s ease-in-out, transform 0.4s ease-in-out;
+        transition:
+          bottom 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
       }
       &:before,
       &:after {
@@ -54,7 +58,7 @@
     }
   }
   &-desktop {
-    display: block;
+    display: none;
     margin: 0 auto;
     @include adaptMult(padding, 20 32, 20 30, 1024);
     @include adapt(padding-top, 20, 32);
