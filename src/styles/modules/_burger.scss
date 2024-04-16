@@ -10,6 +10,7 @@
     width: 100%;
     z-index: 20;
     transition: background-color 0.2s ease-out;
+    background-color: rgba(250, 255, 255, 0.8);
 
     @media screen and (max-width: 800px) {
       display: block;
