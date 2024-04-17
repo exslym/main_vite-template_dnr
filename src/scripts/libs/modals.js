@@ -1,8 +1,8 @@
-export function modals(modalBlock, openButton, closeButton) {
-  if (document.querySelector(`.${openButton}`) && document.querySelector(`.${modalBlock}`)) {
+export function modals(modalBlock, openModal, closeModal) {
+  if (document.querySelector(`.${openModal}`) && document.querySelector(`.${modalBlock}`)) {
     const modals = document.querySelectorAll(`.${modalBlock}`);
-    const openModalButtons = document.querySelectorAll(`.${openButton}`);
-    const closeModalButtons = document.querySelectorAll(`.${closeButton}`);
+    const openModalButtons = document.querySelectorAll(`.${openModal}`);
+    const closeModalButtons = document.querySelectorAll(`.${closeModal}`);
 
     const w = window;
     const e = document.documentElement;
@@ -111,10 +111,10 @@ export function modals(modalBlock, openButton, closeButton) {
 //! html structure - copy templates to your document:
 //* BUTTONS:
 /* 
-	<button class="button openButton" data-label="Button_Modal1" data-target="modal1">
+	<button class="button openModal" data-label="Button_Modal1" data-target="modal1">
 		<p>OPEN_MODAL_1</p>
 	</button>
-	<button class="button openButton" data-label="Button_Modal2" data-target="modal2">
+	<button class="button openModal" data-label="Button_Modal2" data-target="modal2">
 		<p>OPEN_MODAL_2</p>
 	</button>
 */
@@ -128,7 +128,7 @@ export function modals(modalBlock, openButton, closeButton) {
 					<div>MODAL_1_CONTENT</div>
 				</div>
 			</div>
-			<img class="closeButton" data-target="modal1" src="./assets/images/close.svg" alt="close" />
+			<img class="closeModal" data-target="modal1" src="./assets/images/close.svg" alt="close" />
 		</div>
 	</dialog>
 
@@ -139,7 +139,7 @@ export function modals(modalBlock, openButton, closeButton) {
 					<div>MODAL_2_CONTENT</div>
 				</div>
 			</div>
-			<img class="closeButton" data-target="modal2" src="./assets/images/close.svg" alt="close" />
+			<img class="closeModal" data-target="modal2" src="./assets/images/close.svg" alt="close" />
 		</div>
 	</dialog>
 */
@@ -153,6 +153,6 @@ export function modals(modalBlock, openButton, closeButton) {
   window.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    modals('modalBlock', 'openButton', 'closeButton');
+    modals('modalBlock', 'openModal', 'closeModal');
   });
 */

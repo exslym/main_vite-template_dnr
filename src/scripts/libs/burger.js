@@ -1,8 +1,8 @@
 //* Burger (menu):
-export function burger(openButton, openedClass, closedClass, mobileNavClass) {
-  if (document.querySelector(`.${openButton}`)) {
-    const openButtons = document.querySelectorAll(`.${openButton}`);
-    openButtons.forEach((button) => {
+export function burger(openBurger, openedClass, closedClass, mobileNavClass) {
+  if (document.querySelector(`.${openBurger}`)) {
+    const openBurgerButtons = document.querySelectorAll(`.${openBurger}`);
+    openBurgerButtons.forEach((button) => {
       button.addEventListener('click', () => {
         if (!button.classList.contains(openedClass)) {
           button.classList.remove(closedClass);
@@ -33,7 +33,7 @@ export function burger(openButton, openedClass, closedClass, mobileNavClass) {
 //* MENU:
 /* 
 <div class="menu-container">
-	<div class="menu-burger openButton" data-crumbs="crumb">
+	<div class="menu-burger openBurger" data-crumbs="crumb">
 		<span></span>
 	</div>
 	<nav class="menu-desktop">
@@ -78,7 +78,7 @@ import { burger } from './libs/burger';
 window.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  burger('openButton', 'openedMenu', 'closedMenu', 'mobileNav');
+  burger('openBurger', 'openedMenu', 'closedMenu', 'mobileNav');
 });
 */
 

@@ -16,5 +16,6 @@ window.addEventListener('DOMContentLoaded', () => {
   /* for smooth scroll to element by clicking the button */
   smoothScroll('scrollButton');
 
-  burger('openButton', 'openedMenu', 'closedMenu', 'mobileNav');
+  /* burger menu */
+  burger('openBurger', 'openedMenu', 'closedMenu', 'mobileNav');
 });
