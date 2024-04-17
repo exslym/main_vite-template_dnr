@@ -8,44 +8,59 @@ export function analytics(btnAttribute) {
         const eventName = `Buttons_${pageTitleGA}`;
         const property = `Buttons_${pageTitleGA}`;
         const label = btn.dataset.label;
-        let eventProperty = new Object();
-        eventProperty = { [property]: label };
 
         /* GA4 */
-        if (window.location.origin.includes('doktornarabote')) {
-          if (typeof gtag === 'function') {
-            // eslint-disable-next-line no-undef
-            gtag('event', eventName, eventProperty);
-          } else {
-            console.log(
-              '⛔️ Please define the Google Analytics function in the head tag of html file, function is NOT defined',
-            );
-          }
-        } else {
-          console.log('GA: localhost');
-          console.log('event', eventName, eventProperty);
-        }
+        // eslint-disable-next-line no-undef
+        sendGTAG(eventName, property, label);
 
         /* YM */
-        if (window.location.origin.includes('doktornarabote')) {
-          if (typeof ym === 'function') {
-            // eslint-disable-next-line no-undef
-            sendYM(label);
-          } else {
-            console.log(
-              '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined',
-            );
-          }
-        } else {
-          console.log('YM: localhost');
-          console.log(label);
-        }
+        // eslint-disable-next-line no-undef
+        sendYM(label);
       });
     });
   }
 }
 
 //! HTML structure - copy templates to your document:
+//* HTML head:
+/* 
+  <!-- GOOGLE ANALYTICS SEND EVENTS FUNCTION -->
+  <script type="text/javascript">
+    const sendGTAG = (eventName, property, label) => {
+      let eventProperty = new Object();
+      eventProperty = { [property]: label };
+      if (window.location.origin.includes('doktornarabote')) {
+        if (typeof gtag === 'function') {
+          gtag('event', eventName, eventProperty);
+        } else {
+          console.log(
+            '⛔️ Please define the Google Analytics function in the head tag of html file, function is NOT defined',
+          );
+        }
+      } else {
+        console.log('GA: localhost', 'event', eventName, eventProperty);
+      }
+    };
+  </script>
+
+  <!-- YANDEX METRIKA SEND EVENTS FUNCTION -->
+  <script type="text/javascript">
+    const sendYM = (label) => {
+      if (window.location.origin.includes('doktornarabote')) {
+        if (typeof ym === 'function') {
+          ym(97014899, 'reachGoal', label);
+        } else {
+          console.log(
+            '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined',
+          );
+        }
+      } else {
+        console.log('YM: localhost', 'reachGoal', label);
+      }
+    };
+  </script>
+*/
+
 //* HTML - click on elements:
 /* 
   <button

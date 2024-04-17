@@ -48,10 +48,10 @@
                 Specialty: e.data.docData.Specialty.Name,
               });
             } else {
-              console.log('no data');
+              console.log('NO DATA or gtag is NOT defined');
             }
           } else {
-            console.log('GA: localhost');
+            console.log('GA: localhost (UserID & Specialty)');
           }
         });
       });
@@ -62,15 +62,16 @@
       const sendGTAG = (eventName, property, label) => {
         let eventProperty = new Object();
         eventProperty = { [property]: label };
-
         if (window.location.origin.includes('doktornarabote')) {
           if (typeof gtag === 'function') {
             gtag('event', eventName, eventProperty);
           } else {
-            console.log('event', eventName, eventProperty);
+            console.log(
+              '⛔️ Please define the Google Analytics function in the head tag of html file, function is NOT defined',
+            );
           }
         } else {
-          console.log('GA: localhost');
+          console.log('GA: localhost', 'event', eventName, eventProperty);
         }
       };
     </script>
@@ -106,10 +107,16 @@
     <script type="text/javascript">
       const sendYM = (label) => {
         if (window.location.origin.includes('doktornarabote')) {
-          // здесь вместо YYYYYYYY - номер счетчика
-          ym(YYYYYYYY, 'reachGoal', label);
+          if (typeof ym === 'function') {
+            // здесь вместо YYYYYYYY - номер счетчика
+            ym(YYYYYYYY, 'reachGoal', label);
+          } else {
+            console.log(
+              '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined',
+            );
+          }
         } else {
-          console.log('YM: localhost');
+          console.log('YM: localhost', 'reachGoal', label);
         }
       };
     </script>
@@ -245,71 +252,29 @@
 
     <!-- GOOGLE ANALYTICS (GA4 only) VIDEO VIEWS -->
     <script type="text/javascript">
-      (function (e) {
-        const matches =
-          e.matches ||
-          e.matchesSelector ||
-          e.webkitMatchesSelector ||
-          e.mozMatchesSelector ||
-          e.msMatchesSelector ||
-          e.oMatchesSelector;
-        !matches
-          ? (e.matches = e.matchesSelector =
-              function matches(selector) {
-                const matches = document.querySelectorAll(selector);
-                const th = this;
-                return Array.prototype.some.call(matches, function (e) {
-                  return e === th;
-                });
-              })
-          : (e.matches = e.matchesSelector = matches);
-      })(Element.prototype);
-      (function (e) {
-        e.closest =
-          e.closest ||
-          function (css) {
-            let node = this;
-            while (node) {
-              if (node.matches(css)) return node;
-              else node = node.parentElement;
-            }
-            return null;
-          };
-      })(Element.prototype);
-
       const videos = document.querySelectorAll('video');
-      const eventName = `Video_${pageTitleGA}`;
-      const property = `Video_${pageTitleGA}`;
 
       videos.forEach((video) => {
         let timer = null;
         let sec = 0;
 
-        const durationReal = Math.floor(video.duration);
-        const duration = durationReal - 5; // Конец видео (продолжительность видео минус 5 секунд)
-        const data = video.dataset.label;
-
-        const startTimer = function startTimer() {
-          return setInterval(function () {
+        const startTimer = function startTimer(eventName, property, data, duration) {
+          return setInterval(() => {
             const seconds = sec + 1;
             const minutes = Math.floor(seconds / 60);
 
             // GOOGLE ANALYTICS:
-            //
             switch (true) {
               case seconds === 1: // Старт видео (с 1 секунды):
-                //GA4:
                 sendGTAG(eventName, property, `${data} - start`);
                 break;
               case seconds > 0 && seconds < 30:
                 if (seconds % 5 === 0) {
-                  //GA4:
                   sendGTAG(eventName, property, `${data} - ${seconds}s`);
                 }
                 break;
               case seconds >= 30 && seconds < 60:
                 if (seconds % 15 === 0) {
-                  //GA4:
                   sendGTAG(eventName, property, `${data} - ${seconds}s`);
                 }
                 break;
@@ -318,7 +283,6 @@
                 if (seconds % 15 === 0) {
                   switch (true) {
                     case seconds - minutes * 60 !== 0:
-                      //GA4:
                       sendGTAG(
                         eventName,
                         property,
@@ -326,14 +290,12 @@
                       );
                       break;
                     default:
-                      //GA4:
                       sendGTAG(eventName, property, `${data} - ${minutes}m`);
                       break;
                   }
                 }
                 break;
               case seconds === duration: // Конец видео:
-                //GA4:
                 sendGTAG(eventName, property, `${data} - end`);
                 break;
             }
@@ -341,17 +303,19 @@
           }, 1000);
         };
 
-        const stopTimer = () => {
-          clearInterval(timer);
-        };
+        const stopTimer = () => clearInterval(timer);
 
         video.addEventListener('play', () => {
-          timer = startTimer();
+          const durationReal = Math.floor(video.duration);
+          const duration = durationReal - 5; // Конец видео (продолжительность видео минус 5 сек)
+          const eventName = `Video_${pageTitleGA}`;
+          const property = video.dataset.label;
+          const data = video.dataset.label;
+
+          timer = startTimer(eventName, property, data, duration);
         });
 
-        video.addEventListener('pause', () => {
-          timer = stopTimer();
-        });
+        video.addEventListener('pause', () => (timer = stopTimer()));
       });
     </script>
   </body>
