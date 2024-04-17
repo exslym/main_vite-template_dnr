@@ -68,14 +68,27 @@ export function flipCards(flipperClass, activeClass) {
 /* 
 <div class="flipper">
   <div
-    class="flipper__card flipperCard"
+    class="flipper__card flipper__card1 flipperCard"
     data-label="flipper_card_1"
   >
     <div class="flipper__card_front">
+      <img class="picture" src="" alt="picture" />  
       <h4 class="title">Front Title #1</h4>
     </div>
     <div class="flipper__card_back">
       <h4 class="title">Back Title #1</h4>
+    </div>
+  </div>
+  <div
+    class="flipper__card flipper__card2 flipperCard"
+    data-label="flipper_card_2"
+  >
+    <div class="flipper__card_front">
+      <img class="picture" src="" alt="picture" />  
+      <h4 class="title">Front Title #2</h4>
+    </div>
+    <div class="flipper__card_back">
+      <h4 class="title">Back Title #2</h4>
     </div>
   </div>
 </div>
@@ -84,32 +97,36 @@ export function flipCards(flipperClass, activeClass) {
 //! SCSS styles for flipCards - copy to main.scss
 /* 
 .flipper {
-  perspective: 1500;
+  perspective: 3000;
   transform-style: preserve-3d;
   width: 100%;
   height: 100%;
-  transform: scale(1);
-  transition: all 0.15s ease-in;
-  &:hover {
-    transform: scale(1.04);
-    transition: all 0.15s ease-in;
-  }
+
   &__card {
     cursor: pointer;
     position: relative;
+    perspective: 3000;
     transform-style: preserve-3d;
     transition: 0.4s linear;
     max-height: 100%;
     @include adapt(min-height, 210, 370);
+    .picture {
+      transform: scale(1);
+      transition: all 0.15s ease-in;
+    }
+    &:hover {
+      .picture {
+        transform: scale(1.04);
+        transition: all 0.15s ease-in;
+      }
+    }
 
     &_front,
     &_back {
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       backface-visibility: hidden;
+      overflow: hidden;
       @include adapt(padding, 16, 40);
     }
     &_front,
