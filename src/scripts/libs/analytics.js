@@ -1,3 +1,5 @@
+/* global sendGTAG, sendYM, gtag, ym */ //!DON'T DELETE THIS LINE!!!
+
 //* Google Analytics + Yandex Metrika Button Click Events
 export function analytics(btnAttribute) {
   const pageTitleGA = `${document.querySelector('meta[name="pageTitleGAEvents"]').content}`;
@@ -10,12 +12,18 @@ export function analytics(btnAttribute) {
         const label = btn.dataset.label;
 
         /* GA4 */
-        // eslint-disable-next-line no-undef
-        sendGTAG(eventName, property, label);
+        if (typeof gtag === 'function') {
+          sendGTAG(eventName, property, label);
+        } else {
+          console.log('analytics.js: gtag is NOT defined');
+        }
 
         /* YM */
-        // eslint-disable-next-line no-undef
-        sendYM(label);
+        if (typeof ym === 'function') {
+          sendYM(label);
+        } else {
+          console.log('analytics.js: ym is NOT defined');
+        }
       });
     });
   }
@@ -48,7 +56,8 @@ export function analytics(btnAttribute) {
     const sendYM = (label) => {
       if (window.location.origin.includes('doktornarabote')) {
         if (typeof ym === 'function') {
-          ym(97014899, 'reachGoal', label);
+          // здесь вместо YYYYYYYY - номер счетчика
+          ym(YYYYYYYY, 'reachGoal', label);
         } else {
           console.log(
             '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined',

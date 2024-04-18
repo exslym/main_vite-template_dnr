@@ -16,41 +16,39 @@
         src="https://files.doktornarabote.ru/tsplkhn/test/index.html"
       ></iframe>
     </div>
-    <p>
-      <script type="text/javascript">
-        // <![CDATA[
-        window.addEventListener('load', function () {
-          const iframe = document.querySelector('iframe');
-          iframe.contentWindow.postMessage(
-            {
-              url: window.top.location.href,
-              docData: window.docData,
-            },
-            '*',
-          );
-        });
-        // ]]>
-      </script>
 
+    <script type="text/javascript">
+      // <![CDATA[
+      window.addEventListener('load', () => {
+        const iframe = document.querySelector('iframe');
+        iframe.contentWindow.postMessage(
+          {
+            url: window.top.location.href,
+            docData: window.docData
+          },
+          '*'
+        );
+      });
+      // ]]>
+    </script>
+    <p>
       <!-- GA4 (gtag) -->
       <!-- здесь в значении параметра src вместо X-XXXXXXXXXX - идентификатор потока данных счетчика GA4 -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=X-XXXXXXXXXX"></script>
-      <script type="text/javascript">
+      <script>
         // <![CDATA[
-        window.addEventListener('load', function () {
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag('js', new Date());
-          gtag('config', 'X-XXXXXXXXXX');
-        });
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'X-XXXXXXXXXX');
         // ]]>
       </script>
 
       <!-- Google Tag Manager (GTM) -->
       <!-- здесь вместо GTM-GGGGGGGG - идентификатор потока данных счетчика GTM: -->
-      <script type="text/javascript">
+      <script>
         // <![CDATA[
         (function (w, d, s, l, i) {
           w[l] = w[l] || [];
@@ -89,7 +87,7 @@
           clickmap: true,
           trackLinks: true,
           accurateTrackBounce: true,
-          webvisor: true,
+          webvisor: true
         });
         // ]]>
       </script>

@@ -5,7 +5,7 @@ export function expandElement(
   activeButtonClass,
   activeBlockClass,
   scrollOption = false,
-  scrollerContainer = false,
+  scrollerContainer = false
 ) {
   const w = window;
   const e = document.documentElement;
@@ -61,13 +61,13 @@ export function expandElement(
                   const scrollerBox = document.querySelector(`.${scrollerContainer}`);
                   scrollerBox.scrollBy({
                     top: offsetPosition,
-                    behavior: 'smooth',
+                    behavior: 'smooth'
                   });
                 } else {
                   const scrollerBox = window;
                   scrollerBox.scrollBy({
                     top: offsetPosition,
-                    behavior: 'smooth',
+                    behavior: 'smooth'
                   });
                 }
 

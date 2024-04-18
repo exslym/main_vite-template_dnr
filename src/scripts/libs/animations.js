@@ -6,15 +6,13 @@ export function elementAnimation(elementClass, animationClass) {
           entries.forEach(({ isIntersecting }) => {
             const elements = document.querySelectorAll(`.${elementClass}`);
             if (isIntersecting) {
-              elements.forEach((element) => {
-                element.classList.add(`${animationClass}`);
-              });
+              elements.forEach((element) => element.classList.add(`${animationClass}`));
             }
           });
         },
         {
-          threshold: 0.3,
-        },
+          threshold: 0.3
+        }
       );
       for (let element of document.querySelectorAll(`.${elementClass}`)) {
         observer.observe(element);

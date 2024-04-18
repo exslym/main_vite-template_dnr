@@ -54,7 +54,7 @@ function scrollToTarget(scrollTarget) {
 
   window.scrollBy({
     top: offsetPosition,
-    behavior: 'smooth',
+    behavior: 'smooth'
   });
 }
 

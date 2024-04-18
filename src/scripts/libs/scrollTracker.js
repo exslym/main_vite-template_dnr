@@ -18,7 +18,7 @@ export function scrollTracker() {
     let scrolledScreen = scrollPos + document.documentElement.clientHeight;
     let percentage = Math.round((scrolledScreen / height) * 100);
     console.log(
-      `height: ${height} | scrolled-px: ${scrolledScreen} | scrolled-%: ${percentage} | direction: ${scrollDir}`,
+      `height: ${height} | scrolled-px: ${scrolledScreen} | scrolled-%: ${percentage} | direction: ${scrollDir}`
     );
   }
 

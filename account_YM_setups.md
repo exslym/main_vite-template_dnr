@@ -75,16 +75,16 @@ Scroll_100%
 Название параметра:
 
 ```
-screen_1
-screen_2
-screen_3
-screen_4
-screen_5
-screen_6
-screen_7
-screen_8
-screen_9
-screen_10
+Screen_1
+Screen_2
+Screen_3
+Screen_4
+Screen_5
+Screen_6
+Screen_7
+Screen_8
+Screen_9
+Screen_10
 ...
 ...
 ```
@@ -94,16 +94,16 @@ screen_10
 Идентификатор цели: (совпадает)
 
 ```
-screen_1
-screen_2
-screen_3
-screen_4
-screen_5
-screen_6
-screen_7
-screen_8
-screen_9
-screen_10
+Screen_1
+Screen_2
+Screen_3
+Screen_4
+Screen_5
+Screen_6
+Screen_7
+Screen_8
+Screen_9
+Screen_10
 ...
 ...
 ```

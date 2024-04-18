@@ -21,7 +21,7 @@
 
     <!-- GOOGLE ANALYTICS (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=X-XXXXXXXXXX"></script>
-    <script type="text/javascript">
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -33,51 +33,12 @@
       // для многостраничного сайта: главная (стартовая страница - index.html) - просто прямой путь, например: https://www.doktornarabote.ru/page/1002020, остальные страницы (page1.html, page2.html, ...): с добавлением hash, например: https://www.doktornarabote.ru/page/1002020#page1 и т.д.
       gtag('set', {
         page_title: `${pageTitle}`,
-        page_location: '__полный_адрес_страницы__',
+        page_location: '__полный_адрес_страницы__'
       });
-    </script>
-
-    <!-- DOC SPECIALTY FOR GA4 -->
-    <script>
-      window.addEventListener('load', () => {
-        window.addEventListener('message', (e) => {
-          if (window.location.origin.includes('doktornarabote')) {
-            if (e.data.docData && typeof gtag === 'function') {
-              gtag('event', 'UserID', { UserID: e.data.docData.Id });
-              gtag('event', `Specialty`, {
-                Specialty: e.data.docData.Specialty.Name,
-              });
-            } else {
-              console.log('NO DATA or gtag is NOT defined');
-            }
-          } else {
-            console.log('GA: localhost (UserID & Specialty)');
-          }
-        });
-      });
-    </script>
-
-    <!-- GOOGLE ANALYTICS SEND EVENTS FUNCTION -->
-    <script type="text/javascript">
-      const sendGTAG = (eventName, property, label) => {
-        let eventProperty = new Object();
-        eventProperty = { [property]: label };
-        if (window.location.origin.includes('doktornarabote')) {
-          if (typeof gtag === 'function') {
-            gtag('event', eventName, eventProperty);
-          } else {
-            console.log(
-              '⛔️ Please define the Google Analytics function in the head tag of html file, function is NOT defined',
-            );
-          }
-        } else {
-          console.log('GA: localhost', 'event', eventName, eventProperty);
-        }
-      };
     </script>
 
     <!-- YANDEX METRIKA (YM) -->
-    <script type="text/javascript">
+    <script>
       (function (m, e, t, r, i, k, a) {
         m[i] =
           m[i] ||
@@ -99,30 +60,12 @@
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,
-        webvisor: true,
+        webvisor: true
       });
     </script>
 
-    <!-- YANDEX METRIKA SEND EVENTS FUNCTION -->
-    <script type="text/javascript">
-      const sendYM = (label) => {
-        if (window.location.origin.includes('doktornarabote')) {
-          if (typeof ym === 'function') {
-            // здесь вместо YYYYYYYY - номер счетчика
-            ym(YYYYYYYY, 'reachGoal', label);
-          } else {
-            console.log(
-              '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined',
-            );
-          }
-        } else {
-          console.log('YM: localhost', 'reachGoal', label);
-        }
-      };
-    </script>
-
     <!-- GOOGLE TAG MANAGER (GTM) -->
-    <script type="text/javascript">
+    <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -136,58 +79,98 @@
       })(window, document, 'script', 'dataLayer', 'GTM-GGGGGGGG');
     </script>
 
+    <!-- DOC SPECIALTY FOR GA4 -->
+    <script type="text/javascript">
+      window.addEventListener('message', (e) => {
+        if (window.location.origin.includes('doktornarabote')) {
+          if (typeof gtag === 'function') {
+            if (e.data && e.data.docData) {
+              gtag('event', 'UserID', { UserID: e.data.docData.Id });
+              gtag('event', `Specialty`, {
+                Specialty: e.data.docData.Specialty.Name
+              });
+            }
+          } else {
+            console.log('index.html: gtag is NOT defined');
+          }
+        } else {
+          console.log('GA: localhost (UserID & Specialty)');
+        }
+      });
+    </script>
+
+    <!-- GOOGLE ANALYTICS SEND EVENTS FUNCTION -->
+    <script type="text/javascript">
+      const sendGTAG = (eventName, property, label) => {
+        let eventProperty = new Object();
+        eventProperty = { [property]: label };
+        if (window.location.origin.includes('doktornarabote')) {
+          if (typeof gtag === 'function') {
+            gtag('event', eventName, eventProperty);
+          } else {
+            console.log(
+              '⛔️ Please define the Google Analytics function in the head tag of html file, function is NOT defined'
+            );
+          }
+        } else {
+          console.log('GA: localhost', 'event', eventName, eventProperty);
+        }
+      };
+    </script>
+
+    <!-- YANDEX METRIKA SEND EVENTS FUNCTION -->
+    <script type="text/javascript">
+      const sendYM = (label) => {
+        if (window.location.origin.includes('doktornarabote')) {
+          if (typeof ym === 'function') {
+            // здесь вместо YYYYYYYY - номер счетчика
+            ym(YYYYYYYY, 'reachGoal', label);
+          } else {
+            console.log(
+              '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined'
+            );
+          }
+        } else {
+          console.log('YM: localhost', 'reachGoal', label);
+        }
+      };
+    </script>
+
     <!-- GOOGLE ANALYTICS & YANDEX METRIKA - NOBOUNCE -->
     <script type="text/javascript">
       window.addEventListener('load', () => {
         setTimeout(
           "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5sec'); sendYM('NoBounce_5sec')",
-          5000,
+          5000
         );
         setTimeout(
           "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_10sec'); sendYM('NoBounce_10sec')",
-          10000,
+          10000
         );
         setTimeout(
           "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_15sec'); sendYM('NoBounce_15sec')",
-          15000,
+          15000
         );
         setTimeout(
           "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_30sec'); sendYM('NoBounce_30sec')",
-          30000,
+          30000
         );
         setTimeout(
           "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_45sec'); sendYM('NoBounce_45sec')",
-          45000,
+          45000
         );
         setTimeout(
           "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_1min'); sendYM('NoBounce_1min')",
-          60000,
+          60000
         );
         setTimeout(
           "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_2min'); sendYM('NoBounce_2min')",
-          120000,
+          120000
         );
         setTimeout(
           "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5min'); sendYM('NoBounce_5min')",
-          300000,
+          300000
         );
-      });
-    </script>
-
-    <!-- GOOGLE ANALYTICS & YANDEX METRIKA - PAGE SCROLL -->
-    <script src="tools/scroll-tracker.min.js"></script>
-    <script type="text/javascript">
-      window.addEventListener('load', () => {
-        let tracker = window.ScrollTracker({ context: document.querySelector('body') });
-        tracker.on({ percentages: { every: [10] } }, (e) => {
-          const eventName = `Scroll_${pageTitleGA}`;
-          const property = `Scroll_${pageTitleGA}`;
-          const label = `${e.data.label}`;
-          //GA4:
-          sendGTAG(eventName, property, label);
-          //YM:
-          sendYM(`Scroll_${label}`);
-        });
       });
     </script>
 
@@ -208,12 +191,32 @@
               sendYM(label);
             });
           },
-          { threshold: 0.1 },
+          { threshold: 0.1 }
         );
         const screens = document.querySelectorAll('[data-id="screensObserver"]');
         screens.forEach((screen) => slideObserver.observe(screen));
       });
     </script>
+
+    <!-- GOOGLE ANALYTICS & YANDEX METRIKA - PAGE SCROLL -->
+    <script src="tools/scroll-tracker.min.js"></script>
+    <script type="text/javascript">
+      window.addEventListener('load', () => {
+        let tracker = window.ScrollTracker({ context: document.querySelector('body') });
+        tracker.on({ percentages: { every: [10] } }, (e) => {
+          const eventName = `Scroll_${pageTitleGA}`;
+          const property = `Scroll_${pageTitleGA}`;
+          const label = `${e.data.label}`;
+          //GA4:
+          sendGTAG(eventName, property, label);
+          //YM:
+          sendYM(`Scroll_${label}`);
+        });
+      });
+    </script>
+
+    <!-- main script -->
+    <script src="./scripts/index.js" type="module"></script>
   </head>
 
   <body>
@@ -243,9 +246,9 @@
 
     <!-- main content -->
     <div class="wrapper">
-      <section class="section _1" data-id="screensObserver" id="screen_1">
+      <section class="section _1" data-id="screensObserver" id="Screen_1">
         <div class="section__content">
-          <div class="content"></div>
+          <div class="block"></div>
         </div>
       </section>
     </div>
@@ -286,7 +289,7 @@
                       sendGTAG(
                         eventName,
                         property,
-                        `${data} - ${minutes}m ${seconds - minutes * 60}s`,
+                        `${data} - ${minutes}m ${seconds - minutes * 60}s`
                       );
                       break;
                     default:
@@ -318,5 +321,10 @@
         video.addEventListener('pause', () => (timer = stopTimer()));
       });
     </script>
+
+    <!-- Additional scripts if needed -->
+    <script src="tools/jquery-3.6.3.min.js"></script>
+    <script src="tools/magnific-popup.min.js"></script>
+    <script src="tools/owl.carousel.min.js"></script>
   </body>
 </html>

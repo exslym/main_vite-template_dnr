@@ -4,7 +4,7 @@ export function smoothShowBlock(
   expandBlock,
   activatedButtonClass,
   activatedBlockClass,
-  deactivatedBlockClass,
+  deactivatedBlockClass
 ) {
   if (document.querySelector(`.${expandButton}`)) {
     const buttons = document.querySelectorAll(`.${expandButton}`);
@@ -37,7 +37,7 @@ export function smoothShowBlock(
                 const offsetPosition = elementPosition - topOffset;
                 window.scrollBy({
                   top: offsetPosition,
-                  behavior: 'smooth',
+                  behavior: 'smooth'
                 });
                 clearTimeout();
               }, 100);

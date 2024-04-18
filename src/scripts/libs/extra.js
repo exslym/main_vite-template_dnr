@@ -13,13 +13,13 @@ export const isMobileDevice = {
   mobile: function () {
     return (
       /Android|webOS|Macintosh|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent,
+        navigator.userAgent
       ) && navigator.maxTouchPoints > 1
     );
   },
   any: function () {
     return isMobileDevice.mobile();
-  },
+  }
 };
 /* 
   if (isMobile.any()) {
@@ -50,7 +50,7 @@ export let isMobile = {
       isMobile.Opera() ||
       isMobile.Windows()
     );
-  },
+  }
 };
 
 /* Добавление класса touch для HTML если браузер мобильный */
@@ -170,7 +170,7 @@ export function dataMediaQueries(array, dataSetValue) {
         });
         mdQueriesArray.push({
           itemsArray,
-          matchMedia,
+          matchMedia
         });
       });
       return mdQueriesArray;

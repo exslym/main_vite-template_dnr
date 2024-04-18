@@ -21,17 +21,17 @@ export function slider1(slider, prevButton1, nextButton1, dotsBox, startBlock1 =
         responsive: {
           0: {
             items: 2,
-            margin: 10,
+            margin: 10
           },
           600: {
             items: 3,
-            margin: 10,
+            margin: 10
           },
           801: {
             items: 4,
-            margin: 16,
-          },
-        },
+            margin: 16
+          }
+        }
       });
 
       // Activate next button
@@ -86,7 +86,7 @@ export function slider1(slider, prevButton1, nextButton1, dotsBox, startBlock1 =
 */
 
 //! SCSS styles - @import url('../assets/tools/owl.carousel.min.css'); to index.scss
-//! SCSS styles - @import './modules/sliders';
+//! SCSS styles - @import './modules/sliders'; to index.scss
 
 //! SCRIPTS - add module to your project and import it in the index.js
 //* SCRIPTS:

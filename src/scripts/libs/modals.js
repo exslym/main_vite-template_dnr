@@ -37,7 +37,7 @@ export function modals(modalBlock, openModal, closeModal) {
           () => {
             openingModal.style.overflow = 'auto';
           },
-          { once: true },
+          { once: true }
         );
 
         /* for longread modal */
@@ -66,7 +66,7 @@ export function modals(modalBlock, openModal, closeModal) {
             openedModal.close();
             openedModal.style.overflow = null;
           },
-          { once: true },
+          { once: true }
         );
 
         /* for longread modal */
@@ -92,7 +92,7 @@ export function modals(modalBlock, openModal, closeModal) {
               modal.close();
               modal.style.overflow = null;
             },
-            { once: true },
+            { once: true }
           );
 
           /* for longread modal */

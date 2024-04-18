@@ -10,7 +10,7 @@ const aspectRatio = x / y;
 // 	);
 const isMobileDevice =
   /Android|webOS|Macintosh|Mac|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent,
+    navigator.userAgent
   ) && navigator.maxTouchPoints > 1;
 
 class Resolutions {

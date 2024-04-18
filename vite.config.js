@@ -22,44 +22,44 @@ const DEFAULT_OPTIONS = {
         params: {
           overrides: {
             cleanupNumericValues: false,
-            removeViewBox: false,
+            removeViewBox: false
           },
           cleanupIDs: {
             minify: false,
-            remove: false,
+            remove: false
           },
-          convertPathData: false,
-        },
+          convertPathData: false
+        }
       },
       'sortAttrs',
       {
         name: 'addAttributesToSVGElement',
         params: {
-          attributes: [{ xmlns: 'http://www.w3.org/2000/svg' }],
-        },
-      },
-    ],
+          attributes: [{ xmlns: 'http://www.w3.org/2000/svg' }]
+        }
+      }
+    ]
   },
   png: {
     quality: 100,
-    palette: true,
+    palette: true
   },
   jpeg: {
-    quality: 95,
+    quality: 95
   },
   jpg: {
-    quality: 95,
+    quality: 95
   },
   tiff: {
-    quality: 100,
+    quality: 100
   },
   gif: {},
   webp: {
-    lossless: true,
+    lossless: true
   },
   avif: {
-    lossless: true,
-  },
+    lossless: true
+  }
 };
 
 const pagesInput = {};
@@ -75,16 +75,16 @@ export default defineConfig({
   css: {
     devSourcemap: true,
     postcss: {
-      plugins: [autoprefixer],
-    },
+      plugins: [autoprefixer]
+    }
   },
   plugins: [
     eslint(),
     ViteImageOptimizer(DEFAULT_OPTIONS),
     ViteAliases(),
     legacy({
-      targets: ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead'],
-    }),
+      targets: ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead']
+    })
   ],
 
   build: {
@@ -92,7 +92,7 @@ export default defineConfig({
     outDir: Path.resolve(__dirname, './build'),
     rollupOptions: {
       input: {
-        ...pagesInput,
+        ...pagesInput
       },
       output: {
         assetFileNames: (assetInfo) => {
@@ -112,15 +112,15 @@ export default defineConfig({
         },
 
         entryFileNames: 'assets/js/[name]-[hash].js',
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-      },
-    },
+        chunkFileNames: 'assets/js/[name]-[hash].js'
+      }
+    }
   },
   // assetsInclude: ['/public/**/*'],
   server: {
     preTransformRequests: false,
     hmr: true,
     port: 3000,
-    host: '0.0.0.0',
-  },
+    host: '0.0.0.0'
+  }
 });

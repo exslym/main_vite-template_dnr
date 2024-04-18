@@ -15,8 +15,8 @@ export function popup(popupClass) {
         close: () => {
           $('html').removeClass('mfp-helper');
           $(window).scrollTop(scrollPosition);
-        },
-      },
+        }
+      }
     });
   }
 }

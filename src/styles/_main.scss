@@ -53,6 +53,7 @@ body {
 ._1 {
   .section__content {
     .block {
+      @include adapt(margin-top, 10, 16);
       * {
         margin: 0 auto;
         display: block;

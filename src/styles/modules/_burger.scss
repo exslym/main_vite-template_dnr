@@ -6,16 +6,16 @@
     top: 0;
     left: 50%;
     transform: translate(-50%, 0);
-    @include adapt(height, 60, 88);
+    @include adapt(height, 60, 80);
     width: 100%;
     z-index: 20;
     transition: background-color 0.2s ease-out;
-    background-color: rgba(250, 255, 255, 0.8);
+    background-color: rgba(190, 255, 255, 0.5);
 
     @media screen and (max-width: 800px) {
       display: block;
       @include adapt(height, 52, 72, 800);
-      background-color: rgba(250, 255, 255, 0.8);
+      background-color: rgba(190, 255, 255, 0.5);
     }
   }
   &-burger {

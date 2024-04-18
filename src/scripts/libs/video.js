@@ -50,10 +50,10 @@ export function videoPlayer(startButton, startedClass) {
 //* VIDEO:
 /* 
   <div class="videobox">
-    <video preload="auto" data-label="Video1" data-target="video1" id="video1">
+    <video preload="auto" data-label="Video1" data-target="Video1" id="Video1">
       <source src="video/video.mp4" type="video/mp4" />
     </video>
-    <div class="startButton" data-target="video1">Start Video1</div>
+    <div class="startVideoButton" data-target="Video1">Start Video1</div>
   </div>
 */
 
@@ -73,7 +73,7 @@ export function videoPlayer(startButton, startedClass) {
       width: 100%;
       height: 100%;
     }
-    .startButton {
+    .startVideoButton {
       cursor: pointer;
       margin: 0;
       padding: 0;
@@ -85,7 +85,7 @@ export function videoPlayer(startButton, startedClass) {
       background: no-repeat center / cover url('../assets/images/poster.png');
       @include adapt(border-radius, 20, 40);
     }
-    .startedClass {
+    .startedVideoClass {
       display: none;
     }
   }
@@ -99,6 +99,6 @@ import { videoPlayer } from './libs/video';
 window.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  videoPlayer('startButton', 'startedClass');
+  videoPlayer('startVideoButton', 'startedVideoClass');
 });
 */
