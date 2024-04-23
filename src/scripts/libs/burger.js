@@ -50,7 +50,7 @@ export function burger(openBurger, openedClass, closedClass, mobileNavClass) {
 			<li>
 				<a
 					href="#"
-					class="crumb crumb1"
+					class="crumb crumb2"
 					data-label="item2"
 				>
 					<p>item-2</p>
@@ -59,7 +59,7 @@ export function burger(openBurger, openedClass, closedClass, mobileNavClass) {
 			<li>
 				<a
 					href="#"
-					class="crumb crumb1"
+					class="crumb crumb3"
 					data-label="item3"
 				>
 					<p>item-3</p>
