@@ -20,7 +20,7 @@ export function analytics(btnAttribute) {
 
         /* YM */
         if (typeof ym === 'function') {
-          sendYM(label);
+          sendYM(`Buttons_${pageTitleGA}_${label}`);
         } else {
           console.log('analytics.js: ym is NOT defined');
         }

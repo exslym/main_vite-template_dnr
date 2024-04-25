@@ -140,35 +140,35 @@
     <script type="text/javascript">
       window.addEventListener('load', () => {
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5sec'); sendYM('NoBounce_5sec')",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5sec'); sendYM(`NoBounce_${pageTitleGA}_5sec`)",
           5000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_10sec'); sendYM('NoBounce_10sec')",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_10sec'); sendYM(`NoBounce_${pageTitleGA}_10sec`)",
           10000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_15sec'); sendYM('NoBounce_15sec')",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_15sec'); sendYM(`NoBounce_${pageTitleGA}_15sec`)",
           15000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_30sec'); sendYM('NoBounce_30sec')",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_30sec'); sendYM(`NoBounce_${pageTitleGA}_30sec`)",
           30000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_45sec'); sendYM('NoBounce_45sec')",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_45sec'); sendYM(`NoBounce_${pageTitleGA}_45sec`)",
           45000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_1min'); sendYM('NoBounce_1min')",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_1min'); sendYM(`NoBounce_${pageTitleGA}_1min`)",
           60000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_2min'); sendYM('NoBounce_2min')",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_2min'); sendYM(`NoBounce_${pageTitleGA}_2min`)",
           120000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5min'); sendYM('NoBounce_5min')",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5min'); sendYM(`NoBounce_${pageTitleGA}_5min`)",
           300000
         );
       });
@@ -188,7 +188,7 @@
               //GA4:
               sendGTAG(eventName, property, label);
               //YM:
-              sendYM(label);
+              sendYM(`Screens_${pageTitleGA}_${label}`);
             });
           },
           { threshold: 0.1 }
@@ -210,7 +210,7 @@
           //GA4:
           sendGTAG(eventName, property, label);
           //YM:
-          sendYM(`Scroll_${label}`);
+          sendYM(`Scroll_${pageTitleGA}_${label}`);
         });
       });
     </script>

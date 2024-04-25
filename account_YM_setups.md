@@ -7,14 +7,25 @@
 Название параметра:
 
 ```
-NoBounce_5sec
-NoBounce_10sec
-NoBounce_15sec
-NoBounce_30sec
-NoBounce_45sec
-NoBounce_1min
-NoBounce_2min
-NoBounce_5min
+NoBounce_MAIN_PAGE_5sec
+NoBounce_MAIN_PAGE_10sec
+NoBounce_MAIN_PAGE_15sec
+NoBounce_MAIN_PAGE_30sec
+NoBounce_MAIN_PAGE_45sec
+NoBounce_MAIN_PAGE_1min
+NoBounce_MAIN_PAGE_2min
+NoBounce_MAIN_PAGE_5min
+---
+NoBounce_PAGE_1_5sec
+NoBounce_PAGE_1_10sec
+NoBounce_PAGE_1_15sec
+NoBounce_PAGE_1_30sec
+NoBounce_PAGE_1_45sec
+NoBounce_PAGE_1_1min
+NoBounce_PAGE_1_2min
+NoBounce_PAGE_1_5min
+---
+и так далее для остальных страниц вписывать соответствующие названия (например, для главной страницы название MAIN_PAGE должно совпадать с контентом в теге <meta name="pageTitleGAEvents" content="MAIN_PAGE" />)
 ```
 
 Тип условия: JavaScript-событие
@@ -22,14 +33,25 @@ NoBounce_5min
 Идентификатор цели: (совпадает)
 
 ```
-NoBounce_5sec
-NoBounce_10sec
-NoBounce_15sec
-NoBounce_30sec
-NoBounce_45sec
-NoBounce_1min
-NoBounce_2min
-NoBounce_5min
+NoBounce_MAIN_PAGE_5sec
+NoBounce_MAIN_PAGE_10sec
+NoBounce_MAIN_PAGE_15sec
+NoBounce_MAIN_PAGE_30sec
+NoBounce_MAIN_PAGE_45sec
+NoBounce_MAIN_PAGE_1min
+NoBounce_MAIN_PAGE_2min
+NoBounce_MAIN_PAGE_5min
+---
+NoBounce_PAGE_1_5sec
+NoBounce_PAGE_1_10sec
+NoBounce_PAGE_1_15sec
+NoBounce_PAGE_1_30sec
+NoBounce_PAGE_1_45sec
+NoBounce_PAGE_1_1min
+NoBounce_PAGE_1_2min
+NoBounce_PAGE_1_5min
+---
+и так далее для остальных страниц вписывать соответствующие названия (например, для главной страницы название MAIN_PAGE должно совпадать с контентом в теге <meta name="pageTitleGAEvents" content="MAIN_PAGE" />)
 ```
 
 //
@@ -39,16 +61,29 @@ NoBounce_5min
 Название параметра:
 
 ```
-Scroll_10%
-Scroll_20%
-Scroll_30%
-Scroll_40%
-Scroll_50%
-Scroll_60%
-Scroll_70%
-Scroll_80%
-Scroll_90%
-Scroll_100%
+Scroll_MAIN_PAGE_10%
+Scroll_MAIN_PAGE_20%
+Scroll_MAIN_PAGE_30%
+Scroll_MAIN_PAGE_40%
+Scroll_MAIN_PAGE_50%
+Scroll_MAIN_PAGE_60%
+Scroll_MAIN_PAGE_70%
+Scroll_MAIN_PAGE_80%
+Scroll_MAIN_PAGE_90%
+Scroll_MAIN_PAGE_100%
+---
+Scroll_PAGE_1_10%
+Scroll_PAGE_1_20%
+Scroll_PAGE_1_30%
+Scroll_PAGE_1_40%
+Scroll_PAGE_1_50%
+Scroll_PAGE_1_60%
+Scroll_PAGE_1_70%
+Scroll_PAGE_1_80%
+Scroll_PAGE_1_90%
+Scroll_PAGE_1_100%
+---
+и так далее для остальных страниц вписывать соответствующие названия (например, для главной страницы название MAIN_PAGE должно совпадать с контентом в теге <meta name="pageTitleGAEvents" content="MAIN_PAGE" />)
 ```
 
 Тип условия: JavaScript-событие
@@ -56,16 +91,29 @@ Scroll_100%
 Идентификатор цели: (совпадает)
 
 ```
-Scroll_10%
-Scroll_20%
-Scroll_30%
-Scroll_40%
-Scroll_50%
-Scroll_60%
-Scroll_70%
-Scroll_80%
-Scroll_90%
-Scroll_100%
+Scroll_MAIN_PAGE_10%
+Scroll_MAIN_PAGE_20%
+Scroll_MAIN_PAGE_30%
+Scroll_MAIN_PAGE_40%
+Scroll_MAIN_PAGE_50%
+Scroll_MAIN_PAGE_60%
+Scroll_MAIN_PAGE_70%
+Scroll_MAIN_PAGE_80%
+Scroll_MAIN_PAGE_90%
+Scroll_MAIN_PAGE_100%
+---
+Scroll_PAGE_1_10%
+Scroll_PAGE_1_20%
+Scroll_PAGE_1_30%
+Scroll_PAGE_1_40%
+Scroll_PAGE_1_50%
+Scroll_PAGE_1_60%
+Scroll_PAGE_1_70%
+Scroll_PAGE_1_80%
+Scroll_PAGE_1_90%
+Scroll_PAGE_1_100%
+---
+и так далее для остальных страниц вписывать соответствующие названия (например, для главной страницы название MAIN_PAGE должно совпадать с контентом в теге <meta name="pageTitleGAEvents" content="MAIN_PAGE" />)
 ```
 
 //
@@ -75,18 +123,33 @@ Scroll_100%
 Название параметра:
 
 ```
-Screen_1
-Screen_2
-Screen_3
-Screen_4
-Screen_5
-Screen_6
-Screen_7
-Screen_8
-Screen_9
-Screen_10
+Screen_MAIN_PAGE_1
+Screen_MAIN_PAGE_2
+Screen_MAIN_PAGE_3
+Screen_MAIN_PAGE_4
+Screen_MAIN_PAGE_5
+Screen_MAIN_PAGE_6
+Screen_MAIN_PAGE_7
+Screen_MAIN_PAGE_8
+Screen_MAIN_PAGE_9
+Screen_MAIN_PAGE_10
 ...
 ...
+---
+Screen_PAGE_1_1
+Screen_PAGE_1_2
+Screen_PAGE_1_3
+Screen_PAGE_1_4
+Screen_PAGE_1_5
+Screen_PAGE_1_6
+Screen_PAGE_1_7
+Screen_PAGE_1_8
+Screen_PAGE_1_9
+Screen_PAGE_1_10
+...
+...
+---
+и так далее для остальных страниц вписывать соответствующие названия (например, для главной страницы название MAIN_PAGE должно совпадать с контентом в теге <meta name="pageTitleGAEvents" content="MAIN_PAGE" />)
 ```
 
 Тип условия: JavaScript-событие
@@ -94,18 +157,33 @@ Screen_10
 Идентификатор цели: (совпадает)
 
 ```
-Screen_1
-Screen_2
-Screen_3
-Screen_4
-Screen_5
-Screen_6
-Screen_7
-Screen_8
-Screen_9
-Screen_10
+Screen_MAIN_PAGE_1
+Screen_MAIN_PAGE_2
+Screen_MAIN_PAGE_3
+Screen_MAIN_PAGE_4
+Screen_MAIN_PAGE_5
+Screen_MAIN_PAGE_6
+Screen_MAIN_PAGE_7
+Screen_MAIN_PAGE_8
+Screen_MAIN_PAGE_9
+Screen_MAIN_PAGE_10
 ...
 ...
+---
+Screen_PAGE_1_1
+Screen_PAGE_1_2
+Screen_PAGE_1_3
+Screen_PAGE_1_4
+Screen_PAGE_1_5
+Screen_PAGE_1_6
+Screen_PAGE_1_7
+Screen_PAGE_1_8
+Screen_PAGE_1_9
+Screen_PAGE_1_10
+...
+...
+---
+и так далее для остальных страниц вписывать соответствующие названия (например, для главной страницы название MAIN_PAGE должно совпадать с контентом в теге <meta name="pageTitleGAEvents" content="MAIN_PAGE" />)
 ```
 
 //
@@ -115,11 +193,19 @@ Screen_10
 Название параметра:
 
 ```
-Кнопка "Button_1"
-Кнопка "Button_2"
-Кнопка "Button_3"
+Кнопка на странице MAIN_PAGE: "Button_1"
+Кнопка на странице MAIN_PAGE: "Button_2"
+Кнопка на странице MAIN_PAGE: "Button_3"
 ...
 ...
+---
+Кнопка на странице PAGE_1: "Button_1"
+Кнопка на странице PAGE_1: "Button_2"
+Кнопка на странице PAGE_1: "Button_3"
+...
+...
+---
+и так далее для остальных страниц вписывать соответствующие названия (например, для главной страницы название MAIN_PAGE должно совпадать с контентом в теге <meta name="pageTitleGAEvents" content="MAIN_PAGE" />)
 ```
 
 Тип условия: JavaScript-событие
@@ -127,9 +213,17 @@ Screen_10
 Идентификатор цели: (совпадает)
 
 ```
-Button_1
-Button_2
-Button_3
+Buttons_MAIN_PAGE_Button_1
+Buttons_MAIN_PAGE_Button_2
+Buttons_MAIN_PAGE_Button_3
 ...
 ...
+---
+Buttons_PAGE_1_Button_1
+Buttons_PAGE_1_Button_2
+Buttons_PAGE_1_Button_3
+...
+...
+---
+и так далее для остальных страниц вписывать соответствующие названия (например, для главной страницы название MAIN_PAGE должно совпадать с контентом в теге <meta name="pageTitleGAEvents" content="MAIN_PAGE" />)
 ```
