@@ -236,13 +236,20 @@ Buttons_PAGE_1_Button_3
 
 ```
 Video1 - start
-Video2 - start
+Video1 - 15s
+Video1 - 30s
+Video1 - 1m
+<!-- ниже целевой KPI для каждого видео по согласованию с КАМом (в данном случае 3m 30s, это 210 секунд, которые прописаны в аттрибуте тега video data-kpi) -->
+Video1(KPI) - 3m 30s
 Video1 - end
-Video2 - end
 
-<!-- ниже цели по согласованию с КАМом, целевой KPI по видео -->
-Video1 - 3m 30s
-Video2 - 3m 30s
+Video2 - start
+Video2 - 15s
+Video2 - 30s
+Video2 - 1m
+<!-- ниже целевой KPI для каждого видео по согласованию с КАМом (в данном случае 3m 30s, это 210 секунд, которые прописаны в аттрибуте тега video data-kpi) -->
+Video2(KPI) - 3m 30s
+Video2 - end
 ```
 
 Тип условия: JavaScript-событие
@@ -251,11 +258,18 @@ Video2 - 3m 30s
 
 ```
 Video1 - start
-Video2 - start
+Video1 - 15s
+Video1 - 30s
+Video1 - 1m
+<!-- ниже целевой KPI для каждого видео по согласованию с КАМом (в данном случае 3m 30s, это 210 секунд, которые прописаны в аттрибуте тега video data-kpi) -->
+Video1(KPI) - 3m 30s
 Video1 - end
-Video2 - end
 
-<!-- ниже цели по согласованию с КАМом, целевой KPI по видео -->
-Video1 - 3m 30s
-Video2 - 3m 30s
+Video2 - start
+Video2 - 15s
+Video2 - 30s
+Video2 - 1m
+<!-- ниже целевой KPI для каждого видео по согласованию с КАМом (в данном случае 3m 30s, это 210 секунд, которые прописаны в аттрибуте тега video data-kpi) -->
+Video2(KPI) - 3m 30s
+Video2 - end
 ```
