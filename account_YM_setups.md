@@ -227,3 +227,35 @@ Buttons_PAGE_1_Button_3
 ---
 и так далее для остальных страниц вписывать соответствующие названия (например, для главной страницы название MAIN_PAGE должно совпадать с контентом в теге <meta name="pageTitleGAEvents" content="MAIN_PAGE" />)
 ```
+
+//
+
+## Videos
+
+Название параметра:
+
+```
+Video1 - start
+Video2 - start
+Video1 - end
+Video2 - end
+
+<!-- ниже цели по согласованию с КАМом, целевой KPI по видео -->
+Video1 - 3m 30s
+Video2 - 3m 30s
+```
+
+Тип условия: JavaScript-событие
+
+Идентификатор цели: (совпадает)
+
+```
+Video1 - start
+Video2 - start
+Video1 - end
+Video2 - end
+
+<!-- ниже цели по согласованию с КАМом, целевой KPI по видео -->
+Video1 - 3m 30s
+Video2 - 3m 30s
+```

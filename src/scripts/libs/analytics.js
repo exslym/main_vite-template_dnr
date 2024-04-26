@@ -19,11 +19,7 @@ export function analytics(btnAttribute) {
         }
 
         /* YM */
-        if (typeof ym === 'function') {
-          sendYM(`Buttons_${pageTitleGA}_${label}`);
-        } else {
-          console.log('analytics.js: ym is NOT defined');
-        }
+        sendYM(`Buttons_${pageTitleGA}_${label}`);
       });
     });
   }

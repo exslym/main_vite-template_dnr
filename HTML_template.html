@@ -38,30 +38,40 @@
     </script>
 
     <!-- YANDEX METRIKA (YM) -->
-    <script>
-      (function (m, e, t, r, i, k, a) {
-        m[i] =
-          m[i] ||
-          function () {
-            (m[i].a = m[i].a || []).push(arguments);
+    <script type="text/javascript">
+      (function (d, w, c) {
+        (w[c] = w[c] || []).push(function () {
+          try {
+            // здесь вместо YYYYYYYY - номер счетчика
+            w.yaCounterYYYYYYYY = new Ya.Metrika({
+              id: YYYYYYYY,
+              clickmap: true,
+              trackLinks: true,
+              accurateTrackBounce: true
+            });
+          } catch (e) {}
+        });
+        var n = d.getElementsByTagName('script')[0],
+          x = 'https://mc.yandex.ru/metrika/watch.js',
+          s = d.createElement('script'),
+          f = function () {
+            n.parentNode.insertBefore(s, n);
           };
-        m[i].l = 1 * new Date();
-        for (var j = 0; j < document.scripts.length; j++) {
-          if (document.scripts[j].src === r) return;
+        for (var i = 0; i < document.scripts.length; i++) {
+          if (document.scripts[i].src === x) {
+            return;
+          }
         }
-        (k = e.createElement(t)),
-          (a = e.getElementsByTagName(t)[0]),
-          (k.async = 1),
-          (k.src = r),
-          a.parentNode.insertBefore(k, a);
-      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-      // здесь вместо YYYYYYYY - номер счетчика
-      ym(YYYYYYYY, 'init', {
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-        webvisor: true
-      });
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = x;
+
+        if (w.opera == '[object Opera]') {
+          d.addEventListener('DOMContentLoaded', f, false);
+        } else {
+          f();
+        }
+      })(document, window, 'yandex_metrika_callbacks');
     </script>
 
     <!-- GOOGLE TAG MANAGER (GTM) -->
@@ -122,14 +132,7 @@
     <script type="text/javascript">
       const sendYM = (label) => {
         if (window.location.origin.includes('doktornarabote')) {
-          if (typeof ym === 'function') {
-            // здесь вместо YYYYYYYY - номер счетчика
-            ym(YYYYYYYY, 'reachGoal', label);
-          } else {
-            console.log(
-              '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined'
-            );
-          }
+          yaCounterYYYYYYYY.reachGoal(label);
         } else {
           console.log('YM: localhost', 'reachGoal', label);
         }
@@ -253,7 +256,7 @@
       </section>
     </div>
 
-    <!-- GOOGLE ANALYTICS (GA4 only) VIDEO VIEWS -->
+    <!-- GOOGLE ANALYTICS (GA4 + YM) VIDEO VIEWS -->
     <script type="text/javascript">
       const videos = document.querySelectorAll('video');
 
@@ -270,6 +273,7 @@
             switch (true) {
               case seconds === 1: // Старт видео (с 1 секунды):
                 sendGTAG(eventName, property, `${data} - start`);
+                sendYM(`${data} - start`);
                 break;
               case seconds > 0 && seconds < 30:
                 if (seconds % 5 === 0) {
@@ -298,8 +302,12 @@
                   }
                 }
                 break;
+              case seconds === 210: // 3,5 минуты, уточнить KPI у КАМа
+                sendYM(`${data} - 3m 30s`);
+                break;
               case seconds === duration: // Конец видео:
                 sendGTAG(eventName, property, `${data} - end`);
+                sendYM(`${data} - end`);
                 break;
             }
             sec++;
@@ -310,7 +318,7 @@
 
         video.addEventListener('play', () => {
           const durationReal = Math.floor(video.duration);
-          const duration = durationReal - 5; // Конец видео (продолжительность видео минус 5 сек)
+          const duration = durationReal - 10; // Конец видео (продолжительность видео минус 10 сек)
           const eventName = `Video_${pageTitleGA}`;
           const property = video.dataset.label;
           const data = video.dataset.label;
