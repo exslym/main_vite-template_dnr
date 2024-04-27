@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+  <head> </head>
+  <body>
+    <div class="iframe-container">
+      <link
+        href="https://files.doktornarabote.ru/tsplkhn/~help_files/styles/iframe.css"
+        rel="stylesheet"
+      />
+      <!-- здесь указываем путь к файлу index.html, залитому на фтп, например: -->
+      <iframe
+        allowfullscreen
+        width="100%"
+        height="100%"
+        frameborder="0"
+        src="https://files.doktornarabote.ru/tsplkhn/test/index.html"
+      ></iframe>
+    </div>
+
+    <script type="text/javascript">
+      // <![CDATA[
+      window.addEventListener('load', () => {
+        const iframe = document.querySelector('iframe');
+        iframe.contentWindow.postMessage(
+          {
+            url: window.top.location.href,
+            docData: window.docData
+          },
+          '*'
+        );
+      });
+      // ]]>
+    </script>
+    <p>
+      <!-- GA4 (gtag) -->
+      <!-- здесь в значении параметра src вместо X-XXXXXXXXXX - идентификатор потока данных счетчика GA4 -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=X-XXXXXXXXXX"></script>
+      <script>
+        // <![CDATA[
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'X-XXXXXXXXXX');
+        // ]]>
+      </script>
+
+      <!-- Google Tag Manager (GTM) -->
+      <!-- здесь вместо GTM-GGGGGGGG - идентификатор потока данных счетчика GTM: -->
+      <script>
+        // <![CDATA[
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-GGGGGGGG');
+        // ]]>
+      </script>
+
+      <!-- YM -->
+      <script>
+        (function (m, e, t, r, i, k, a) {
+          m[i] =
+            m[i] ||
+            function () {
+              (m[i].a = m[i].a || []).push(arguments);
+            };
+          m[i].l = 1 * new Date();
+          for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) return;
+          }
+          (k = e.createElement(t)),
+            (a = e.getElementsByTagName(t)[0]),
+            (k.async = 1),
+            (k.src = r),
+            a.parentNode.insertBefore(k, a);
+        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+        // здесь вместо YYYYYYYY - номер первого счетчика Яндекс Метрики
+        ym(YYYYYYYY, 'init', {
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+          webvisor: true
+        });
+
+        // для второго счетчика, здесь вместо ZZZZZZZZ - номер второго счетчика Яндекс Метрики:
+        ym(ZZZZZZZZ, 'init', {
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+          webvisor: false
+        });
+      </script>
+    </p>
+
+    <!-- Google Tag Manager (GTM) -->
+    <!-- здесь вместо GTM-GGGGGGGG идентификатор потока данных счетчика GTM  -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-GGGGGGGG"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript>
+
+    <!-- YANDEX METRIKA -->
+    <!-- здесь вместо YYYYYYYY - номер первого счетчика Яндекс Метрики, вместо ZZZZZZZZ - номер второго счетчика -->
+    <noscript>
+      <div>
+        <img
+          src="https://mc.yandex.ru/watch/YYYYYYYY"
+          style="position: absolute; left: -9999px"
+          alt=""
+        />
+        <img
+          src="https://mc.yandex.ru/watch/ZZZZZZZZ"
+          style="position: absolute; left: -9999px"
+          alt=""
+        />
+      </div>
+    </noscript>
+
+    <!-- это нужно для якорей на другие страницы многостраничного сайта, указываем пути к файлам html, залитым на фтп, например: -->
+    <script type="text/javascript">
+      // <![CDATA[
+      const frame = document.querySelector('.iframe-container iframe');
+      let hash = window.top.location.hash;
+      if (hash == '#page1') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/page1.html';
+      } else if (hash == '#page2') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/page2.html';
+      } else if (hash == '#page3') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/page3.html';
+      }
+      // это нужно для якорей на конкретные элементы или блоки страницы сайта, указываем id элемента, например:
+      else if (hash == '#video') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/index.html#video';
+      } else if (hash == '#block_3') {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/index.html#block_3';
+      } else {
+        frame.src = 'https://files.doktornarabote.ru/tsplkhn/test/index.html';
+      }
+      // ]]>
+    </script>
+  </body>
+</html>

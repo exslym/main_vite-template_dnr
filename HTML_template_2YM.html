@@ -55,12 +55,20 @@
           (k.src = r),
           a.parentNode.insertBefore(k, a);
       })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-      // здесь вместо YYYYYYYY - номер счетчика Яндекс Метрики
+      // здесь вместо YYYYYYYY - номер первого счетчика Яндекс Метрики
       ym(YYYYYYYY, 'init', {
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,
         webvisor: true
+      });
+
+      // для второго счетчика, здесь вместо ZZZZZZZZ - номер второго счетчика Яндекс Метрики:
+      ym(ZZZZZZZZ, 'init', {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: false
       });
     </script>
 
@@ -120,10 +128,10 @@
 
     <!-- YANDEX METRIKA SEND EVENTS FUNCTION -->
     <script type="text/javascript">
-      const sendYM = (label) => {
+      const sendYM = (label, number) => {
         if (window.location.origin.includes('doktornarabote')) {
           if (typeof ym === 'function') {
-            ym(YYYYYYYY, 'reachGoal', label);
+            ym(number, 'reachGoal', label);
           } else {
             console.log(
               '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined'
@@ -138,36 +146,37 @@
     <!-- GOOGLE ANALYTICS & YANDEX METRIKA - NOBOUNCE -->
     <script type="text/javascript">
       window.addEventListener('load', () => {
+        // здесь вместо YYYYYYYY - номер первого счетчика Яндекс Метрики
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5sec'); sendYM(`NoBounce_${pageTitleGA}_5sec`)",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5sec'); sendYM(`NoBounce_${pageTitleGA}_5sec`, YYYYYYYY)",
           5000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_10sec'); sendYM(`NoBounce_${pageTitleGA}_10sec`)",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_10sec'); sendYM(`NoBounce_${pageTitleGA}_10sec`, YYYYYYYY)",
           10000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_15sec'); sendYM(`NoBounce_${pageTitleGA}_15sec`)",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_15sec'); sendYM(`NoBounce_${pageTitleGA}_15sec`, YYYYYYYY)",
           15000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_30sec'); sendYM(`NoBounce_${pageTitleGA}_30sec`)",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_30sec'); sendYM(`NoBounce_${pageTitleGA}_30sec`, YYYYYYYY)",
           30000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_45sec'); sendYM(`NoBounce_${pageTitleGA}_45sec`)",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_45sec'); sendYM(`NoBounce_${pageTitleGA}_45sec`, YYYYYYYY)",
           45000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_1min'); sendYM(`NoBounce_${pageTitleGA}_1min`)",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_1min'); sendYM(`NoBounce_${pageTitleGA}_1min`, YYYYYYYY)",
           60000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_2min'); sendYM(`NoBounce_${pageTitleGA}_2min`)",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_2min'); sendYM(`NoBounce_${pageTitleGA}_2min`, YYYYYYYY)",
           120000
         );
         setTimeout(
-          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5min'); sendYM(`NoBounce_${pageTitleGA}_5min`)",
+          "sendGTAG(`NoBounce_${pageTitleGA}`, `NoBounce_${pageTitleGA}`, 'NoBounce_5min'); sendYM(`NoBounce_${pageTitleGA}_5min`, YYYYYYYY)",
           300000
         );
       });
@@ -187,7 +196,8 @@
               //GA4:
               sendGTAG(eventName, property, label);
               //YM:
-              sendYM(`Screens_${pageTitleGA}_${label}`);
+              sendYM(`Screens_${pageTitleGA}_${label}`, YYYYYYYY);
+              // здесь вместо YYYYYYYY - номер первого счетчика Яндекс Метрики
             });
           },
           { threshold: 0.1 }
@@ -209,7 +219,8 @@
           //GA4:
           sendGTAG(eventName, property, label);
           //YM:
-          sendYM(`Scroll_${pageTitleGA}_${label}`);
+          sendYM(`Scroll_${pageTitleGA}_${label}`, YYYYYYYY);
+          // здесь вместо YYYYYYYY - номер первого счетчика Яндекс Метрики
         });
       });
     </script>
@@ -232,11 +243,16 @@
     </noscript>
 
     <!-- YANDEX METRIKA -->
-    <!-- здесь вместо YYYYYYYY - номер счетчика Яндекс Метрики -->
+    <!-- здесь вместо YYYYYYYY - номер первого счетчика Яндекс Метрики, вместо ZZZZZZZZ - номер второго счетчика -->
     <noscript>
       <div>
         <img
           src="https://mc.yandex.ru/watch/YYYYYYYY"
+          style="position: absolute; left: -9999px"
+          alt=""
+        />
+        <img
+          src="https://mc.yandex.ru/watch/ZZZZZZZZ"
           style="position: absolute; left: -9999px"
           alt=""
         />
@@ -303,43 +319,45 @@
             }
 
             // YM:
+            // Отправка событий по видео на второй счетчик Янедкс Метрики
+            // здесь вместо ZZZZZZZZ - номер второго счетчика.
             switch (true) {
               // START
               case seconds === 1:
-                sendYM(`${data} - start`);
+                sendYM(`${data} - start`, ZZZZZZZZ);
                 // console.log(`${data} - start`);
                 break;
               // INTERVALS
               case seconds === 15:
-                sendYM(`${data} - 15s`);
+                sendYM(`${data} - 15s`, ZZZZZZZZ);
                 // console.log(`${data} - 15s`);
                 break;
               case seconds === 30:
-                sendYM(`${data} - 30s`);
+                sendYM(`${data} - 30s`, ZZZZZZZZ);
                 // console.log(`${data} - 30s`);
                 break;
               case seconds === 60:
-                sendYM(`${data} - 1m`);
+                sendYM(`${data} - 1m`, ZZZZZZZZ);
                 // console.log(`${data} - 1m`);
                 break;
               // KPI - задать в СЕКУНДАХ цель KPI для каждого видео в аттрибуте data-kpi="" (согласовать KPI с КАМом)
               case seconds === kpi:
                 if (kpi >= 60) {
                   if (kpi % 60 === 0) {
-                    sendYM(`${data}(KPI) - ${kpi / 60}m`);
+                    sendYM(`${data}(KPI) - ${kpi / 60}m`, ZZZZZZZZ);
                     // console.log(`${data}(KPI) - ${kpi / 60}m`);
                   } else {
-                    sendYM(`${data}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`);
+                    sendYM(`${data}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`, ZZZZZZZZ);
                     // console.log(`${data}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`);
                   }
                 } else {
-                  sendYM(`${data}(KPI) - ${kpi}s`);
+                  sendYM(`${data}(KPI) - ${kpi}s`, ZZZZZZZZ);
                   // console.log(`${data}(KPI) - ${kpi}s`);
                 }
                 break;
               // END
               case seconds === duration:
-                sendYM(`${data} - end`);
+                sendYM(`${data} - end`, ZZZZZZZZ);
                 // console.log(`${data} - end`);
                 break;
             }

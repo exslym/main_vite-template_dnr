@@ -1,5 +1,6 @@
 import '../styles/index.scss';
 import { analytics } from './libs/analytics';
+// import { analytics2YM } from './libs/analytics2YM';
 import { burger } from './libs/burger';
 import { smoothScroll } from './libs/smoothScroll';
 
@@ -12,6 +13,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   /* for Google Analytics & Yandex Metrika */
   analytics('analytics');
+
+  /* for 2 Yandex Metrika counters */
+  // analytics2YM('analyticsYM1', 'analyticsYM2');
 
   /* for smooth scroll to element by clicking the button */
   smoothScroll('scrollButton');

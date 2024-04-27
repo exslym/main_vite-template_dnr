@@ -193,15 +193,15 @@ Screen_PAGE_1_10
 Название параметра:
 
 ```
-Кнопка на странице MAIN_PAGE: "Button_1"
-Кнопка на странице MAIN_PAGE: "Button_2"
-Кнопка на странице MAIN_PAGE: "Button_3"
+Buttons_MAIN_PAGE_Button_1
+Buttons_MAIN_PAGE_Button_2
+Buttons_MAIN_PAGE_Button_3
 ...
 ...
 ---
-Кнопка на странице PAGE_1: "Button_1"
-Кнопка на странице PAGE_1: "Button_2"
-Кнопка на странице PAGE_1: "Button_3"
+Buttons_PAGE_1_Button_1
+Buttons_PAGE_1_Button_2
+Buttons_PAGE_1_Button_3
 ...
 ...
 ---
