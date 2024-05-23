@@ -1,0 +1,265 @@
+/* fonts */
+$font-default: 'Overpass', Arial, Helvetica, sans-serif;
+$font-mono: 'Overpass Mono', Arial, Helvetica, sans-serif;
+$font-roboto: 'Roboto', Arial, Helvetica, sans-serif;
+
+.overpass {
+  font-family: $font-default;
+}
+.mono {
+  font-family: $font-mono;
+}
+.roboto {
+  font-family: $font-roboto;
+}
+
+/* colors */
+$clr-default: #f5f5f5;
+$clr-wrapper: #ffffff;
+$clr-text: #343434;
+/* ================ */
+$clr-black: #000000;
+$clr-white: #ffffff;
+$clr-light: #e0e0e0;
+$clr-gray: #939393;
+$clr-footer: #5e5e5e;
+
+/* ================ */
+.black {
+  color: $clr-black;
+}
+.white {
+  color: $clr-white;
+}
+
+/* desktop scrollbar width */
+$scrollbar: 15px;
+
+/* font-sizes for breakpoint 1920px */
+$fs-default: clamp(15px, 1.145833vw, 22px);
+
+$fs-120: clamp(60px, 6.25vw, 120px);
+$fs-80: clamp(36px, 4.166666vw, 80px);
+$fs-76: clamp(36px, 3.958333vw, 76px);
+$fs-64: clamp(32px, 3.333333vw, 64px);
+$fs-56: clamp(26px, 2.916666vw, 56px);
+$fs-42: clamp(21px, 1.90909vw, 42px);
+$fs-40: clamp(20px, 2.083333vw, 40px);
+$fs-36: clamp(20px, 1.875vw, 36px);
+$fs-32: clamp(18px, 1.666666vw, 32px);
+$fs-30: clamp(16px, 1.5625vw, 30px);
+$fs-24: clamp(16px, 1.25vw, 24px);
+$fs-22: clamp(15px, 1.145833vw, 22px);
+$fs-20: clamp(14px, 1.041666vw, 20px);
+$fs-18: clamp(15px, 0.9375vw, 18px);
+$fs-16: clamp(13px, 0.833333vw, 16px);
+$fs-14: clamp(12px, 0.729166vw, 14px);
+$fs-12: 12px;
+
+.fs120 {
+  @include adapt(font-size, 60, 120);
+}
+.fs80 {
+  @include adapt(font-size, 36, 80);
+}
+.fs76 {
+  @include adapt(font-size, 36, 76);
+}
+.fs64 {
+  @include adapt(font-size, 32, 64);
+}
+.fs56 {
+  @include adapt(font-size, 26, 56);
+}
+.fs42 {
+  @include adapt(font-size, 21, 42);
+}
+.fs40 {
+  @include adapt(font-size, 20, 40);
+}
+.fs36 {
+  @include adapt(font-size, 20, 36);
+}
+.fs32 {
+  @include adapt(font-size, 18, 32);
+}
+.fs30 {
+  @include adapt(font-size, 16, 30);
+}
+.fs28 {
+  @include adapt(font-size, 16, 28);
+}
+.fs24 {
+  @include adapt(font-size, 14, 24);
+}
+.fs22 {
+  @include adapt(font-size, 15, 22);
+}
+.fs20 {
+  @include adapt(font-size, 14, 20);
+}
+.fs18 {
+  @include adapt(font-size, 14, 18);
+}
+.fs16 {
+  @include adapt(font-size, 13, 16);
+}
+.fs14 {
+  @include adapt(font-size, 12, 14);
+}
+.fs12 {
+  font-size: 12px;
+}
+
+/* margins */
+.mt160 {
+  @include adapt(margin-top, 80, 160);
+}
+.mb160 {
+  @include adapt(margin-bottom, 80, 160);
+}
+.mt120 {
+  @include adapt(margin-top, 60, 120);
+}
+.mb120 {
+  @include adapt(margin-bottom, 60, 120);
+}
+.mt80 {
+  @include adapt(margin-top, 40, 80);
+}
+.mb80 {
+  @include adapt(margin-bottom, 40, 80);
+}
+.mt72 {
+  @include adapt(margin-top, 32, 72);
+}
+.mb72 {
+  @include adapt(margin-bottom, 32, 72);
+}
+.mt64 {
+  @include adapt(margin-top, 30, 64);
+}
+.mb64 {
+  @include adapt(margin-bottom, 30, 64);
+}
+.mt60 {
+  @include adapt(margin-top, 30, 60);
+}
+.mb60 {
+  @include adapt(margin-bottom, 30, 60);
+}
+.mt56 {
+  @include adapt(margin-top, 24, 56);
+}
+.mb56 {
+  @include adapt(margin-bottom, 24, 56);
+}
+.mt48 {
+  @include adapt(margin-top, 24, 48);
+}
+.mb48 {
+  @include adapt(margin-bottom, 24, 48);
+}
+.mt42 {
+  @include adapt(margin-top, 20, 42);
+}
+.mb42 {
+  @include adapt(margin-bottom, 20, 42);
+}
+.mt40 {
+  @include adapt(margin-top, 20, 40);
+}
+.mb40 {
+  @include adapt(margin-bottom, 20, 40);
+}
+.mt36 {
+  @include adapt(margin-top, 16, 36);
+}
+.mb36 {
+  @include adapt(margin-bottom, 16, 36);
+}
+.mt32 {
+  @include adapt(margin-top, 16, 32);
+}
+.mb32 {
+  @include adapt(margin-bottom, 16, 32);
+}
+.mt30 {
+  @include adapt(margin-top, 14, 30);
+}
+.mb30 {
+  @include adapt(margin-bottom, 14, 30);
+}
+.mt28 {
+  @include adapt(margin-top, 14, 28);
+}
+.mb28 {
+  @include adapt(margin-bottom, 14, 28);
+}
+.mt24 {
+  @include adapt(margin-top, 16, 24);
+}
+.mb24 {
+  @include adapt(margin-bottom, 16, 24);
+}
+.mt20 {
+  @include adapt(margin-top, 14, 20);
+}
+.mb20 {
+  @include adapt(margin-bottom, 14, 20);
+}
+.mt18 {
+  @include adapt(margin-top, 12, 18);
+}
+.mb18 {
+  @include adapt(margin-bottom, 12, 18);
+}
+.mt16 {
+  @include adapt(margin-top, 10, 16);
+}
+.mb16 {
+  @include adapt(margin-bottom, 10, 16);
+}
+.mt14 {
+  @include adapt(margin-top, 10, 14);
+}
+.mb14 {
+  @include adapt(margin-bottom, 10, 14);
+}
+.mt12 {
+  @include adapt(margin-top, 10, 12);
+}
+.mb12 {
+  @include adapt(margin-bottom, 10, 12);
+}
+.mt10 {
+  @include adapt(margin-top, 8, 10);
+}
+.mb10 {
+  @include adapt(margin-bottom, 8, 10);
+}
+.mt8 {
+  @include adapt(margin-top, 6, 8);
+}
+.mb8 {
+  @include adapt(margin-bottom, 6, 8);
+}
+.mt6 {
+  margin-top: 6px;
+}
+.mb6 {
+  margin-bottom: 6px;
+}
+.mt4 {
+  margin-top: 4px;
+}
+.mb4 {
+  margin-bottom: 4px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+.underline {
+  text-decoration: underline;
+}

@@ -1,0 +1,47 @@
+html.mfp-helper {
+  body {
+    overflow: hidden;
+    .wrapper {
+      display: none;
+      visibility: hidden !important;
+      -webkit-overflow-scrolling: none;
+    }
+  }
+}
+
+.button_zoom {
+  display: none;
+  width: 100%;
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
+}
+.button_plus {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  @include adapt(max-width, 240, 360);
+  background-color: slategray;
+  border-radius: 10px;
+  p {
+    font-size: 14px;
+    color: black;
+  }
+}
+
+.mfp-container {
+  padding: 0 10px;
+}
+.mfp-content {
+  .mfp-close {
+    @include adapt(width, 40, 50, 600);
+    @include adapt(height, 40, 50, 600);
+    @include adapt(font-size, 36, 48, 600);
+    color: black;
+  }
+}
