@@ -110,6 +110,7 @@
         ) {
           if (typeof gtag === 'function') {
             gtag('event', eventName, eventProperty);
+            // console.log('GA', eventName, eventProperty);
           } else {
             console.log(
               '⛔️ Please define the Google Analytics function in the head tag of html file, function is NOT defined'
@@ -130,6 +131,7 @@
         ) {
           if (typeof ym === 'function') {
             ym(YYYYYYYY, 'reachGoal', label);
+            // console.log('YM', label);
           } else {
             console.log(
               '⛔️ Please define the Yandex Metrika function in the head tag of html file, function is NOT defined'
@@ -310,39 +312,31 @@
                 // START
                 case seconds === 1:
                   sendYM(`${label} - start`);
-                  // console.log(`${label} - start`);
                   break;
                 // INTERVALS
                 case seconds === 15:
                   sendYM(`${label} - 15s`);
-                  // console.log(`${label} - 15s`);
                   break;
                 case seconds === 30:
                   sendYM(`${label} - 30s`);
-                  // console.log(`${label} - 30s`);
                   break;
                 case seconds === 60:
                   sendYM(`${label} - 1m`);
-                  // console.log(`${label} - 1m`);
                   break;
                 case seconds === kpi:
                   if (kpi >= 60) {
                     if (kpi % 60 === 0) {
                       sendYM(`${label}(KPI) - ${kpi / 60}m`);
-                      // console.log(`${label}(KPI) - ${kpi / 60}m`);
                     } else {
                       sendYM(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`);
-                      // console.log(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`);
                     }
                   } else {
                     sendYM(`${label}(KPI) - ${kpi}s`);
-                    // console.log(`${label}(KPI) - ${kpi}s`);
                   }
                   break;
                 // END
                 case seconds === duration:
                   sendYM(`${label} - end`);
-                  // console.log(`${label} - end`);
                   break;
               }
 
