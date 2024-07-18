@@ -270,115 +270,153 @@
 
     <!-- GOOGLE ANALYTICS (GA4 + YM) VIDEO VIEWS -->
     <script type="text/javascript">
-      const videos = document.querySelectorAll('video');
+      window.addEventListener('load', () => {
+        (function (e) {
+          var matches =
+            e.matches ||
+            e.matchesSelector ||
+            e.webkitMatchesSelector ||
+            e.mozMatchesSelector ||
+            e.msMatchesSelector ||
+            e.oMatchesSelector;
+          !matches
+            ? (e.matches = e.matchesSelector =
+                function matches(selector) {
+                  var matches = document.querySelectorAll(selector);
+                  var th = this;
+                  return Array.prototype.some.call(matches, function (e) {
+                    return e === th;
+                  });
+                })
+            : (e.matches = e.matchesSelector = matches);
+        })(Element.prototype);
 
-      videos.forEach((video) => {
+        (function (e) {
+          e.closest =
+            e.closest ||
+            function (css) {
+              var node = this;
+
+              while (node) {
+                if (node.matches(css)) return node;
+                else node = node.parentElement;
+              }
+              return null;
+            };
+        })(Element.prototype);
+
+        const videos = document.querySelectorAll('video');
         let timer = null;
         let sec = 0;
 
-        const startTimer = function startTimer(eventName, property, label, duration, kpi) {
-          return setInterval(() => {
-            const seconds = sec + 1;
-            const minutes = Math.floor(seconds / 60);
+        videos.forEach((video) => {
+          const startTimer = function startTimer(eventName, property, label, duration, kpi) {
+            return setInterval(() => {
+              const seconds = sec + 1;
+              const minutes = Math.floor(seconds / 60);
 
-            // GOOGLE ANALYTICS:
-            switch (true) {
-              case seconds === 1: // Старт видео (с 1 секунды):
-                sendGTAG(eventName, property, `${label} - start`);
-                break;
-              case seconds > 0 && seconds < 30:
-                if (seconds % 5 === 0) {
-                  sendGTAG(eventName, property, `${label} - ${seconds}s`);
-                }
-                break;
-              case seconds >= 30 && seconds < 60:
-                if (seconds % 15 === 0) {
-                  sendGTAG(eventName, property, `${label} - ${seconds}s`);
-                }
-                break;
-              case seconds >= 60 && seconds < duration:
-                // после первых 60 секунд конвертим секунды в минуты и каждые 15 секунд опрокидываем событие вида, например, 1m 45s, далее 2m, далее 2m 15s и т.д.:
-                if (seconds % 15 === 0) {
-                  switch (true) {
-                    case seconds - minutes * 60 !== 0:
-                      sendGTAG(
-                        eventName,
-                        property,
-                        `${label} - ${minutes}m ${seconds - minutes * 60}s`
-                      );
-                      break;
-                    default:
-                      sendGTAG(eventName, property, `${label} - ${minutes}m`);
-                      break;
+              // GOOGLE ANALYTICS:
+              switch (true) {
+                case seconds === 1: // Старт видео (с 1 секунды):
+                  sendGTAG(eventName, property, `${label} - start`);
+                  break;
+                case seconds > 0 && seconds < 30:
+                  if (seconds % 5 === 0) {
+                    sendGTAG(eventName, property, `${label} - ${seconds}s`);
                   }
-                }
-                break;
-              case seconds === duration: // Конец видео:
-                sendGTAG(eventName, property, `${label} - end`);
-                break;
-            }
+                  break;
+                case seconds >= 30 && seconds < 60:
+                  if (seconds % 15 === 0) {
+                    sendGTAG(eventName, property, `${label} - ${seconds}s`);
+                  }
+                  break;
+                case seconds >= 60 && seconds < duration:
+                  // после первых 60 секунд конвертим секунды в минуты и каждые 15 секунд опрокидываем событие вида, например, 1m 45s, далее 2m, далее 2m 15s и т.д.:
+                  if (seconds % 15 === 0) {
+                    switch (true) {
+                      case seconds - minutes * 60 !== 0:
+                        sendGTAG(
+                          eventName,
+                          property,
+                          `${label} - ${minutes}m ${seconds - minutes * 60}s`
+                        );
+                        break;
+                      default:
+                        sendGTAG(eventName, property, `${label} - ${minutes}m`);
+                        break;
+                    }
+                  }
+                  break;
+                case seconds === duration: // Конец видео:
+                  sendGTAG(eventName, property, `${label} - end`);
+                  break;
+              }
 
-            // YM:
-            // Отправка событий по видео на второй счетчик Янедкс Метрики
-            // здесь вместо ZZZZZZZZ - номер второго счетчика.
-            switch (true) {
-              // START
-              case seconds === 1:
-                sendYM(`${label} - start`, ZZZZZZZZ);
-                // console.log(`${label} - start`);
-                break;
-              // INTERVALS
-              case seconds === 15:
-                sendYM(`${label} - 15s`, ZZZZZZZZ);
-                // console.log(`${label} - 15s`);
-                break;
-              case seconds === 30:
-                sendYM(`${label} - 30s`, ZZZZZZZZ);
-                // console.log(`${label} - 30s`);
-                break;
-              case seconds === 60:
-                sendYM(`${label} - 1m`, ZZZZZZZZ);
-                // console.log(`${label} - 1m`);
-                break;
-              // KPI - задать в СЕКУНДАХ цель KPI для каждого видео в аттрибуте data-kpi="" (согласовать KPI с КАМом)
-              case seconds === kpi:
-                if (kpi >= 60) {
-                  if (kpi % 60 === 0) {
-                    sendYM(`${label}(KPI) - ${kpi / 60}m`, ZZZZZZZZ);
-                    // console.log(`${label}(KPI) - ${kpi / 60}m`);
+              // YM:
+              // Отправка событий по видео на второй счетчик Янедкс Метрики
+              // здесь вместо ZZZZZZZZ - номер второго счетчика.
+              switch (true) {
+                // START
+                case seconds === 1:
+                  sendYM(`${label} - start`, ZZZZZZZZ);
+                  // console.log(`${label} - start`);
+                  break;
+                // INTERVALS
+                case seconds === 15:
+                  sendYM(`${label} - 15s`, ZZZZZZZZ);
+                  // console.log(`${label} - 15s`);
+                  break;
+                case seconds === 30:
+                  sendYM(`${label} - 30s`, ZZZZZZZZ);
+                  // console.log(`${label} - 30s`);
+                  break;
+                case seconds === 60:
+                  sendYM(`${label} - 1m`, ZZZZZZZZ);
+                  // console.log(`${label} - 1m`);
+                  break;
+                // KPI - задать в СЕКУНДАХ цель KPI для каждого видео в аттрибуте data-kpi="" (согласовать KPI с КАМом)
+                case seconds === kpi:
+                  if (kpi >= 60) {
+                    if (kpi % 60 === 0) {
+                      sendYM(`${label}(KPI) - ${kpi / 60}m`, ZZZZZZZZ);
+                      // console.log(`${label}(KPI) - ${kpi / 60}m`);
+                    } else {
+                      sendYM(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`, ZZZZZZZZ);
+                      // console.log(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`);
+                    }
                   } else {
-                    sendYM(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`, ZZZZZZZZ);
-                    // console.log(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`);
+                    sendYM(`${label}(KPI) - ${kpi}s`, ZZZZZZZZ);
+                    // console.log(`${label}(KPI) - ${kpi}s`);
                   }
-                } else {
-                  sendYM(`${label}(KPI) - ${kpi}s`, ZZZZZZZZ);
-                  // console.log(`${label}(KPI) - ${kpi}s`);
-                }
-                break;
-              // END
-              case seconds === duration:
-                sendYM(`${label} - end`, ZZZZZZZZ);
-                // console.log(`${label} - end`);
-                break;
-            }
-            sec++;
-          }, 1000);
-        };
+                  break;
+                // END
+                case seconds === duration:
+                  sendYM(`${label} - end`, ZZZZZZZZ);
+                  // console.log(`${label} - end`);
+                  break;
+              }
+              sec++;
+            }, 1000);
+          };
 
-        const stopTimer = () => clearInterval(timer);
+          const stopTimer = () => {
+            clearInterval(timer);
+          };
 
-        video.addEventListener('play', () => {
-          const durationReal = Math.floor(video.duration);
-          const duration = durationReal - 5; // Конец видео (продолжительность видео минус 5 сек)
-          const eventName = `Video_${pageTitleGA}`;
-          const property = video.dataset.label;
-          const label = video.dataset.label;
-          const kpi = Number(video.dataset.kpi);
+          video.addEventListener('play', () => {
+            const durationReal = Math.floor(video.duration);
+            const duration = Number(durationReal - 10);
+            const eventName = `Video_${pageTitleGA}`;
+            const property = `Video_${pageTitleGA}`;
+            const label = video.dataset.label;
+            const kpi = Number(video.dataset.kpi);
+            timer = startTimer(eventName, property, label, duration, kpi);
+          });
 
-          timer = startTimer(eventName, property, label, duration, kpi);
+          video.addEventListener('pause', () => {
+            stopTimer();
+          });
         });
-
-        video.addEventListener('pause', () => (timer = stopTimer()));
       });
     </script>
 
