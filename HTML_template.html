@@ -82,7 +82,10 @@
     <!-- DOC SPECIALTY FOR GA4 -->
     <script type="text/javascript">
       window.addEventListener('message', (e) => {
-        if (window.location.origin.includes('doktornarabote')) {
+        if (
+          window.location.origin.includes('doktornarabote') ||
+          window.location.origin.includes('smartpharma')
+        ) {
           if (typeof gtag === 'function') {
             if (e.data && e.data.docData) {
               gtag('event', 'UserID', { UserID: e.data.docData.Id });

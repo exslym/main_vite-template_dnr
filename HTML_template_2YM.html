@@ -90,7 +90,10 @@
     <!-- DOC SPECIALTY FOR GA4 -->
     <script type="text/javascript">
       window.addEventListener('message', (e) => {
-        if (window.location.origin.includes('doktornarabote')) {
+        if (
+          window.location.origin.includes('doktornarabote') ||
+          window.location.origin.includes('smartpharma')
+        ) {
           if (typeof gtag === 'function') {
             if (e.data && e.data.docData) {
               gtag('event', 'UserID', { UserID: e.data.docData.Id });
@@ -112,7 +115,10 @@
       const sendGTAG = (eventName, property, label) => {
         let eventProperty = new Object();
         eventProperty = { [property]: label };
-        if (window.location.origin.includes('doktornarabote')) {
+        if (
+          window.location.origin.includes('doktornarabote') ||
+          window.location.origin.includes('smartpharma')
+        ) {
           if (typeof gtag === 'function') {
             gtag('event', eventName, eventProperty);
             // console.log('GA', eventName, eventProperty);
@@ -130,7 +136,10 @@
     <!-- YANDEX METRIKA SEND EVENTS FUNCTION -->
     <script type="text/javascript">
       const sendYM = (label, number) => {
-        if (window.location.origin.includes('doktornarabote')) {
+        if (
+          window.location.origin.includes('doktornarabote') ||
+          window.location.origin.includes('smartpharma')
+        ) {
           if (typeof ym === 'function') {
             ym(number, 'reachGoal', label);
             // console.log('YM:', number, label);
