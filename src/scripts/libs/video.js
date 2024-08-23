@@ -3,12 +3,18 @@ export function videoPlayer(startButton, startedClass) {
     const videoPosters = document.querySelectorAll(`.${startButton}`);
     const videos = document.querySelectorAll('video');
 
-    let videoPlay = (videoId) => {
+    const videoPlay = (videoId) => {
       for (let poster of videoPosters) {
+        poster.classList.remove(`${startedClass}`);
         if (poster.dataset.target === videoId) {
           poster.classList.add(`${startedClass}`);
         }
       }
+
+      videos.forEach((video) => {
+        video.pause();
+      });
+
       for (let video of videos) {
         if (video.dataset.target === videoId) {
           video.play();
@@ -17,7 +23,7 @@ export function videoPlayer(startButton, startedClass) {
       }
     };
 
-    let videoStop = (videoId) => {
+    const videoStop = (videoId) => {
       for (let video of videos) {
         if (video.dataset.target === videoId) {
           video.pause();
@@ -36,10 +42,11 @@ export function videoPlayer(startButton, startedClass) {
     for (let video of videos) {
       video.addEventListener('click', (e) => {
         e.preventDefault();
+        let videoId = video.dataset.target;
         if (video.paused) {
-          video.play();
+          videoPlay(videoId);
         } else {
-          video.pause();
+          videoStop(videoId);
         }
       });
     }
@@ -50,7 +57,7 @@ export function videoPlayer(startButton, startedClass) {
 //* VIDEO:
 /* 
   <div class="videobox">
-    <video preload="auto" data-label="Video1" data-target="Video1" id="Video1">
+    <video preload="auto" data-label="Video1" data-target="Video1" id="Video1" kpi="180">
       <source src="video/video.mp4" type="video/mp4" />
     </video>
     <div class="startVideoButton" data-target="Video1">Start Video1</div>

@@ -4,12 +4,18 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
     const timeCodeButtons = document.querySelectorAll(`.${timeCodeButton}`);
     const videos = document.querySelectorAll('video');
 
-    let videoPlay = (videoId) => {
+    const videoPlay = (videoId) => {
       for (let poster of videoPosters) {
+        poster.classList.remove(`${startedClass}`);
         if (poster.dataset.target === videoId) {
           poster.classList.add(`${startedClass}`);
         }
       }
+
+      videos.forEach((video) => {
+        video.pause();
+      });
+
       for (let video of videos) {
         if (video.dataset.target === videoId) {
           video.play();
@@ -18,7 +24,7 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
       }
     };
 
-    let videoStop = (videoId) => {
+    const videoStop = (videoId) => {
       for (let video of videos) {
         if (video.dataset.target === videoId) {
           video.pause();
@@ -37,10 +43,11 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
     for (let video of videos) {
       video.addEventListener('click', (e) => {
         e.preventDefault();
+        let videoId = video.dataset.target;
         if (video.paused) {
-          video.play();
+          videoPlay(videoId);
         } else {
-          video.pause();
+          videoStop(videoId);
         }
       });
     }
@@ -67,7 +74,7 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
 /* 
   <button
     class="timeCodeButton"
-    data-target="video1"
+    data-target="Video1"
     data-time="30"
   >
     Go to timecode 30sec
@@ -75,10 +82,10 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
   ---
   ---
   <div class="videobox">
-    <video preload="auto" data-label="Video" data-target="video1" id="video1">
+    <video preload="auto" data-label="Video1" data-target="Video1" id="Video1" kpi="180">
       <source src="video/video.mp4" type="video/mp4" />
     </video>
-    <div class="startButton" data-target="video1"></div>
+    <div class="startVideoButton" data-target="Video1">Start Video1</div>
   </div>
 */
 
@@ -98,7 +105,7 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
       width: 100%;
       height: 100%;
     }
-    .startButton {
+    .startVideoButton {
       cursor: pointer;
       margin: 0;
       padding: 0;
@@ -110,7 +117,7 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
       background: no-repeat center / cover url('../assets/images/poster.png');
       @include adapt(border-radius, 20, 40);
     }
-    .startedClass {
+    .startedVideoClass {
       display: none;
     }
   }
@@ -124,6 +131,6 @@ import { videoTimeCodes } from './libs/videoTimeCodes';
 window.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  videoTimeCodes('startButton', 'timeCodeButton', 'startedClass');
+  videoTimeCodes('startVideoButton', 'timeCodeButton', 'startedVideoClass');
 });
 */

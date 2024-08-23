@@ -320,91 +320,138 @@
         let timer = null;
         let sec = 0;
 
-        videos.forEach((video) => {
-          const startTimer = function startTimer(eventName, property, label, duration, kpi) {
-            return setInterval(() => {
-              const seconds = sec + 1;
-              const minutes = Math.floor(seconds / 60);
+        const startTimer = (eventName, property, label, duration, kpi) => {
+          return setInterval(() => {
+            const seconds = sec + 1;
+            const minutes = Math.floor(seconds / 60);
 
-              // GOOGLE ANALYTICS:
-              switch (true) {
-                case seconds === 1: // Старт видео (с 1 секунды):
-                  sendGTAG(eventName, property, `${label} - start`);
-                  break;
-                case seconds > 0 && seconds < 30:
-                  if (seconds % 5 === 0) {
-                    sendGTAG(eventName, property, `${label} - ${seconds}s`);
+            // GOOGLE ANALYTICS:
+            switch (true) {
+              case seconds === 1:
+                sendGTAG(eventName, property, `${label} - start`);
+                break;
+              case seconds > 0 && seconds < 30:
+                if (seconds % 5 === 0) {
+                  sendGTAG(eventName, property, `${label} - ${seconds}s`);
+                }
+                break;
+              case seconds >= 30 && seconds < 60:
+                if (seconds % 15 === 0) {
+                  sendGTAG(eventName, property, `${label} - ${seconds}s`);
+                }
+                break;
+              case seconds >= 60 && seconds < duration:
+                if (seconds % 15 === 0) {
+                  switch (true) {
+                    case seconds - minutes * 60 !== 0:
+                      sendGTAG(
+                        eventName,
+                        property,
+                        `${label} - ${minutes}m ${seconds - minutes * 60}s`
+                      );
+                      break;
+                    default:
+                      sendGTAG(eventName, property, `${label} - ${minutes}m`);
+                      break;
                   }
-                  break;
-                case seconds >= 30 && seconds < 60:
-                  if (seconds % 15 === 0) {
-                    sendGTAG(eventName, property, `${label} - ${seconds}s`);
-                  }
-                  break;
-                case seconds >= 60 && seconds < duration:
-                  // после первых 60 секунд конвертим секунды в минуты и каждые 15 секунд опрокидываем событие вида, например, 1m 45s, далее 2m, далее 2m 15s и т.д.:
-                  if (seconds % 15 === 0) {
-                    switch (true) {
-                      case seconds - minutes * 60 !== 0:
-                        sendGTAG(
-                          eventName,
-                          property,
-                          `${label} - ${minutes}m ${seconds - minutes * 60}s`
-                        );
-                        break;
-                      default:
-                        sendGTAG(eventName, property, `${label} - ${minutes}m`);
-                        break;
-                    }
-                  }
-                  break;
-                case seconds === duration: // Конец видео:
-                  sendGTAG(eventName, property, `${label} - end`);
-                  break;
-              }
+                }
+                break;
+              case seconds === duration:
+                sendGTAG(eventName, property, `${label} - end`);
+                break;
+            }
 
-              // YM:
-              // Отправка событий по видео на второй счетчик Янедкс Метрики
-              // здесь вместо ZZZZZZZZ - номер второго счетчика.
-              switch (true) {
-                // START
-                case seconds === 1:
-                  sendYM(`${label} - start`, ZZZZZZZZ);
-                  break;
-                // INTERVALS
-                case seconds === 15:
-                  sendYM(`${label} - 15s`, ZZZZZZZZ);
-                  break;
-                case seconds === 30:
-                  sendYM(`${label} - 30s`, ZZZZZZZZ);
-                  break;
-                case seconds === 60:
-                  sendYM(`${label} - 1m`, ZZZZZZZZ);
-                  break;
-                // KPI - задать в СЕКУНДАХ цель KPI для каждого видео в аттрибуте data-kpi="" (согласовать KPI с КАМом)
-                case seconds === kpi:
-                  if (kpi >= 60) {
-                    if (kpi % 60 === 0) {
-                      sendYM(`${label}(KPI) - ${kpi / 60}m`, ZZZZZZZZ);
-                    } else {
-                      sendYM(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`, ZZZZZZZZ);
-                    }
+            // YM:
+            // Отправка событий по видео на второй счетчик Янедкс Метрики
+            // здесь вместо ZZZZZZZZ - номер второго счетчика.
+            switch (true) {
+              // START
+              case seconds === 1:
+                sendYM(`${label} - start`, ZZZZZZZZ);
+                break;
+              // INTERVALS
+              case seconds === 15:
+                sendYM(`${label} - 15s`, ZZZZZZZZ);
+                break;
+              case seconds === 30:
+                sendYM(`${label} - 30s`, ZZZZZZZZ);
+                break;
+              case seconds === 60:
+                sendYM(`${label} - 1m`, ZZZZZZZZ);
+                break;
+              // KPI - задать в СЕКУНДАХ цель KPI для каждого видео в аттрибуте data-kpi="" (согласовать KPI с КАМом)
+              case seconds === kpi:
+                if (kpi >= 60) {
+                  if (kpi % 60 === 0) {
+                    sendYM(`${label}(KPI) - ${kpi / 60}m`, ZZZZZZZZ);
                   } else {
-                    sendYM(`${label}(KPI) - ${kpi}s`, ZZZZZZZZ);
+                    sendYM(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`, ZZZZZZZZ);
                   }
-                  break;
-                // END
-                case seconds === duration:
-                  sendYM(`${label} - end`, ZZZZZZZZ);
-                  break;
-              }
-              sec++;
-            }, 1000);
+                } else {
+                  sendYM(`${label}(KPI) - ${kpi}s`, ZZZZZZZZ);
+                }
+                break;
+              // END
+              case seconds === duration:
+                sendYM(`${label} - end`, ZZZZZZZZ);
+                break;
+            }
+            sec++;
+          }, 1000);
+        };
+
+        videos.forEach((video) => {
+          window.intervalIds = [];
+          const originalIntervalFn = window.setInterval;
+          window.setInterval = function (fn, delay) {
+            const id = originalIntervalFn(fn, delay);
+            intervalIds.push(id);
+            return id;
+          };
+          window.clearAllInterval = function () {
+            while (intervalIds.length) {
+              clearInterval(intervalIds.pop());
+            }
+          };
+          window.clearAllInterval = function () {
+            while (intervalIds.length) {
+              clearInterval(intervalIds.pop());
+            }
           };
 
           const stopTimer = () => {
             clearInterval(timer);
           };
+
+          const currVideoStartTimer = (videoId) => {
+            const currentVideo = document.getElementById(videoId);
+            const durationReal = Math.floor(currentVideo.duration);
+            const duration = Number(durationReal - 10);
+            const eventName = `Video_${pageTitleGA}`;
+            const property = `Video_${pageTitleGA}`;
+            const label = currentVideo.dataset.label;
+            const kpi = Number(currentVideo.dataset.kpi);
+            timer = startTimer(eventName, property, label, duration, kpi);
+          };
+
+          // if (videos.length > 1) {
+          //   video.addEventListener('click', (e) => {
+          //     e.preventDefault();
+          //     let videoId = video.id;
+          //     console.log(`HTML click ${videoId}`);
+          //     videos.forEach((video) => {
+          //       if (video.paused) {
+          //         console.log(`${videoId} paused`);
+          //         clearAllInterval();
+          //         timer = null;
+          //       } else {
+          //         console.log(`${videoId} playing`);
+          //         clearAllInterval();
+          //         currVideoStartTimer(videoId);
+          //       }
+          //     });
+          //   });
+          // }
 
           video.addEventListener('play', () => {
             const durationReal = Math.floor(video.duration);
@@ -419,7 +466,32 @@
           video.addEventListener('pause', () => {
             stopTimer();
           });
+
+          video.addEventListener('play', () => {
+            currVideoStartTimer(video.id);
+          });
+
+          video.addEventListener('pause', () => {
+            clearAllInterval();
+          });
         });
+
+        if (document.querySelector('.startVideoButton')) {
+          const videoPreviews = document.querySelectorAll('.startVideoButton');
+          videoPreviews.forEach((preview) => {
+            preview.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+
+              videos.forEach((video) => {
+                video.currentTime = 0;
+                clearAllInterval();
+                timer = null;
+                sec = 0;
+              });
+            });
+          });
+        }
       });
     </script>
 
