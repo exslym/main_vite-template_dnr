@@ -4,17 +4,63 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
     const timeCodeButtons = document.querySelectorAll(`.${timeCodeButton}`);
     const videos = document.querySelectorAll('video');
 
+    // play video on preview click:
+    for (let poster of videoPosters) {
+      poster.addEventListener('click', (e) => {
+        e.preventDefault();
+        let videoId = poster.dataset.target;
+        videoPlay(videoId);
+      });
+    }
+
+    // play/pause video on video click:
+    for (let video of videos) {
+      video.addEventListener('click', (e) => {
+        e.preventDefault();
+        let videoId = video.dataset.target;
+        if (video.paused) {
+          videoPlay(videoId);
+        } else {
+          videoStop(videoId);
+        }
+      });
+    }
+
+    // play current video from chosen timmecode:
+    for (let btn of timeCodeButtons) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let timeCode = btn.dataset.time;
+        for (let video of videos) {
+          let id = video.dataset.target;
+          let videoId = id;
+          if (id == videoId) {
+            video.currentTime = timeCode;
+            videoPlay(videoId);
+          }
+        }
+      });
+    }
+
     const videoPlay = (videoId) => {
+      videos.forEach((video) => {
+        // puase all other videos:
+        video.pause();
+        // reset the timeline to 0 on other videos exept current:
+        // if (video.dataset.target !== videoId) {
+        //   video.currentTime = 0;
+        // }
+      });
+
       for (let poster of videoPosters) {
-        poster.classList.remove(`${startedClass}`);
+        // to back previews on all other videos:
+        // poster.classList.remove(`${startedClass}`);
+
+        // remove preview on current video by click on preview
         if (poster.dataset.target === videoId) {
           poster.classList.add(`${startedClass}`);
         }
       }
-
-      videos.forEach((video) => {
-        video.pause();
-      });
 
       for (let video of videos) {
         if (video.dataset.target === videoId) {
@@ -31,41 +77,6 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
         }
       }
     };
-
-    for (let poster of videoPosters) {
-      poster.addEventListener('click', (e) => {
-        e.preventDefault();
-        let videoId = poster.dataset.target;
-        videoPlay(videoId);
-      });
-    }
-
-    for (let video of videos) {
-      video.addEventListener('click', (e) => {
-        e.preventDefault();
-        let videoId = video.dataset.target;
-        if (video.paused) {
-          videoPlay(videoId);
-        } else {
-          videoStop(videoId);
-        }
-      });
-    }
-
-    for (let btn of timeCodeButtons) {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        let timeCode = btn.dataset.time;
-        for (let video of videos) {
-          let id = video.dataset.target;
-          let videoId = id;
-          if (id == videoId) {
-            video.currentTime = timeCode;
-            videoPlay(videoId);
-          }
-        }
-      });
-    }
   }
 }
 

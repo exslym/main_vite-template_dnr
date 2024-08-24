@@ -267,7 +267,7 @@
     <script type="text/javascript">
       window.addEventListener('load', () => {
         (function (e) {
-          var matches =
+          let matches =
             e.matches ||
             e.matchesSelector ||
             e.webkitMatchesSelector ||
@@ -277,8 +277,8 @@
           !matches
             ? (e.matches = e.matchesSelector =
                 function matches(selector) {
-                  var matches = document.querySelectorAll(selector);
-                  var th = this;
+                  let matches = document.querySelectorAll(selector);
+                  let th = this;
                   return Array.prototype.some.call(matches, function (e) {
                     return e === th;
                   });
@@ -290,8 +290,7 @@
           e.closest =
             e.closest ||
             function (css) {
-              var node = this;
-
+              let node = this;
               while (node) {
                 if (node.matches(css)) return node;
                 else node = node.parentElement;
@@ -301,110 +300,97 @@
         })(Element.prototype);
 
         const videos = document.querySelectorAll('video');
-        let timer = null;
-        let sec = 0;
-
-        const startTimer = (eventName, property, label, duration, kpi) => {
-          return setInterval(() => {
-            const seconds = sec + 1;
-            const minutes = Math.floor(seconds / 60);
-
-            // YM:
-            switch (true) {
-              // START
-              case seconds === 1:
-                sendYM(`${label} - start`);
-                break;
-              // INTERVALS
-              case seconds === 15:
-                sendYM(`${label} - 15s`);
-                break;
-              case seconds === 30:
-                sendYM(`${label} - 30s`);
-                break;
-              case seconds === 60:
-                sendYM(`${label} - 1m`);
-                break;
-              case seconds === kpi:
-                if (kpi >= 60) {
-                  if (kpi % 60 === 0) {
-                    sendYM(`${label}(KPI) - ${kpi / 60}m`);
-                  } else {
-                    sendYM(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`);
-                  }
-                } else {
-                  sendYM(`${label}(KPI) - ${kpi}s`);
-                }
-                break;
-              // END
-              case seconds === duration:
-                sendYM(`${label} - end`);
-                break;
-            }
-
-            // GOOGLE ANALYTICS:
-            switch (true) {
-              case seconds === 1:
-                sendGTAG(eventName, property, `${label} - start`);
-                break;
-              case seconds > 0 && seconds < 30:
-                if (seconds % 5 === 0) {
-                  sendGTAG(eventName, property, `${label} - ${seconds}s`);
-                }
-                break;
-              case seconds >= 30 && seconds < 60:
-                if (seconds % 15 === 0) {
-                  sendGTAG(eventName, property, `${label} - ${seconds}s`);
-                }
-                break;
-              case seconds >= 60 && seconds < duration:
-                if (seconds % 15 === 0) {
-                  switch (true) {
-                    case seconds - minutes * 60 !== 0:
-                      sendGTAG(
-                        eventName,
-                        property,
-                        `${label} - ${minutes}m ${seconds - minutes * 60}s`
-                      );
-                      break;
-                    default:
-                      sendGTAG(eventName, property, `${label} - ${minutes}m`);
-                      break;
-                  }
-                }
-                break;
-              case seconds === duration:
-                sendGTAG(eventName, property, `${label} - end`);
-                break;
-            }
-            sec++;
-          }, 1000);
-        };
 
         videos.forEach((video) => {
-          window.intervalIds = [];
-          const originalIntervalFn = window.setInterval;
-          window.setInterval = function (fn, delay) {
-            const id = originalIntervalFn(fn, delay);
-            intervalIds.push(id);
-            return id;
-          };
-          window.clearAllInterval = function () {
-            while (intervalIds.length) {
-              clearInterval(intervalIds.pop());
-            }
-          };
-          window.clearAllInterval = function () {
-            while (intervalIds.length) {
-              clearInterval(intervalIds.pop());
-            }
-          };
+          let timer = null;
+          let sec = 0;
 
-          const stopTimer = () => {
-            clearInterval(timer);
-          };
+          function startTimer(eventName, property, label, duration, kpi) {
+            return setInterval(() => {
+              const seconds = sec + 1;
+              const minutes = Math.floor(seconds / 60);
 
-          const currVideoStartTimer = (videoId) => {
+              // YM:
+              switch (true) {
+                // START
+                case seconds === 1:
+                  sendYM(`${label} - start`);
+                  break;
+                // INTERVALS
+                case seconds === 15:
+                  sendYM(`${label} - 15s`);
+                  break;
+                case seconds === 30:
+                  sendYM(`${label} - 30s`);
+                  break;
+                case seconds === 60:
+                  sendYM(`${label} - 1m`);
+                  break;
+                case seconds === kpi:
+                  if (kpi >= 60) {
+                    if (kpi % 60 === 0) {
+                      sendYM(`${label}(KPI) - ${kpi / 60}m`);
+                    } else {
+                      sendYM(`${label}(KPI) - ${Math.floor(kpi / 60)}m ${kpi % 60}s`);
+                    }
+                  } else {
+                    sendYM(`${label}(KPI) - ${kpi}s`);
+                  }
+                  break;
+                // END
+                case seconds === duration:
+                  sendYM(`${label} - end`);
+                  break;
+              }
+
+              // GOOGLE ANALYTICS:
+              switch (true) {
+                case seconds === 1:
+                  sendGTAG(eventName, property, `${label} - start`);
+                  break;
+                case seconds > 0 && seconds < 30:
+                  if (seconds % 5 === 0) {
+                    sendGTAG(eventName, property, `${label} - ${seconds}s`);
+                  }
+                  break;
+                case seconds >= 30 && seconds < 60:
+                  if (seconds % 15 === 0) {
+                    sendGTAG(eventName, property, `${label} - ${seconds}s`);
+                  }
+                  break;
+                case seconds >= 60 && seconds < duration:
+                  if (seconds % 15 === 0) {
+                    switch (true) {
+                      case seconds - minutes * 60 !== 0:
+                        sendGTAG(
+                          eventName,
+                          property,
+                          `${label} - ${minutes}m ${seconds - minutes * 60}s`
+                        );
+                        break;
+                      default:
+                        sendGTAG(eventName, property, `${label} - ${minutes}m`);
+                        break;
+                    }
+                  }
+                  break;
+                case seconds === duration:
+                  sendGTAG(eventName, property, `${label} - end`);
+                  break;
+              }
+              sec++;
+            }, 1000);
+          }
+
+          video.addEventListener('play', () => {
+            currVideoStartTimer(video.id);
+          });
+
+          video.addEventListener('pause', () => {
+            stopTimer();
+          });
+
+          function currVideoStartTimer(videoId) {
             const currentVideo = document.getElementById(videoId);
             const durationReal = Math.floor(currentVideo.duration);
             const duration = Number(durationReal - 10);
@@ -413,66 +399,28 @@
             const label = currentVideo.dataset.label;
             const kpi = Number(currentVideo.dataset.kpi);
             timer = startTimer(eventName, property, label, duration, kpi);
-          };
+          }
 
-          // if (videos.length > 1) {
-          //   video.addEventListener('click', (e) => {
-          //     e.preventDefault();
-          //     let videoId = video.id;
-          //     console.log(`HTML click ${videoId}`);
-          //     videos.forEach((video) => {
-          //       if (video.paused) {
-          //         console.log(`${videoId} paused`);
-          //         clearAllInterval();
+          function stopTimer() {
+            clearInterval(timer);
+          }
+
+          // RESET TIMER and SEC on all videos:
+          // if (document.querySelector('.startVideoButton')) {
+          //   const videoPreviews = document.querySelectorAll('.startVideoButton');
+          //   videoPreviews.forEach((preview) => {
+          //     preview.addEventListener('click', (e) => {
+          //       e.preventDefault();
+          //       e.stopPropagation();
+          //       videos.forEach((video) => {
+          //         clearInterval(timer);
           //         timer = null;
-          //       } else {
-          //         console.log(`${videoId} playing`);
-          //         clearAllInterval();
-          //         currVideoStartTimer(videoId);
-          //       }
+          //         sec = 0;
+          //       });
           //     });
           //   });
           // }
-
-          video.addEventListener('play', () => {
-            const durationReal = Math.floor(video.duration);
-            const duration = Number(durationReal - 10);
-            const eventName = `Video_${pageTitleGA}`;
-            const property = `Video_${pageTitleGA}`;
-            const label = video.dataset.label;
-            const kpi = Number(video.dataset.kpi);
-            timer = startTimer(eventName, property, label, duration, kpi);
-          });
-
-          video.addEventListener('pause', () => {
-            stopTimer();
-          });
-
-          video.addEventListener('play', () => {
-            currVideoStartTimer(video.id);
-          });
-
-          video.addEventListener('pause', () => {
-            clearAllInterval();
-          });
         });
-
-        if (document.querySelector('.startVideoButton')) {
-          const videoPreviews = document.querySelectorAll('.startVideoButton');
-          videoPreviews.forEach((preview) => {
-            preview.addEventListener('click', (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-
-              videos.forEach((video) => {
-                video.currentTime = 0;
-                clearAllInterval();
-                timer = null;
-                sec = 0;
-              });
-            });
-          });
-        }
       });
     </script>
 
