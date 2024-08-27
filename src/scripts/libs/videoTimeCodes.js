@@ -4,6 +4,42 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
     const timeCodeButtons = document.querySelectorAll(`.${timeCodeButton}`);
     const videos = document.querySelectorAll('video');
 
+    const videoPlay = (videoId) => {
+      videos.forEach((video) => {
+        // puase all other videos:
+        video.pause();
+        // reset the timeline to 0 on other videos exept current:
+        // if (video.dataset.target !== videoId) {
+        //   video.currentTime = 0;
+        // }
+      });
+
+      for (let poster of videoPosters) {
+        // to back previews on all other videos:
+        // poster.classList.remove(`${startedClass}`);
+
+        // remove preview on current video by click on preview
+        if (poster.dataset.target === videoId) {
+          poster.classList.add(`${startedClass}`);
+        }
+      }
+
+      for (let video of videos) {
+        if (video.dataset.target === videoId) {
+          video.play();
+          video.setAttribute('controls', 'true');
+        }
+      }
+    };
+
+    const videoStop = (videoId) => {
+      for (let video of videos) {
+        if (video.dataset.target === videoId) {
+          video.pause();
+        }
+      }
+    };
+
     // play video on preview click:
     for (let poster of videoPosters) {
       poster.addEventListener('click', (e) => {
@@ -41,42 +77,6 @@ export function videoTimeCodes(startButton, timeCodeButton, startedClass) {
         }
       });
     }
-
-    const videoPlay = (videoId) => {
-      videos.forEach((video) => {
-        // puase all other videos:
-        video.pause();
-        // reset the timeline to 0 on other videos exept current:
-        // if (video.dataset.target !== videoId) {
-        //   video.currentTime = 0;
-        // }
-      });
-
-      for (let poster of videoPosters) {
-        // to back previews on all other videos:
-        // poster.classList.remove(`${startedClass}`);
-
-        // remove preview on current video by click on preview
-        if (poster.dataset.target === videoId) {
-          poster.classList.add(`${startedClass}`);
-        }
-      }
-
-      for (let video of videos) {
-        if (video.dataset.target === videoId) {
-          video.play();
-          video.setAttribute('controls', 'true');
-        }
-      }
-    };
-
-    const videoStop = (videoId) => {
-      for (let video of videos) {
-        if (video.dataset.target === videoId) {
-          video.pause();
-        }
-      }
-    };
   }
 }
 

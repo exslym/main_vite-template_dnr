@@ -3,28 +3,6 @@ export function videoPlayer(startButton, startedClass) {
     const videoPosters = document.querySelectorAll(`.${startButton}`);
     const videos = document.querySelectorAll('video');
 
-    // play video on preview click:
-    for (let poster of videoPosters) {
-      poster.addEventListener('click', (e) => {
-        e.preventDefault();
-        let videoId = poster.dataset.target;
-        videoPlay(videoId);
-      });
-    }
-
-    // play/pause video on video click:
-    for (let video of videos) {
-      video.addEventListener('click', (e) => {
-        e.preventDefault();
-        let videoId = video.dataset.target;
-        if (video.paused) {
-          videoPlay(videoId);
-        } else {
-          videoStop(videoId);
-        }
-      });
-    }
-
     const videoPlay = (videoId) => {
       videos.forEach((video) => {
         // puase all other videos:
@@ -60,6 +38,28 @@ export function videoPlayer(startButton, startedClass) {
         }
       }
     };
+
+    // play video on preview click:
+    for (let poster of videoPosters) {
+      poster.addEventListener('click', (e) => {
+        e.preventDefault();
+        let videoId = poster.dataset.target;
+        videoPlay(videoId);
+      });
+    }
+
+    // play/pause video on video click:
+    for (let video of videos) {
+      video.addEventListener('click', (e) => {
+        e.preventDefault();
+        let videoId = video.dataset.target;
+        if (video.paused) {
+          videoPlay(videoId);
+        } else {
+          videoStop(videoId);
+        }
+      });
+    }
   }
 }
 
