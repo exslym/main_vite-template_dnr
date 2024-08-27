@@ -305,6 +305,29 @@
           let timer = null;
           let sec = 0;
 
+          video.addEventListener('play', () => {
+            currVideoStartTimer(video.id);
+          });
+
+          video.addEventListener('pause', () => {
+            stopTimer();
+          });
+
+          function currVideoStartTimer(videoId) {
+            const currentVideo = document.getElementById(videoId);
+            const durationReal = Math.floor(currentVideo.duration);
+            const duration = Number(durationReal - 10);
+            const eventName = `Video_${pageTitleGA}`;
+            const property = `Video_${pageTitleGA}`;
+            const label = currentVideo.dataset.label;
+            const kpi = Number(currentVideo.dataset.kpi);
+            timer = startTimer(eventName, property, label, duration, kpi);
+          }
+
+          function stopTimer() {
+            clearInterval(timer);
+          }
+
           function startTimer(eventName, property, label, duration, kpi) {
             return setInterval(() => {
               const seconds = sec + 1;
@@ -380,29 +403,6 @@
               }
               sec++;
             }, 1000);
-          }
-
-          video.addEventListener('play', () => {
-            currVideoStartTimer(video.id);
-          });
-
-          video.addEventListener('pause', () => {
-            stopTimer();
-          });
-
-          function currVideoStartTimer(videoId) {
-            const currentVideo = document.getElementById(videoId);
-            const durationReal = Math.floor(currentVideo.duration);
-            const duration = Number(durationReal - 10);
-            const eventName = `Video_${pageTitleGA}`;
-            const property = `Video_${pageTitleGA}`;
-            const label = currentVideo.dataset.label;
-            const kpi = Number(currentVideo.dataset.kpi);
-            timer = startTimer(eventName, property, label, duration, kpi);
-          }
-
-          function stopTimer() {
-            clearInterval(timer);
           }
 
           // RESET TIMER and SEC on all videos:
