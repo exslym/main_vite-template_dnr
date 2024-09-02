@@ -149,7 +149,7 @@
             );
           }
         } else {
-          console.log('YM: localhost', 'reachGoal', label);
+          console.log('YM: localhost', number, 'reachGoal', label);
         }
       };
     </script>
@@ -274,7 +274,15 @@
     <div class="wrapper">
       <section class="section _1" data-id="screensObserver" id="Screen_1">
         <div class="section__content">
-          <div class="block"></div>
+          <div class="block">
+            <button class="button" data-label="Button_1" data-analytics="analyticsYM1">
+              Button_1
+            </button>
+
+            <a href="#" class="button" data-label="Button_2" data-analytics="analyticsYM2">
+              Button_2
+            </a>
+          </div>
         </div>
       </section>
     </div>

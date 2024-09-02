@@ -93,7 +93,7 @@ export function analytics2YM(btnAttributeYM1, btnAttributeYM2) {
           );
         }
       } else {
-        console.log('YM: localhost', 'reachGoal', label);
+        console.log('YM: localhost', number, 'reachGoal', label);
       }
     };
   </script>
@@ -119,7 +119,7 @@ export function analytics2YM(btnAttributeYM1, btnAttributeYM2) {
 //! SCRIPTS - add module to your project and import it in the index.js
 //* SCRIPTS:
 /* 
-  import { analytics } from './libs/analytics';
+import { analytics2YM } from './libs/analytics2YM';
 
   window.addEventListener('DOMContentLoaded', () => {
     'use strict';
