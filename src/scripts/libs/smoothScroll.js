@@ -63,14 +63,14 @@ function scrollToTarget(scrollTarget) {
 /* 
   <a
     href="#element"
-    class="scrollButton"
+    class="scrollButton1"
     data-scroll="scrollTo"
   >
     Link to element
   </a>
 
   <button
-    class="scrollButton"
+    class="scrollButton2"
     data-target="element"
     data-scroll="scrollTo"
   >
@@ -91,6 +91,7 @@ import { smoothScroll } from './libs/smoothScroll';
 window.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  smoothScroll('scrollButton');
+  smoothScroll('scrollButton1');
+  smoothScroll('scrollButton2');
 });
 */

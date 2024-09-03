@@ -1,10 +1,5 @@
 //* Slider (owl-carousel):
-export function slider1(slider, prevButton, nextButton, dotsBox, startBlock = 1) {
-  if (document.querySelector(`.${slider}`)) {
-    $(commonSlider(slider, prevButton, nextButton, dotsBox, startBlock));
-  }
-}
-export function slider2(slider, prevButton, nextButton, dotsBox, startBlock = 1) {
+export function slider(slider, prevButton, nextButton, dotsBox, startBlock = 1) {
   if (document.querySelector(`.${slider}`)) {
     $(commonSlider(slider, prevButton, nextButton, dotsBox, startBlock));
   }
@@ -129,12 +124,12 @@ function commonSlider(slider, prevButton, nextButton, dotsBox, startBlock) {
 //! SCRIPTS - add module to your project and import it in the index.js
 //* SCRIPTS:
 /* 
-  import { slider1, slider2 } from './libs/sliders';
+  import { slider } from './libs/sliders';
 
   window.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
     //* sliders: started with 1st slide, change if needed:
-    slider1('slider1', 'prevButton1', 'nextButton1', 'sliderDots1', 1);
-    slider2('slider2', 'prevButton2', 'nextButton2', 'sliderDots2', 1);
+    slider('slider1', 'prevButton1', 'nextButton1', 'sliderDots1', 1);
+    slider('slider2', 'prevButton2', 'nextButton2', 'sliderDots2', 1);
 */
